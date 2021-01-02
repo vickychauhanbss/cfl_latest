@@ -1,0 +1,354 @@
+
+
+/*=================== Popup css =============*/
+.popup-feild , .start-feild , .subscribe , .download{
+    background: #fff;
+    margin: 0 auto;
+    max-width: 550px;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    position: relative;
+}
+.popup-feild h2 , .start-feild h2 , .subscribe h2 , .download h2{
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    text-align: center;
+    color: #fff;
+    font-size: 1.5625rem;
+    font-weight: bold;
+    padding: 6px 0 10px;
+    margin-bottom: 0;
+}
+.input-txt label {
+    width: 100%;
+    display: block;
+}
+
+.inner-form {
+    padding: 10px 30px;
+}
+.lost a {
+    color: #222222;
+    font-size: 1rem;
+    width: 70%;
+}
+.lost {
+    display: flex;
+}
+button.login {
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    border-radius: 50px;
+    padding: .5rem 3rem;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    border: 0;
+    margin: 23px auto 0;
+    text-align: center;
+    display: block;
+    text-transform: capitalize;
+}
+
+.bottom-form-txt span.or-txt {
+    text-align: center;
+    display: block;
+    text-transform: uppercase;
+    margin-top: 22px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.bottom-form-txt p {
+    text-align: center;
+    color: #3d3d41;
+    font-size: 1rem;
+}
+a.fb {
+    background: #4e71ab;
+    color: #FFF;
+    padding: 14px 16px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.bottom-form-txt li {
+    display: inline-block;
+    padding: 0 0px;
+}
+a.gplus {
+    background: #e35442;
+    color: #FFF;
+    padding: 14px 16px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.bottom-form-txt ul {
+    padding: 0;
+    margin:73px 0 32px 0;
+}
+a.sign {
+    color: #9e3aba;
+    font-weight: 700;
+}
+.bottom-form-txt li span:after {
+    content: "";
+    background: #fff;
+    height: 44px;
+    width: 1px;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+}
+.bottom-form-txt li span {
+    position: relative;
+    margin-right: 18px;
+}
+.bottom-form-txt li:last-child{
+    padding-left: 15px;
+}
+
+span.or-txt:before {
+    content: "";
+    background: #f3f1f4;
+    width: 34%;
+    right: 56%;
+    position: absolute;
+    height: 1px;
+    top: 11px;
+}
+span.or-txt:after {
+    content: "";
+    background: #f3f1f4;
+    width: 34%;
+    right: 10%;
+    position: absolute;
+    height: 1px;
+    top: 11px;
+}
+
+span.cross {
+    position: absolute;
+    right: -5px;
+    top: -8px;
+    background: #fff;
+    border-radius: 100%;
+    padding: 0px 6px;
+    color: #9a3cbc;
+    border: 1px solid;
+}
+
+::ng-deep mat-checkbox.check_cstm .mat-checkbox-frame{
+    border-color: #a9a9a9 !important;
+    border: 1px solid #a9a9a9 !important;
+    border-width: 1px !important;
+    border-radius: 4px !important;
+ }
+
+
+ /*==================== Start Now Button =======================*/
+ .start-feild .form-group.last {
+    margin-left: 6%;
+}
+.start-feild .form-group {
+    width: 47%;
+    display: inline-block;
+    margin-bottom: 0;
+}
+.go-btn {
+    margin-bottom: 20px;
+}
+.radio-buttons ul {
+    padding: 0;
+}
+.radio-buttons li {
+    display: inline-flex;
+    padding: 0 3px;
+    /* vertical-align: middle; */
+    align-items: center;
+    justify-content: center;
+}
+::ng-deep mat-radio-button.cstm-radio .mat-radio-outer-circle {
+    box-sizing: border-box;
+    height: 16px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: border-color ease 280ms;
+    width: 16px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+    border-color: #af32b3;
+}
+::ng-deep mat-radio-button.mat-radio-checked .mat-radio-inner-circle {
+    transform: scale(1);
+    background: linear-gradient(to right, #9d3aba, #e51197) !important;
+    height: 16px !important;
+    width: 16px !important;
+}
+::ng-deep mat-radio-button .mat-radio-label-content {
+    padding-left: 0px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 16px;
+
+}
+::ng-deep mat-radio-button label.mat-radio-label {
+    margin-bottom: 0;
+}
+/* .radio-buttons .col-xs-12.col-sm-6 {
+    padding: 0;
+} */
+.radio-buttons li strong {
+    font-size: 14px;
+}
+::ng-deep mat-radio-button .mat-radio-container {
+    top: 2px;
+}
+.col-xs-12.col-sm-6.left-radio {
+    max-width: 44% !important;
+}
+.col-xs-12.col-sm-6.right-radio{
+    max-width: 53% !important;
+    padding-right: 0;
+    margin-left: 4%;
+}
+.col-xs-12.col-sm-6.right-radio:before {
+    content: "";
+    position: absolute;
+    left: -17px;
+    top: -15px;
+    height: 54px;
+    width: 1px;
+    background: #cccccc;
+}
+.radio-buttons {
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+input:focus{
+    outline: none;
+}
+
+/* ========================= Subscribe Button ===================*/
+.subscribe-popup h3 {
+    color: #222222;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding: 0 60px;
+    margin-bottom: 10px;
+}
+button.subscribe {
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    border-radius: 50px;
+    padding: .5rem 2rem;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: 0;
+    margin: 10px auto 0;
+    text-align: center;
+    display: block;
+    text-transform: capitalize;
+}
+.subscribe-btn{
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+.subscribe label {
+    width: 100%;
+    display: block;
+}
+.subscribe input {
+    width: 100%;
+    height: 38px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    margin-bottom: 0;
+    padding: 0 15px;
+}
+
+.subscribe p {
+    text-align: center;
+}
+
+.subscribe .form-group {
+    margin-bottom: 15px;
+}
+.condi h4 {
+    color: #222222;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.subscribe-btn {
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+p.notification {
+    padding: 0 60px;
+}
+
+.is-invalid~.invalid-feedback{
+    display: block !important;
+}
+
+.invalid-feedback.ng-star-inserted{
+    margin-top: 0;
+}
+::ng-deep label.mat-checkbox-layout {
+    margin-bottom: 0 !important;
+}
+.subscribe-popup {
+    margin: 15px 0 !important;
+}
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 550px !important;
+        margin: 0;
+    }
+}
+
+@media(max-width:1024px){
+    .subscribe input {
+        margin-bottom: 8px;
+    }
+    button.subscribe {
+        margin: 10px auto 0;
+    
+    }
+    .subscribe-btn {
+        margin-top: 8px;
+        margin-bottom: 12px;
+    }
+    .inner-form {
+        padding: 5px 30px;
+    }
+    p.notification{
+        padding: 0 0px;
+        font-size: 15px;
+    }
+     span.cross {
+        right: -6px;
+        top: -6px;
+    }
+
+.subscribe .invalid-feedback {
+    position: inherit;
+    left: 10px;
+    bottom: -7px;
+}
+}
+@media(max-width:639px){
+    .subscribe-popup h3 {
+        padding: 0 0;
+    }
+    span.cross{
+    right: -6px;
+    top: -5px;
+    }
+    .subscribe-popup {
+    margin: 15px !important;
+}
+}
+

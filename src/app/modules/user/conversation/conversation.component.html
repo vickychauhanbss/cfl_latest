@@ -1,0 +1,493 @@
+<div class="converstion">
+	<div class="row chat-box-head" *ngIf='selectedUser !== null'>
+		<div class="col-lg-3 col-sm-12 head-name" *ngIf="selectedUser !== null">
+			<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+			<h5>
+				{{selectedUser.first_name}}
+			</h5>
+		</div>
+		<div class="col-lg-8 col-sm-12 chat-box-menu"  *ngIf="selectedUser != null">
+			<div class="search-box">
+				<input type="text" name="search" placeholder="Search" (input)="onSearchChange($event.target.value)">
+				<i class="fa fa-search"></i>
+			</div>
+			<div class="chat-drop-dots dropdown-sss">
+				<button (click)="showDiv = !showDiv">
+					<i class="fa fa-ellipsis-v dropdown-sss"></i>
+				</button>
+				<div *ngIf="showDiv" class="show-options-top dropdown-sss">
+					<div class="show-up-top dropdown-sss">
+						<p style="cursor: pointer" class="dropdown-sss" (click)="clearHistory()">
+							Clear Chat History
+						</p>
+						<p style="cursor: pointer" class="dropdown-sss" (click)="blockUser('block')" *ngIf="checkUserBlock == false">
+							Block User
+						</p>
+						<p style="cursor: pointer" class="dropdown-sss" (click)="blockUser('unblock')" *ngIf="checkUserBlock == true  && blockedUesrId == userId">
+							Unblock User
+						</p>
+						<p style="cursor: pointer" class="dropdown-sss" (click)="blockUser('block')" *ngIf="checkUserBlock == true  && blockedUesrId != userId">
+							Block User
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div  class="message-overlay" *ngIf='selectedUser === null'>
+		<h3>
+			Select a User to chat
+		</h3>
+	</div>
+	<div class="check">
+	<div class="chat-box scrollbar"  #scrollMe id="style-2" *ngIf='selectedUser !== null' [scrollTop]="scrollMe.scrollHeight">
+		<div class="force-overflow">
+			<div *ngFor="let message of messages ; let i = index;" class="demo">
+				<div class="chat-msg-right" *ngIf="message.toUserId != userId">
+					<div class="sender-msg">
+						<div class="msg-details">
+							<div class="user-img">
+								<!-- <img [src]="userData.profile_img" *ngIf="userData"/> -->
+								<cus-image *ngIf="userData?.profile_img" style="cursor: pointer" [url]="userData?.profile_img" [actualDimension]="userData?.profile_img_dimension" [dimension]="'360x262'" [widthIns]="'.user-img'" [loaderSize]="0.5"></cus-image>
+
+								<img src="assets/profile/user-new.png" *ngIf="!userData.profile_img"/>
+							</div>
+							<div class="msg-box">
+								<div class="chat-msg" *ngIf="message.type == 'simple'">
+									<!-- <p> -->
+										<p [innerHTML]= "sheet !== '' ? (message.message | utf8EmojisToImages) : message.message"></p>
+										<!-- {{message.message}} -->
+									<!-- </p> -->
+								</div>
+
+								<!-- image-loader.gif -->
+
+								<div *ngIf="message.type == 'image'" (click)="open(message)">
+									<div style="height: 150px;" class="myImages">
+										<cus-image style="cursor: pointer" [url]="message?.message" [actualDimension]="message?.message_dimension" [dimension]="'360x262'" [widthIns]="'.myImages'" [loaderSize]="0.5"></cus-image>
+									</div>
+									<!-- <img [defaultImage]="defaultImage" [lazyLoad]="message.message" height="150" width="auto"> -->
+
+									
+
+									<!-- <img [src]="message.message" alt="" height="150" width="auto" > -->
+								</div>
+
+								<div *ngIf="message.type == 'video'" style="position: relative;" (click)="openVideoModal(message.message)">
+
+									<!-- <video _ngcontent-coverr-redesign-c19="" allowfullscreen="false" preload="auto" controls="true" playsinline  [src]="message.message" class="ng-star-inserted" width="auto" height="150" type='video/mp4'></video> -->
+
+									<video playsinline controls preload="true" width="auto" height="150">
+										<source [src]="message.message" type="video/mp4">
+									</video>
+
+
+									<!-- <video controls playsinline>
+										<source [src]="message.message" type="video/mp4">
+									</video> -->
+									<!-- <i class="fa fa-play-circle" aria-hidden="true" style="display: inline-block;
+									position: absolute;
+									left: 50%;
+									top: 50%;
+									color: #fff;
+									font-size: 30px;
+									transform: translate(-50%, -50%);"></i> -->
+								</div>
+
+
+								<div class="chat-like-time">
+									<div class="like-heart"></div>
+									<div class="tick-time">
+										<i class="fa fa-check"></i>
+										<time>{{ message.created_at | amLocale:'en' | amDateFormat: 'h:mm a' }}</time>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="chat-msg-left" *ngIf="message.toUserId == userId" id="mesBox">
+					<div class="sender-msg">
+						<div class="msg-details">
+							<div class="user-img">
+								<cus-image *ngIf="selectedUser.path" style="cursor: pointer" [url]="selectedUser?.path" [actualDimension]="selectedUser?.path_dimension" [dimension]="'360x262'" [widthIns]="'.user-img'" [loaderSize]="0.5"></cus-image>
+
+								<img src="assets/profile/user-new.png" *ngIf="!selectedUser.path"/>
+							</div>
+							<div class="msg-box">
+								<div class="chat-msg" *ngIf="message.type == 'simple'">
+									<!-- <p> -->
+
+										<p [innerHTML]= "sheet !== '' ? (message.message | utf8EmojisToImages) : message.message"></p>
+										<!-- <p [innerHTML]= "sheet !== '' ? (message.message | utf8EmojisToImages:sheet:size:sheetSize:backgroundImageFn) : message.message"></p> -->
+										<!-- {{message.message}} -->
+									<!-- </p> -->
+								</div>
+								<div *ngIf="message.type == 'image'" (click)="open(message)">
+									<div style="height: 150px;" class="myImages">
+										<cus-image style="cursor: pointer" [url]="message.message" [actualDimension]="message?.message_dimension" [dimension]="'360x262'" [widthIns]="'.myImages'" [loaderSize]="0.5"></cus-image>
+									</div>
+								</div>
+
+								<div *ngIf="message.type == 'video'" style="position: relative;" (click)="openVideoModal(message.message)" >
+
+									<video playsinline controls preload="true" width="auto" height="150">
+										<source [src]="message.message" type="video/mp4">
+									</video>
+
+									<!-- <video width="auto" height="150" controls playsinline>
+										<source [src]="message.message" type="video/mp4">
+									</video> -->
+
+									<!-- <i class="fa fa-play-circle" aria-hidden="true" style="display: inline-block;
+									position: absolute;
+									left: 50%;
+									top: 50%;
+									z-index: 9;
+									color: #fff;
+									transform: translate(-50%, -50%);"></i> -->
+                                </div>
+
+
+								<div class="chat-like-time">
+									<div class="tick-time">
+										<i class="fa fa-check"></i>
+										<time>
+											{{ message.created_at | amLocale:'en' | amDateFormat: 'h:mm a' }}
+										</time>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- <div  class="message-thread start-chatting-banner" *ngIf="messages.length === 0 && filter == false">
+				<p class="heading">
+					You haven't chatted with {{selectedUser.first_name}} in a while,
+					<span class="sub-heading">
+						Say Hi.
+					</span>
+				</p>
+			</div> -->
+
+			<div  class="message-thread start-chatting-banner" *ngIf="messages.length === 0 && filter == true">
+				<p class="heading">
+					No chat avilable.
+				</p>
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+	<div *ngIf="showEmoji" class="show-gif-emoji-top">
+		<div class="show-up-gif-top">
+			<mat-tab-group>
+				<mat-tab label="EMOJI">
+					<emoji-mart (emojiClick)="addEmoji($event)" [set]="sheet === '' ? null : sheet" [isNative]="sheet === ''"></emoji-mart>
+				</mat-tab>
+				<mat-tab label="GIF">
+
+					<div class="giphy-search">
+						<form (ngSubmit)="searchGiphy()">
+							<div class="search-box">
+								<input type="text" name="search" placeholder="Search for a GIF" [(ngModel)]="giphySearchTerm">
+							</div>
+						  <!-- <input type="text" placeholder="Search for a GIF" name="giphy" [(ngModel)]="giphySearchTerm"> -->
+						</form>
+						<ul class="search-results">
+						  <li class="gif-result" *ngFor="let result of giphyResults">
+							<img src="{{ result.images.downsized_large.url }}" (click)="sendGif(result.title, result.images.original.url)">
+						  </li>
+						</ul>
+					</div>
+				</mat-tab>
+			</mat-tab-group>
+		</div>
+	</div>
+
+
+	<!-- <emoji-mart (emojiClick)="addEmoji($event)" [set]="sheet === '' ? null : sheet" [isNative]="sheet === ''" *ngIf="showEmoji"></emoji-mart> -->
+
+	<!-- <div *ngIf="showGiphySearch" class="giphy-search">
+		<form (ngSubmit)="searchGiphy()">
+		  <input type="text" placeholder="Search for a GIF" name="giphy" [(ngModel)]="giphySearchTerm">
+		</form>
+		<ul class="search-results">
+		  <li class="gif-result" *ngFor="let result of giphyResults">
+			<img src="{{ result.images.downsized_large.url }}">
+		  </li>
+		</ul>
+	  </div> -->
+	<!-- <emoji-mart (emojiClick)="addEmoji($event)" [set]="sheet === '' ? null : sheet" [isNative]="sheet === ''" *ngIf="showEmoji"></emoji-mart> -->
+
+	<!-- <button type="button" class="toggle-giphy"
+              (click)="toggleGiphySearch()" *ngIf='selectedUser !== null'>GIF</button> -->
+
+	<div class="user-chat-input" *ngIf='selectedUser !== null'>
+		<div class="chat-typing">
+			<!-- <i class="fa fa-smile"></i> -->
+			<form [formGroup]="messageForm" novalidate>
+				<input type="text" class="message form-control" placeholder="Type and hit Enter" (keyup)="sendMessage($event, '')" formControlName="message" [attr.disabled]="checkUserBlock == true && blockedUesrId == userId ? true:null"/>
+			</form>
+			<div class="smile-face" *ngIf="checkUserBlock">
+				<!-- <i class="fa fa-smile-o" aria-hidden="true"></i> -->
+				<img src="assets/chat/smile.png">
+				<!-- <i class="fa fa-search"></i> -->
+			</div>
+
+			<div class="smile-face" (click)="showEmoji = !showEmoji" *ngIf="!checkUserBlock">
+				<img src="assets/chat/smile.png">
+				<!-- <i class="fa fa-search"></i> -->
+			</div>
+
+			<div class="input-icon">
+				<input type="file" #files id="files" class="hidden" (change)="fileProgress($event)" [attr.disabled]="checkUserBlock == true && blockedUesrId == userId ? true:null" />
+
+
+				<img src="assets/chat/gallery-gradient.png" alt="" class="fa fa-camera" [class.disabled]="checkUserBlock == true && blockedUesrId == userId ? true:null"   (click)="opnGallary()" *ngIf="!checkUserBlock">
+
+				<img src="assets/chat/gallery-gradient.png" alt="" class="fa fa-camera" [class.disabled]="checkUserBlock == true && blockedUesrId == userId ? true:null"    *ngIf="checkUserBlock">
+
+
+				<label class="upload" for="files" title="Upload new photo"  [class.disabled]="checkUserBlock == true && blockedUesrId == userId ? true:null">
+						<img src="assets/chat/sparkchat.png" alt="">
+				</label>
+			</div>
+
+
+			<i class="fa fa-telegram" aria-hidden="true" (click)="sendMessage($event, 'click')" *ngIf="messageForm.value.message">
+				
+			</i>
+		</div>
+	</div>
+</div>
+</div>
+
+
+<div class="converstion show-mobile-converstion">
+	
+	<div class="row chat-box-head" *ngIf='selectedUser !== null'>
+		<div class="col-lg-3 col-sm-12 head-name" *ngIf="selectedUser !== null">
+			<i class="fa fa-arrow-circle-left" aria-hidden="true" (click)="backToList()"></i>
+			<h5>
+				{{selectedUser.first_name}}
+			</h5>
+		</div>
+		<div class="col-lg-8 col-sm-12 chat-box-menu"  *ngIf="selectedUser != null">
+			<div class="search-box">
+				<input type="text" name="search" placeholder="Search" (input)="onSearchChange($event.target.value)">
+				<i class="fa fa-search"></i>
+			</div>
+			<div class="chat-drop-dots">
+				<button (click)="showDiv = !showDiv">
+					<i class="fa fa-ellipsis-v"></i>
+				</button>
+				<div *ngIf="showDiv" class="show-options-top" [@enterUpper]>
+					<div class="show-up-top">
+						<p style="cursor: pointer" (click)="clearHistory()">
+							Clear Chat History
+						</p>
+						<p style="cursor: pointer" (click)="blockUser('block')" *ngIf="checkUserBlock == false">
+							Block User
+						</p>
+						<p style="cursor: pointer" (click)="blockUser('unblock')" *ngIf="checkUserBlock == true  && blockedUesrId == userId">
+							Unblock User
+						</p>
+						<p style="cursor: pointer" (click)="blockUser('block')" *ngIf="checkUserBlock == true  && blockedUesrId != userId">
+							Block User
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="chat-box scrollbar" #scrollMe  id="style-mobile" *ngIf='selectedUser !== null' [scrollTop]="scrollMe.scrollHeight">
+		<div class="force-overflow">
+			<div *ngFor="let message of messages ; let i = index;" class="demo">
+				<div class="chat-msg-right" *ngIf="message.toUserId != userId">
+					<div class="sender-msg">
+						<div class="msg-details">
+							<div class="user-img">
+								<img src="{{userData.profile_img}}" *ngIf="userData"/>
+								<img src="assets/profile/user-new.png" *ngIf="!userData.profile_img"/>
+							</div>
+							<div class="msg-box">
+								<div class="chat-msg" *ngIf="message.type == 'simple'">
+									<p [innerHTML]= "sheet !== '' ? (message.message | utf8EmojisToImages) : message.message"></p>
+								</div>
+
+								<div *ngIf="message.type == 'image'" (click)="open(message)">
+									<img [defaultImage]="defaultImage" [lazyLoad]="message.message"  height="150" width="auto">
+									<!-- <img src="{{message.message}}" alt="" height="150" width="150" > -->
+								</div>
+
+								<div *ngIf="message.type == 'video'" style="position: relative;" (click)="openVideoModal(message.message)">
+
+									<video playsinline controls preload="true" width="auto" height="150">
+										<source [src]="message.message" type="video/mp4">
+									</video>
+
+									<!-- <video width="auto" height="150" controls playsinline>
+										<source [src]="message.message" type="video/mp4">
+									</video> -->
+									<!-- <video width="150" height="150" disabled="true" poster="assets/chat/image-loader.gif">
+										<source [src]="message.message" type="video/mp4">
+									</video> -->
+									<!-- <i class="fa fa-play-circle" aria-hidden="true" style="display: inline-block;
+									position: absolute;
+									left: 50%;
+									top: 50%;
+									color: #fff;
+									font-size: 30px;
+									transform: translate(-50%, -50%);"></i> -->
+								</div>
+
+
+								<div class="chat-like-time">
+									<div class="like-heart"></div>
+									<div class="tick-time">
+										<i class="fa fa-check"></i>
+										<time>{{ message.created_at | amLocale:'en' | amDateFormat: 'h:mm a' }}</time>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="chat-msg-left" *ngIf="message.toUserId == userId" id="mesBox">
+					<div class="sender-msg">
+						<div class="msg-details">
+							<div class="user-img">
+								<img src="{{selectedUser.path}}" *ngIf="selectedUser.path"/>
+								<img src="assets/profile/user-new.png" *ngIf="!selectedUser.path"/>
+							</div>
+							<div class="msg-box">
+								<div class="chat-msg" *ngIf="message.type == 'simple'">
+									<p [innerHTML]= "sheet !== '' ? (message.message | utf8EmojisToImages) : message.message"></p>
+								</div>
+								<div *ngIf="message.type == 'image'"  (click)="open(message)">
+									<img [defaultImage]="defaultImage" [lazyLoad]="message.message" height="150" width="auto">
+									<!-- <img src="{{message.message}}" alt="" height="150" width="150" > -->
+								</div>
+
+								<div *ngIf="message.type == 'video'" style="position: relative;" (click)="openVideoModal(message.message)">
+
+									<video playsinline controls preload="true" width="auto" height="150">
+										<source [src]="message.message" type="video/mp4">
+									</video>
+									<!-- <video width="auto" height="150" controls playsinline>
+										<source [src]="message.message" type="video/mp4">
+									</video> -->
+									<!-- <video width="150" height="150" disabled="true" poster="assets/chat/image-loader.gif">
+										<source [src]="message.message" type="video/mp4">
+									</video> -->
+
+									<!-- <i class="fa fa-play-circle" aria-hidden="true" style="display: inline-block;
+									position: absolute;
+									left: 50%;
+									top: 50%;
+									z-index: 9;
+									color: #fff;
+									transform: translate(-50%, -50%);"></i> -->
+                                </div>
+
+
+								<div class="chat-like-time">
+									<div class="tick-time">
+										<i class="fa fa-check"></i>
+										<time>
+											{{ message.created_at | amLocale:'en' | amDateFormat: 'h:mm a' }}
+										</time>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div  class="message-thread start-chatting-banner" *ngIf="messages.length === 0 && filter == false">
+				<p class="heading">
+					You haven't chatted with {{selectedUser.first_name}} in a while,
+					<span class="sub-heading">
+						Say Hi.
+					</span>
+				</p>
+			</div>
+
+			<div  class="message-thread start-chatting-banner" *ngIf="messages.length === 0 && filter == true">
+				<p class="heading">
+					No chat avilable.
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="showEmoji" class="show-gif-emoji-top">
+		<div class="show-up-gif-top">
+			<mat-tab-group>
+				<mat-tab label="EMOJI">
+					<emoji-mart (emojiClick)="addEmoji($event)" [set]="sheet === '' ? null : sheet" [isNative]="sheet === ''"></emoji-mart>
+				</mat-tab>
+				<mat-tab label="GIF">
+
+					<div class="giphy-search">
+						<form (ngSubmit)="searchGiphy()">
+							<div class="search-box">
+								<input type="text" name="search" placeholder="Search for a GIF" [(ngModel)]="giphySearchTerm">
+							</div>
+						  <!-- <input type="text" placeholder="Search for a GIF" name="giphy" [(ngModel)]="giphySearchTerm"> -->
+						</form>
+						<ul class="search-results">
+						  <li class="gif-result" *ngFor="let result of giphyResults">
+							<img src="{{ result.images.downsized_large.url }}" (click)="sendGif(result.title, result.images.original.url)">
+						  </li>
+						</ul>
+					</div>
+				</mat-tab>
+			</mat-tab-group>
+		</div>
+	</div>
+
+	<!-- <emoji-mart (emojiClick)="addEmoji($event)" [set]="sheet === '' ? null : sheet" [isNative]="sheet === ''" *ngIf="showEmoji"></emoji-mart> -->
+
+	<div class="user-chat-input" *ngIf='selectedUser !== null'>
+		<div class="chat-typing">
+			<i class="fa fa-smile"></i>
+			<form [formGroup]="messageForm" novalidate>
+				<input type="text" class="message form-control" placeholder="Type and hit Enter" (keyup)="sendMessage($event, '')" formControlName="message" [attr.disabled]="checkUserBlock == true && blockedUesrId == userId ? true:null"/>
+			</form>
+
+			<div class="smile-face" *ngIf="checkUserBlock">
+				<!-- <i class="fa fa-smile-o" aria-hidden="true"></i> -->
+				<!-- <i class="fa fa-search"></i> -->
+				<img src="assets/chat/smile.png">
+			</div>
+
+			<div class="smile-face" (click)="showEmoji = !showEmoji" *ngIf="!checkUserBlock">
+				<img src="assets/chat/smile.png">
+				<!-- <i class="fa fa-smile-o" aria-hidden="true"></i> -->
+				<!-- <i class="fa fa-search"></i> -->
+			</div>
+
+			<div class="input-icon">
+				<input type="file" #files id="files" class="hidden" (change)="fileProgress($event)" [attr.disabled]="checkUserBlock == true && blockedUesrId == userId ? true:null" />
+
+				<img src="assets/chat/gallery-gradient.png" alt="" class="fa fa-camera" [class.disabled]="checkUserBlock == true && blockedUesrId == userId ? true:null"   (click)="opnGallary()" *ngIf="!checkUserBlock">
+
+				<img src="assets/chat/gallery-gradient.png" alt="" class="fa fa-camera" [class.disabled]="checkUserBlock == true && blockedUesrId == userId ? true:null"    *ngIf="checkUserBlock">
+
+				<label class="upload" for="files" title="Upload new photo"  [class.disabled]="checkUserBlock == true && blockedUesrId == userId ? true:null">
+						<img src="assets/chat/sparkchat.png" alt="">
+				</label>
+			</div>
+			<i class="fa fa-telegram" aria-hidden="true" (click)="sendMessage($event, 'click')" *ngIf="messageForm.value.message"></i>
+		</div>
+	</div>
+</div>

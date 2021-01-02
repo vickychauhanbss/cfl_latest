@@ -1,0 +1,265 @@
+.notification ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0px;
+    display: flex;
+}
+
+.noti-header {
+    color: #e51197;
+    font-weight: bold;
+    text-align: center;
+}
+
+.notification {
+    min-height: calc(100vh - 244px);
+}
+
+.notification li {
+    background-color: #ececec;
+    padding: 5px 15px;
+    border: 0.5px solid #fff;
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+
+}
+
+img.notification-image {
+    width: 39px;
+    border-radius: 26px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.notification .row {
+    flex-direction: column;
+}
+
+.right-side {
+    width: 30%;
+    text-align: right;
+    margin: 0;
+}
+
+.left-side {
+    width: 70%;
+}
+
+ul.no-data {
+    margin-bottom: 20px !important;
+}
+
+.notification {
+    padding: 25px 25px;
+    max-width: 1170px;
+    margin: 125px auto 40px;
+    background: #fff;
+}
+
+.noti-header {
+    margin-bottom: 20px;
+}
+
+.left-side {
+    width: 90%;
+    display: flex;
+}
+
+.left-txt-img {
+    width: 10%;
+    display: inline-block;
+}
+
+.notify-txt {
+    width: 80%;
+    display: inline-block;
+}
+
+a.ach-tag {
+    text-decoration: underline !important;
+    color: #da1e9c !important;
+    margin-left: 4px;
+}
+
+.left-txt-img {
+    width: 10%;
+    display: flex;
+    align-items: flex-start;
+    min-width: 82px;
+}
+
+@media(max-width: 1159px) {
+    .left-side {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .left-txt-img {
+        display: flex;
+    }
+}
+
+@media(max-width: 999px) {
+    .left-txt-img {
+        width: 15%;
+        display: inline-block;
+    }
+
+    .left-side {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .left-txt-img {
+        display: flex;
+    }
+}
+
+
+
+@media(max-width: 767px) {
+    .notification {
+        margin: 20px auto 40px;
+    }
+}
+
+@media(max-width: 640px) {
+    .notification li {
+        padding: 5px 15px;
+        display: block;
+        width: 100%;
+        align-items: center;
+    }
+
+    .left-side {
+        width: 100%;
+    }
+
+    .right-side {
+        width: 100%;
+        text-align: right;
+        margin: 0;
+    }
+
+    .left-txt-img {
+        width: 22%;
+    }
+
+    .left-side {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .left-txt-img {
+        display: flex;
+    }
+
+    @media not all and (min-resolution:.001dpcm) {
+
+        .left-txt-img {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+}
+
+@media(max-width: 480px) {
+    .left-txt-img {
+        width: 40%;
+    }
+}
+
+@media(max-width: 360px) {
+    .left-txt-img {
+        width: 40%;
+    }
+}
+
+
+.no-data-found h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+    color: #6c778d;
+}
+
+.no-data-found p {
+    text-align: center;
+    width: 100%;
+    font-size: 14px;
+    margin-top: 5px;
+    color: #7a7a7b;
+    font-weight: 500
+}
+
+
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #cf1da2;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(24px, 0);
+    }
+}

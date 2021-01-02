@@ -1,0 +1,30 @@
+<div mat-dialog-content >
+   <div class="modal-dialog" role="document">
+       <div class="modal-content">
+           <div class="modal-body">
+               <div class="login-popup">
+                   <div class="overlay"></div>
+                   <div class="container">
+                       <form class="popup-feild">
+                        <h2>
+                           **WARNING**
+                        </h2>
+                           <span class="cross" (click)="dismissModal('')"><i class="fa fa-times" aria-hidden="true" ></i></span>
+                           <div class="inner-form video-pp">
+                              <div class="warning-section">
+                                 <p>
+                                    Are you sure you want us to compeletely remove your profile and all it's history.If you ever decide to come back you will need to start over!
+                                 </p>
+                              </div>
+                           </div>
+
+                           <button class="down" matInput type="submit" value="" (click)="dismissModal(true)">
+                              Confirm
+                          </button>
+                       </form>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>

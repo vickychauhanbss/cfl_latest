@@ -1,0 +1,83 @@
+<div mat-dialog-content >
+    <ngx-spinner></ngx-spinner>
+    <div class="subscribe-popup">
+        <div class="overlay"></div>
+        <div class="container">
+            <!-- <form class="subscribe" [formGroup]="subscribeForm" (ngSubmit)="onSubmit()">
+                <h2>
+                    Subscribe For Updates
+                </h2>
+                <span class="cross" (click)="dismissModal()">
+                    <i class="fa fa-times" aria-hidden="true" ></i>
+                </span>
+                <div class="inner-form">
+                    <h3>
+                        Be The First To Know When We Release New Helpful Tip's and Videos
+                    </h3>
+                    <div class="form-group">
+                        <label>
+                            Name :
+                        </label>
+                        <input matInput type="text" name="lname" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required">
+                                Please enter name
+                            </div>
+                            <div *ngIf="f.name.errors.pattern">
+                                Only alphabets are allowed or make sure the input is between 24 characters long
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>
+                            Email :
+                        </label>
+                        <input matInput type="email" name="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" >
+
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">
+                                Please enter the e-mail address
+                            </div>
+
+                            <div *ngIf="f.email.errors?.pattern">
+                                Invalid e-mail address
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>
+                        This form collects information we will use to send you updates about promotions. Special offers and news. We will not share or sell your
+                        personal information. You can unsubscirbe any time.
+                    </p>
+
+                    <div class="condi">
+                        <h4>
+                            Privacy Policy
+                        </h4>
+                        <mat-checkbox class="check_cstm" formControlName="acceptTerms"   [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }">
+                            Yes, I consent to receiving emails.
+                        </mat-checkbox>
+
+                        <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback ">
+                            Please accept the privacy policy in order to subscribe to the newsletter.
+                        </div>
+                        <div *ngIf="errorMessage" class="subscribe" style="color:red">
+                            {{errorMessage}}
+                        </div>
+                    </div>
+                    <div class="subscribe-btn">
+                        <button class="subscribe" matInput type="submit" value="">
+                            Subscribe
+                        </button>
+                    </div>
+                    <p class="notification">
+                        Privacy policy, We hate spam and promise to keep your email address safe
+                    </p>
+                </div>
+            </form> -->
+        </div>
+    </div>
+</div>

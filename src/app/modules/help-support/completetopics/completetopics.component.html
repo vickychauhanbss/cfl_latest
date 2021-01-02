@@ -1,0 +1,309 @@
+<div class="complete-help-topic">
+   
+   <div class="container">
+      <h1>
+         Complete Help Topics
+      </h1>
+      <div class="tab-section">
+         <ul class="nav nav-pills">
+            <li class="active" id="home-tab" (click)="removeActiveTabClass()">
+               <a data-toggle="pill" href="#home">
+                  <img class="black" src="assets/help-support/account-setting.png" alt="">
+                  <img class="white" src="assets/help-support/account-setting-active.png" alt="">
+                  <span class="hide-mobile" *ngIf="faq_data">
+                     {{faq_data[0].category_name}}
+                  </span>
+               </a>
+            </li>
+            <li id="subscription-tab" (click)="removeActiveTabClass()">
+               <a data-toggle="pill" href="#subscription">
+                  <img class="black" src="assets/help-support/billing.png" alt="">
+                  <img class="white" src="assets/help-support/billing-active.png" alt="">
+                  <span class="hide-mobile" *ngIf="faq_data">
+                     {{faq_data[1].category_name}}
+                  </span>
+               </a>
+            </li>
+         <li id="communication-tab" (click)="removeActiveTabClass()">
+            <a data-toggle="pill" href="#communication">
+               <img class="black" src="assets/help-support/communication.png" alt="">
+               <img class="white" src="assets/help-support/communication-active.png" alt="">
+               <span class="hide-mobile" *ngIf="faq_data">
+                  {{faq_data[2].category_name}}
+               </span>
+            </a>
+         </li>
+         <li id="help-support-tab" (click)="removeActiveTabClass()">
+            <a data-toggle="pill" href="#help-support">
+               <img class="black" src="assets/help-support/profile.png" alt="">
+               <img class="white" src="assets/help-support/profile-active.png" alt="">
+               <span class="hide-mobile" *ngIf="faq_data">
+                  {{faq_data[3].category_name}}
+               </span>
+            </a>
+         </li>
+         <li id="searching-tab" (click)="removeActiveTabClass()">
+            <a data-toggle="pill" href="#searching">
+               <img class="black" src="assets/help-support/search.png" alt="">
+               <img class="white" src="assets/help-support/search-active.png" alt="">
+               <span class="hide-mobile" *ngIf="faq_data">
+                  {{faq_data[4].category_name}}
+               </span>
+            </a>
+         </li>
+            <li id="technical-tab" (click)="removeActiveTabClass()">
+               <a data-toggle="pill" href="#technical">
+               <img class="black" src="assets/help-support/technical-issue.png" alt="">
+               <img class="white" src="assets/help-support/technical-issue-active.png" alt="">
+               <span class="hide-mobile" *ngIf="faq_data">
+                  {{faq_data[5].category_name}}
+               </span>
+            </a>
+         </li>
+         <li id="contactus-tab" (click)="removeActiveTabClass()">
+            <a data-toggle="pill" href="#contactus">
+               <img class="black" src="assets/help-support/contact.png" alt="">
+               <img class="white" src="assets/help-support/contact-active.png" alt="">
+               <span class="hide-mobile" *ngIf="faq_data">
+                  {{faq_data[6].category_name}}
+               </span>
+            </a>
+         </li>
+         </ul>
+      </div>
+      <div class="clearfix"></div>
+      <div class="tab-content" id="outer-section">
+         <div id="home" class="tab-pane fade in active">
+            <div *ngIf="faq_data">
+               <div id="accordion"  class="panel-group" *ngFor="let settings of faq_data[0].faqs; let i = index;">
+                  <div class="panel">
+                     <div class="panel-heading">
+                        <h4 class="panel-title" [ngClass]="{activeButon: settings.id == question_id }" id="panel-title">
+                           <a href="#{{settings.id}}" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
+                              {{settings.question}}
+                           </a>
+                        </h4>
+                     </div>
+                     <div id="{{settings.id}}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                           <p>
+                              {{settings.answer | helpAndSupport}}
+                           </p>
+                           <div class="question">
+                              <h2>
+                                 Was this answer helpful ?
+                              </h2>
+                              <button class="yes" (click)="submitFaqQuestions(settings.id , 1, i, 'accountSettings')" [ngClass]="{activeButon: settings.existing == 1 }">
+                                 Yes
+                              </button>
+                              <button class="no" [ngClass]="{activeButon: settings.existing == 0 }" (click)="submitFaqQuestions(settings.id , 0, i, 'accountSettings')">
+                                 No
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="subscription" class="tab-pane fade in">
+            <div *ngIf="faq_data">
+               <div id="accordion" class="panel-group" *ngFor="let billingSettings of faq_data[1].faqs; let i = index;">
+                  <div class="panel">
+                     <div class="panel-heading">
+                        <h4 class="panel-title" [ngClass]="{activeButon: billingSettings.id == question_id }" id="panel-title">
+                           <a href="#{{billingSettings.id}}" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
+                              {{billingSettings.question}}
+                           </a>
+                        </h4>
+                     </div>
+                     <div id="{{billingSettings.id}}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                           <p>
+                              {{billingSettings.answer | helpAndSupport}}
+                           </p>
+                           <div class="question">
+                              <h2>
+                                 Was this answer helpful ?
+                              </h2>
+                              <button class="yes" [ngClass]="{activeButon: billingSettings.existing == 1 }" (click)="submitFaqQuestions(billingSettings.id, 1, i, 'billingSettings')">
+                                 Yes
+                              </button>
+                              <button class="no" [ngClass]="{activeButon: billingSettings.existing == 0 }" (click)="submitFaqQuestions(billingSettings.id , 0, i, 'billingSettings')">
+                                 No
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="communication" class="tab-pane fade in">
+            <div *ngIf="faq_data">
+               <div id="accordion" class="panel-group" *ngFor="let memberSettings of faq_data[2].faqs; let i = index;">
+                  <div class="panel">
+                     <div class="panel-heading">
+                        <h4 class="panel-title" [ngClass]="{activeButon: memberSettings.id == question_id }" id="panel-title">
+                           <a href="#{{memberSettings.id}}" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
+                              {{memberSettings.question}}
+                           </a>
+                        </h4>
+                     </div>
+                     <div id="{{memberSettings.id}}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                           <p>
+                              {{memberSettings.answer | helpAndSupport}}
+                           </p>
+                           <div class="question">
+                              <h2>
+                                 Was this answer helpful ?
+                              </h2>
+                              <button class="yes"  [ngClass]="{activeButon: memberSettings.existing == 1 }" (click)="submitFaqQuestions(memberSettings.id , 1, i, 'memberSettings')">
+                                 Yes
+                              </button>
+                              <button class="no" [ngClass]="{activeButon: memberSettings.existing == 0 }" (click)="submitFaqQuestions(memberSettings.id , 0, i, 'memberSettings')">
+                                 No
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="help-support" class="tab-pane fade in">
+            <div *ngIf="faq_data">
+               <div id="accordion" class="panel-group" *ngFor="let photosSettings of faq_data[3].faqs; let i = index;">
+                  <div class="panel">
+                     <div class="panel-heading">
+                        <h4 class="panel-title" [ngClass]="{activeButon: photosSettings.id == question_id }" id="panel-title">
+                           <a href="#{{photosSettings.id}}" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
+                              {{photosSettings.question}}
+                           </a>
+                        </h4>
+                     </div>
+                     <div id="{{photosSettings.id}}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                           <p>
+                              {{photosSettings.answer | helpAndSupport}}
+                           </p>
+                           <div class="question">
+                              <h2>
+                                 Was this answer helpful ?
+                              </h2>
+                              <button class="yes" [ngClass]="{activeButon: photosSettings.existing == 1 }" (click)="submitFaqQuestions(photosSettings.id , 1, i, 'photosSettings')">
+                                 Yes
+                              </button>
+                              <button class="no" [ngClass]="{activeButon: photosSettings.existing == 0 }" (click)="submitFaqQuestions(photosSettings.id , 0, i, 'photosSettings')">
+                                 No
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="searching" class="tab-pane fade in">
+            <div *ngIf="faq_data">
+               <div id="accordion" class="panel-group" *ngFor="let searchingSettings of faq_data[4].faqs; let i = index;">
+                  <div class="panel">
+                     <div class="panel-heading">
+                        <h4 class="panel-title" [ngClass]="{activeButon: searchingSettings.id == question_id }" id="panel-title">
+                           <a href="#{{searchingSettings.id}}" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
+                              {{searchingSettings.question}}
+                           </a>
+                        </h4>
+                     </div>
+                     <div id="{{searchingSettings.id}}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                           <p>
+                              {{searchingSettings.answer | helpAndSupport}}
+                           </p>
+                           <div class="question">
+                              <h2>
+                                 Was this answer helpful ?
+                              </h2>
+                              <button class="yes" [ngClass]="{activeButon: searchingSettings.existing == 1 }" (click)="submitFaqQuestions(searchingSettings.id , 1, i, 'searchingSettings')">
+                                 Yes
+                              </button>
+                              <button class="no" [ngClass]="{activeButon: searchingSettings.existing == 0 }" (click)="submitFaqQuestions(searchingSettings.id , 0, i, 'searchingSettings')">
+                                 No
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="technical" class="tab-pane fade in">
+            <div *ngIf="faq_data">
+               <div id="accordion" class="panel-group" *ngFor="let technicalSettings of faq_data[5].faqs; let i = index;">
+                  <div class="panel">
+                     <div class="panel-heading">
+                        <h4 class="panel-title" [ngClass]="{activeButon: technicalSettings.id == question_id }" id="panel-title">
+                           <a href="#{{technicalSettings.id}}" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
+                              {{technicalSettings.question}}
+                           </a>
+                        </h4>
+                     </div>
+                     <div id="{{technicalSettings.id}}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                           <p>
+                              {{technicalSettings.answer | helpAndSupport}}
+                           </p>
+                           <div class="question">
+                              <h2>
+                                 Was this answer helpful ?
+                              </h2>
+                              <button class="yes" [ngClass]="{activeButon: technicalSettings.existing == 1 }" (click)="submitFaqQuestions(technicalSettings.id , 1, i, 'technicalSettings')">
+                                 Yes
+                              </button>
+                              <button class="no" [ngClass]="{activeButon: technicalSettings.existing == 0 }" (click)="submitFaqQuestions(technicalSettings.id , 0, i, 'technicalSettings')">
+                                 No
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="contactus" class="tab-pane fade in">
+            <div *ngIf="faq_data">
+               <div id="accordion" class="panel-group" *ngFor="let contactSettings of faq_data[6].faqs; let i = index;">
+                  <div class="panel">
+                     <div class="panel-heading">
+                        <h4 class="panel-title" [ngClass]="{activeButon: contactSettings.id == question_id }" id="panel-title">
+                           <a href="#{{contactSettings.id}}" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
+                              {{contactSettings.question}}
+                           </a>
+                        </h4>
+                     </div>
+                     <div id="{{contactSettings.id}}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                           <p>
+                              {{contactSettings.answer | helpAndSupport}}
+                           </p>
+                           <div class="question">
+                              <h2>
+                                 Was this answer helpful ?
+                              </h2>
+                              <button class="yes" [ngClass]="{activeButon: contactSettings.existing == 1 }" (click)="submitFaqQuestions(contactSettings.id , 1, i, 'contactSettings')">
+                                 Yes
+                              </button>
+                              <button class="no" [ngClass]="{activeButon: contactSettings.existing == 0 }" (click)="submitFaqQuestions(contactSettings.id , 0, i, 'contactSettings')">
+                                 No
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,86 @@
+span.cross {
+    position: absolute;
+    right: -5px;
+    top: -8px;
+    background: #fff;
+    border-radius: 100%;
+    padding: 0px 6px;
+    color: #9a3cbc;
+    border: 1px solid;
+}
+
+.modal-body {
+    /* position: relative; */
+    padding: 0px !important;
+}
+
+.modal-content {
+    border: 2px solid #fff;
+}
+
+.modal-dialog .container {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+::ng-deep .mat-dialog-container {
+    box-shadow: none;
+    background: transparent;
+    color: rgba(0,0,0,.87);
+}
+ /*=========================== Modal Css ==================*/
+ ul.update-image {
+    padding: 0;
+    margin: 0;
+    max-height: 500px;
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+}   
+.update-image li {
+    display: flex;
+    padding: 17px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 32.75%;
+    margin: 1px 0;
+    flex-direction: column;
+    align-items: center;
+    /*justify-content: space-between;*/
+    text-align: center;
+}
+
+.update-image p {
+    font-weight: 600;
+    color: #222;
+    font-size: 14px;
+    line-height: 20px;
+    font-family: 'Muli', sans-serif;
+    margin-bottom: 0;
+}
+
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 700px !important;
+        margin: 0;
+    }
+
+}
+@media(max-width: 900px){
+
+.modal-dialog.icon{
+    margin: 10px;
+}
+}
+@media(max-width: 575px){
+    .update-image li {
+    width: 100%;
+    max-width: 50%;
+
+}
+
+}

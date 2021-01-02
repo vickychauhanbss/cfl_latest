@@ -1,0 +1,78 @@
+ /* Model css end */
+
+ .instruction{
+    background: #fff;
+    margin: 0 auto;
+    /* border: 2px solid #fff; */
+    border-radius: 4px;
+    position: relative;
+    max-width: 700px;
+}
+
+ .instruction h2{
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    text-align: center;
+    color: #fff;
+    font-size: 1.5625rem;
+    font-weight: bold;
+    padding: 6px 0 10px;
+    margin-bottom: 0;
+}
+
+.inner-form {
+    padding: 10px 30px;
+}
+
+button.down {
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    border-radius: 50px;
+    padding: 7px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: 0;
+   margin: 18px auto 16px;
+    text-align: center;
+    display: block;
+    text-transform: capitalize;
+}
+
+
+span.cross {
+    position: absolute;
+        right: -7px;
+    top: -3px;
+    background: #fff;
+    border-radius: 100%;
+    padding: 0px 6px;
+    color: #9a3cbc;
+    border: 1px solid;
+    z-index: 9999;
+}
+
+.instruction .container {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width:100% !important;
+}
+
+
+@media(max-width: 900px){
+span.cross {
+    right: -7px;
+    top: -3px;
+}
+.onboarding select {
+    padding-right: 1.5rem !important;
+}
+}
+
+@media(max-width: 570px){
+    .instruction {
+    margin: 12px;
+
+}
+}

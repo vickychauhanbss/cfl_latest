@@ -1,0 +1,14 @@
+<div *ngIf="noPageFound; else elseBlock">
+    <p style="margin-top : 150px;">Page not found</p>   
+</div>
+<ng-template #elseBlock>
+    <iframe #iframe [class.hide]="urlLoading" [src]="url" frameborder="0" style="height: 80vh;width: 100%;" height="100%"
+        width="100%" style="height: calc( 100vh - 94px );
+    width: 100%;
+    margin-top: 94px;"></iframe>
+    <ng-container *ngIf="urlLoading">
+        <div class="inner" style="width: 100%;height: 100vh;display: flex;justify-content: center;align-items: center;">
+            <spinner [isLoading]="true" [viewBox]="1"></spinner>
+        </div>
+    </ng-container>
+</ng-template>

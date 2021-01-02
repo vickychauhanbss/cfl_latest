@@ -1,0 +1,60 @@
+<div class="help-banner" [ngStyle]="{'background' : 'url(assets/help-support/help-banner.jpg)'}">
+    <div class="help-overlay"></div>
+    <div class="container">
+        <div class="search-section">
+            <input class="input-search"  (ngModelChange)="searchFaqQuestions($event)" type="text" placeholder="what do you need help with?" aria-label="what do you need help with?" [(ngModel)]="searchText">
+            <button class="search-btn" type="button">
+                Search
+            </button>
+
+            <div class="drop-dwn" *ngIf="filteredItems.length > 0">
+                <div *ngFor="let item of filteredItems" class="search-item">
+                    <div (click)="goToNextPage(item)">
+                        {{item.question}}
+                    </div>
+                </div>
+            </div>
+            <div class="drop-dwn" *ngIf="filteredItems.length == 0 && inputText != ''">
+                <div class="search-item">
+                    No record found.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="support-link">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs12 col-sm-4">
+                <div class="safety-img" (click)="gotoDetailPage('Just-Joined')">
+                    <img src="assets/help-support/safety1.png" alt="">
+                </div>
+                <a (click)="gotoDetailPage('Just-Joined')">
+                    <h3>
+                        Just Joined? Get Help Here
+                    </h3>
+                </a>
+            </div>
+            <div class="col-xs12 col-sm-4">
+                <div class="safety-img" (click)="gotoDetailPage('Safety-Guide')">
+                    <img src="assets/help-support/safety.png" alt="">
+                </div>
+                <a (click)="gotoDetailPage('Safety-Guide')">
+                    <h3>
+                        Online Dating Safety Guide
+                    </h3>
+                </a>
+            </div>
+            <div class="col-xs12 col-sm-4">
+                <div class="safety-img" (click)="gotoDetailPage('Complete-Help-Topics')">
+                    <img src="assets/help-support/safety2.png" alt="">
+                </div>
+                <a (click)="gotoDetailPage('Complete-Help-Topics')">
+                    <h3>
+                        Complete Help Topics
+                    </h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

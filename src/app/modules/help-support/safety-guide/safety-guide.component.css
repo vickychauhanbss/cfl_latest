@@ -1,0 +1,43 @@
+.safety-section h1 {
+    font-size: 28px;
+    color: #222222;
+    font-family: "Muli";
+    font-weight: 700;
+    text-align: center;
+    padding: 57px 0 30px;
+}
+.inner-txt-sect {
+    background: #fff;
+    padding: 20px 20px 0;
+    margin-bottom: 60px;
+}
+.safety-section h2 {
+    font-size: 24px;
+    color: #9e3aba;
+    font-family: "Muli";
+    font-weight: 700;
+}
+.safety-section p {
+    font-size: 16px;
+    line-height: 26px;
+    color: #222222;
+    font-family: "PT Sans";
+    font-weight: 400;
+    font-style: italic;
+}
+
+.saftey-image {
+    margin: 81px auto 66px;
+    text-align: center;
+}
+.saftey-image img {
+    max-width: 625px;
+    border-radius: 10px;
+}
+
+.inner-txt-sect{
+min-height: calc(100vh - 244px);
+}
+.safety-section {
+    padding-top: 90px;
+}

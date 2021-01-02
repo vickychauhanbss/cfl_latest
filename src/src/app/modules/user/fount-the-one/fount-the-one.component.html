@@ -1,0 +1,17 @@
+<div class="found-one-main">
+   <ngx-spinner></ngx-spinner>
+    <div class="container">
+        <div class="overlay"></div>
+        <form class="download">
+            <span class="cross" (click)="dismissModal()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </span>
+            <div class="inner-text">
+                <div><p>Yes I found the one! I understand other users will no longer be able to see my profile unless I trun visibilty back on at later date</p></div>
+                <button class="down" matInput type="submit" value="" (click)="sendNotification()">
+                    I UNDERSTAND
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

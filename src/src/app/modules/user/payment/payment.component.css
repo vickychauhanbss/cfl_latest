@@ -1,0 +1,12 @@
+.payment .noti-header {
+    color :#e51197;
+    font-weight: bold;
+    text-align: center;
+}
+
+.notification {
+    padding: 25px 25px;
+    max-width: 1170px;
+    margin: 40px auto 40px;
+    background: #fff;
+}

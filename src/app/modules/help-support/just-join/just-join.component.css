@@ -1,0 +1,44 @@
+.just-join h1 {
+    font-size: 28px;
+    color: #222222;
+    font-family: "Muli";
+    font-weight: 700;
+    text-align: center;
+    padding: 57px 0 30px;
+}
+.just-join {
+    padding-top: 90px;
+}
+.inner-txt-sect {
+    background: #fff;
+    padding: 20px 20px 0;
+    margin-bottom: 60px;
+}
+.conttent-txt h3 {
+    font-size: 22px;
+    color: #222222;
+    font-family: "Muli";
+    font-weight: 700;
+}
+.conttent-txt p {
+    font-size: 16px;
+    line-height: 26px;
+    color: #222222;
+    font-family: "PT Sans";
+    font-weight: 400;
+}
+.inner-txt-sect .row {
+    padding-bottom: 20px;
+}
+.inner-txt-sect img{
+    width: 100%;
+}
+.inner-txt-sect {
+    min-height: calc(100vh - 244px);
+}
+
+@media(max-width: 767px){
+    .just-join {
+    padding-top: 0px;
+}
+}

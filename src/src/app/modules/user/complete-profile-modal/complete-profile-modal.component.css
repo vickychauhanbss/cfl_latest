@@ -1,0 +1,165 @@
+/*====================== Download ====================*/
+.download h4 {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 26px;
+    color: #222222;
+    margin-top: 42px;
+}
+.download h3 {
+    text-align: center;
+    font-size: 40px;
+    color: #222222;
+    font-weight: bold;
+}
+button.down {
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    border-radius: 50px;
+    padding: .5rem 3rem;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    border: 0;
+    margin: 23px auto 0;
+    text-align: center;
+    display: block;
+    text-transform: capitalize;
+}
+
+ .complete-profile{
+    background: #f3f1f4;
+    margin: 0 auto;
+    max-width: 550px;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    position: relative;
+}
+ .download h2{
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    text-align: center;
+    color: #fff;
+    font-size: 1.5625rem;
+    font-weight: bold;
+    padding: 14px 0 18px;
+    margin-bottom: 0;
+}
+span.cross {
+    position: absolute;
+    right: -5px;
+    top: -8px;
+    background: #fff;
+    border-radius: 100%;
+    padding: 0px 6px;
+    color: #9a3cbc;
+    border: 1px solid;
+}
+.complete-profile .container {
+    padding: 0;
+}
+.inner-form img {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+span.profile-txt {
+    text-transform: uppercase;
+    color: #222222;
+    font-weight: bold;
+    font-size: 24px;
+    font-family: 'Muli', sans-serif;
+}
+.inner-form {
+    padding-top: 20px;
+    padding-bottom:20px; 
+}
+button.skip {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    background: transparent;
+    border: 0;
+    color: #aaaaaa;
+    border-bottom: 1px solid;
+    padding: 0;
+}
+
+.progress-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #e51197;
+    transition: width .6s ease;
+}
+/* ::ng-deep .progress-slider .ng5-slider .ng5-slider-pointer{
+    background-image: url("/assets/profile/slider-heart.png") !important;
+    background-color: transparent !important;
+    width: 34px;
+    height: 33px;
+    border-radius: 0;
+}
+::ng-deep .progress-slider .ng5-slider .ng5-slider-selection {
+    z-index: 2;
+    background: #0088ab !important;
+}
+
+::ng-deep .progress-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
+    background: #0088ab;
+}
+::ng-deep .progress-slider .ng5-slider .ng5-slider-tick{
+    background: #0088ab;
+}
+
+::ng-deep .progress-slider .ng5-slider .ng5-slider-bubble {
+    cursor: default;
+    bottom: -10px !important;
+    padding: 1px 3px;
+    font-size: 16px;
+  top: -10px; 
+    z-index: 9999 !important;
+    color: #fff!important;
+}
+::ng-deep .progress-slider .ng5-slider .ng5-slider-pointer:after{
+    display: none !important;
+}
+::ng-deep .progress-slider .ng5-slider .ng5-slider-pointer{
+    outline: none;
+}
+::ng-deep .progress-slider .ng5-slider .ng5-slider-selection {
+    z-index: 2;
+    background:linear-gradient(to right, #e51197, #9d3aba) !important;
+    border-radius: 2px;
+}
+::ng-deep .progress-slider .ng5-slider .ng5-slider-bar {
+    height: 10px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+::ng-deep .progress-slider .ng5-slider .ng5-slider-tick {
+    text-align: center;
+    cursor: pointer;
+    width: 0px;
+    height: 18px;
+    border-radius: 50%;
+    position: absolute;
+    top: -2px;
+    left: 0;
+    margin-left: 11px;
+}
+
+::ng-deep .progress-slider span.ng5-slider-span.ng5-slider-bubble.ng5-slider-limit.ng5-slider-floor {
+    display: none;
+}
+::ng-deep .progress-slider span.ng5-slider-span.ng5-slider-bubble.ng5-slider-limit.ng5-slider-ceil{
+    display: none;
+}
+::ng-deep .progress-slider .ng5-slider {
+    margin: 27px 0 15px;
+} */
+.progress-slider {
+    max-width: 380px;
+    margin: 25px auto 40px;
+}

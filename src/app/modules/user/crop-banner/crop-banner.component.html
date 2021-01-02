@@ -1,0 +1,40 @@
+<div mat-dialog-content class="hiden-over">
+    
+    <div class="modal-dialog profole-upload"  role="document" [ngStyle]="{'width': 400+'px', 'height': 400+'px'}">
+        <div class="modal-content" [style.display]="showCropper ? null : 'none'">
+            <div class="modal-body">
+                <div class="login-popup">
+                    <div class="overlay"></div>
+                    <span class="cross" (click)="dismissModal('')" *ngIf="showCropper">
+                        <i class="fa fa-times" aria-hidden="true" ></i>
+                    </span>
+                    <p class="select-crop" *ngIf="showCropper">
+                        Select area to crop
+                    </p>
+                    <div class="container">
+                        <image-cropper
+                            [imageChangedEvent]="imageChangedEvent"
+                            [maintainAspectRatio]="true"
+                            [aspectRatio]="ratio1 / ratio2"
+                            [cropperMinWidth]="600"
+                            [cropperMinHeight]="600"
+                            [onlyScaleDown]="false"
+                            [roundCropper]="circleImage"
+                            [imageQuality]="100"
+                            [style.display]="showCropper ? null : 'none'"
+                            format="png"
+                            outputType="file"
+                            (imageCropped)="imageCropped($event)"
+                            (imageLoaded)="imageLoaded()"
+                            (cropperReady)="cropperReady()"
+                            (loadImageFailed)="loadImageFailed()"
+                        ></image-cropper>
+                        <label class="upload" title="Upload new image" (click)="dismissModal(croppedImage)" *ngIf="showCropper">
+                            Upload
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

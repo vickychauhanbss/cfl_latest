@@ -1,0 +1,82 @@
+<div mat-dialog-content >
+    
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="login-popup">
+                    <div class="overlay"></div>
+                    <span class="cross" (click)="dismissModal('')">
+                        <i class="fa fa-times" aria-hidden="true" ></i>
+                    </span>
+                    <div class="container">
+                        <div *ngIf="condition == 'conversation'">
+                            <p class="header-fonts">
+                                Gallary Images
+                            </p>
+                            <ul class="update-image" *ngIf="gallaryImages.length > 0">
+                                <li *ngFor="let image of gallaryImages" (click)="dismissModal(image)">
+                                 <img [defaultImage]="defaultImage" [lazyLoad]="image.path"  width="100">
+                                    <!-- <img src="{{image.path}}" alt="" width="100"> -->
+                                </li>
+                            </ul>
+                            <ul class="pop-txt" *ngIf="gallaryImages.length == 0">
+                                No images yet.
+                            </ul>
+
+
+                            <div>
+                                <p class="header-fonts">
+                                    Video greetings
+                                </p>
+                                <ul class="update-image" *ngIf="gallaryVideos.length > 0">
+                                    <li *ngFor="let video of gallaryVideos">
+                                        <!-- <video width="150" height="150"   controls disabled="true" (click)="dismissModal(video)">
+                                            <source [src]="video.path" type="video/mp4">
+                                        </video> -->
+
+                                        <mat-video [fullscreen]="true" width="150" height="150" [download]="false" color="accent" (click)="dismissModal(video)">
+                                            <source matVideoSource [src]="video.path" type="video/mp4">
+                                        </mat-video>
+                                    </li>
+                                </ul>
+                                <ul class="pop-txt" *ngIf="gallaryVideos.length == 0">
+                                    No Videos yet.
+                                </ul>
+                            </div>
+                        </div>
+                        <div *ngIf="condition != 'conversation'">
+                            <div>
+                                <p class="header-fonts">
+                                    Video greetings
+                                </p>
+                                <ul class="update-image" *ngIf="gallaryVideos.length > 0">
+                                    <mat-radio-group  class="radio-select" [(ngModel)]="selectedVideo">
+                                        <mat-radio-button #button class="radio-sect-more" *ngFor="let video of gallaryVideos" [value]="video.id" (click)="selectVideo($event, button, video)">
+                                            <video width="250" height="180"   controls disabled="true">
+                                                <source [src]="video.path" type="video/mp4">
+                                            </video>
+                                        </mat-radio-button>
+                                     </mat-radio-group>
+                                    <!-- <li *ngFor="let video of gallaryVideos">
+                                        <video width="150" height="150"   controls disabled="true" (click)="dismissModal(video)">
+                                            <source [src]="video.path" type="video/mp4">
+                                        </video>
+                                    </li> -->
+                                </ul>
+                                <div class="go-btn" *ngIf="gallaryVideos.length > 0">
+                                    <button class="visit" matInput type="button" value="" (click)="send()" [disabled]="selectedVideo == '' || selectedVideo == undefined">
+                                       SEND
+                                    </button>
+                                 </div>
+                                <ul class="pop-txt" *ngIf="gallaryVideos.length == 0">
+                                    No Videos yet.
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

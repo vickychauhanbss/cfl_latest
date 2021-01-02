@@ -1,0 +1,1034 @@
+.my-accounts {
+    padding-top: 120px;
+    padding-bottom: 60px;
+}
+.col-xs-12.col-sm-9.right-tab-content {
+    background: #fff;
+    padding: 30px 25px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+ul.nav.nav-pills.left-tab-data {
+    background: #fff;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #ddd;
+}
+.col-xs-12.col-sm-3.left-tabs {
+    padding-right: 30px;
+}
+.form-group input {
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 13px 10px;
+
+}
+.form-group input:focus {
+    outline: none;
+}
+.form-group.last {
+    margin-left: 2%;
+}
+.form-group{
+    width: 49%;
+    float: left;
+    margin-bottom: 1.5rem !important;
+}
+.left-tabs img {
+    max-width: 25px !important;
+}
+.user-information hr {
+    float: left;
+    width: 100%;
+    margin: 10px 0 26px 0;
+}
+.account-information {
+    float: left;
+    width: 100%;
+}
+.save-btn {
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin-top: 18px;
+}
+.save-btn button {
+    background: linear-gradient(to right,#e51197  , #9d3aba);
+    color: #fff;
+    border: 0;
+    padding: 8px 53px;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: "Muli";
+    font-weight: 700;
+    border-radius: 30px;
+}
+
+.next-btn {
+    width: 100%;
+    text-align: right;
+}
+
+.visit-nxt[disabled] {
+    cursor: not-allowed !important;
+    opacity: .65;
+}
+
+.next-btn button {
+    background: linear-gradient(to right,#e51197  , #9d3aba);
+    color: #fff;
+    border: 0;
+    padding: 8px 30px;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: "Muli";
+    font-weight: 700;
+    border-radius: 30px;
+}
+.account-information p {
+    font-size: 16px;
+    color: #222222;
+    font-family: "PT Sans";
+    font-weight: 400;
+}
+.account-information p a {
+    color: #e51197;
+}
+.user-information h4 , .account-information h4 {
+    font-size: 22px;
+    color: #222222;
+    font-family: "Muli";
+    font-weight: 400;
+    margin-bottom: 22px;
+}
+.edit-view-address {
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+.edit-view-address a {
+    font-size: 16px;
+    color: #9e3aba;
+    font-family: "PT Sans";
+    font-weight: 400;
+    border-bottom: 1px solid;
+    padding-bottom: 1px;
+    text-decoration: none;
+}
+
+.right-tab-content h2 {
+    font-size: 28px;
+    color: #9e3aba;
+    font-family: "Muli";
+    font-weight: 700;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+
+.left-tab-data a {
+    font-size: 14px;
+    color: #222222;
+    font-family: "Muli";
+    font-weight: 700;
+    padding: 6px 0 !important;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    background: linear-gradient(to right, #e51197 , #9d3aba) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+.nav-pills li {
+    width: 100%;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.center-stage-account p {
+    font-style: italic;
+    font-size: 16px;
+    line-height: 27px;
+    color: #222222;
+    font-family: "PT Sans";
+    font-weight: 400;
+    font-style: italic;
+}
+.saftey-image img {
+    max-width: 600px;
+    width: 100%;
+    border-radius: 10px;
+}
+.saftey-image {
+    text-align: center;
+    margin-bottom: 35px;
+    margin-top: 36px;
+}
+.apply-center button {
+    background: linear-gradient(to right,#e51197 , #9d3aba);
+    color: #fff;
+    border: 0;
+    padding: 8px 24px;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: "Muli";
+    font-weight: 700;
+    border-radius: 30px;
+}
+.apply-center {
+    text-align: center;
+    margin-top: 30px;
+}
+.account-information {
+    margin-top: 30px;
+}
+img.white {
+    display: none;
+}
+
+.active img.black {
+    display: none;
+}
+.active img.white {
+    display: inline-block;
+}
+.left-tab-data span {
+    margin-left: 10px;
+}
+.left-tab-data li {
+    margin-left: 0 !important;
+}
+/*========================== Restore Profile ==================*/
+.restore-prof button {
+font-size: 14px;
+color: #ffffff;
+font-family: "Muli";
+font-weight: 700;
+text-align: center;
+background: linear-gradient(to right, #9d3aba, #e51197);
+border-radius: 50px;
+padding: 10px 24px;
+border: 0;
+}
+.restore-user .user-img img {
+    width: 100%;
+}
+.restore-user{
+    width: 22%;
+    display: inline-block;
+    margin: 1.5% 1.5%;
+    position: relative;
+    border: 1px solid #ddd;
+}
+
+.restore-prof {
+    display: none; 
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+.restore-user:hover .restore-prof {
+    display: block; 
+}
+
+.restore-user:hover:before {
+    content: "";
+    background: rgba(0,0,0, .6);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+.username-info {
+    padding: 8px 10px;
+}
+.removedprofile-account span.online {
+    color: #79c646 !important;
+    float: right;
+    font-size: 11px !important;
+    line-height: 27px;
+    padding-right: 14px;
+}
+
+.removedprofile-account span.offline {
+    color: #ddd !important;
+    float: right;
+    font-size: 11px;
+    line-height: 27px;
+}
+
+.username-info span {
+    color: #222;
+    font-size: 14px;
+    font-family: 'Muli', sans-serif;
+}
+
+.invalid-feedback{
+    position: absolute;
+    display: block !important;
+}
+.edit-seprate-form .form-group {
+    padding-bottom: 20px;
+    position: relative;
+}
+
+/*====================================== Email ==========================*/
+span.number {
+    background: linear-gradient(to right,#e51197 , #9d3aba);
+    padding: 9px 4px;
+    border-radius: 100%;
+    height: 45px;
+    width: 45px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #ffffff;
+    font-family: "Muli";
+    text-align: center;
+}
+.email-icon {
+    /* display: inline-block; */
+    float: right;
+}
+.email-txt {
+    width: 68%;
+    margin-left: 3%;
+    display: inline-block;
+}
+/* .email-txt p {
+    margin: 0;
+} */
+.email-txt-cont {
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.email-icon {
+    /* float: right; */
+    width: 26%;
+    text-align: right;
+}
+.email-txt strong {
+    font-size: 18px;
+    color: #222222;
+    font-family: "Muli";
+    font-weight: 700;
+}
+::ng-deep .email-icon .switch-medium {
+    width: 65px !important;
+    height: 30px;
+    border-radius: 30px;
+    /* background-color:  #9d3aba !important; */
+    background-color:#f2f2f2  !important;
+    border: 1px solid #ccc !important;
+}
+::ng-deep .email-icon .checked{
+    background: linear-gradient(to right,#e51197 , #9d3aba) !important;
+    border: 0 !important;
+}
+::ng-deep .email-icon .switch-medium.checked small {
+    left: 34px !important;
+}
+::ng-deep .email-icon .switch-medium small {
+    width: 29px !important;
+    height: 29px !important;
+}
+
+
+/*============================= Subscription =======================*/
+.enquiry_table thead {
+    background: linear-gradient(to right, #e51197, #9d3aba);
+}
+.main-ttl th {
+    color: #fff;
+    font-size: 14px;
+}
+.col-md-12.table-responsive.enquiry_table {
+    padding: 0;
+}
+.parent-category a {
+    color: #a038b8;
+}
+.parent-category td {
+    font-size: 14px;
+}
+.member-table .col-md-1 {
+    flex: 0 0 8.333333%;
+    max-width: 8.333333%;
+    width: 8%;
+}
+.right-tab-content {
+    min-height: calc(100vh - 244px);
+}
+span.edit-pass
+{
+    position:absolute;
+	right:0px;
+	top:0px;
+	cursor:pointer;
+	font-size:20px;
+	border-left:1px solid #ccc;
+	padding:10px 15px;
+	height:calc(100% - 20px);
+}
+.online-right-now i.fa.fa-wifi {
+    margin-right: 10px;
+}
+.usr-right-now span {
+    margin-right: 10px;
+}
+.usr-right-now p , .online-right-now p {
+    background: linear-gradient(to right,#e51197 , #9d3aba);
+    color: #fff;
+    padding: 15px 20px;
+    margin-top: 10px;
+}
+.online-right-now span , .usr-right-now span {
+    font-weight: 600;
+    font-size: 18px;
+}
+.usr-right-now {
+    margin-top: 40px;
+}
+
+
+.my-accounts ::ng-deep .togle  .switch-medium {
+    width: 65px !important;
+    height: 30px;
+    border-radius: 30px;
+    /* background-color:  #9d3aba !important; */
+    background-color:#f2f2f2  !important;
+    border: 1px solid #ccc !important;
+}
+.my-accounts ::ng-deep .togle  .checked{
+    background: linear-gradient(to right,#e51197 , #9d3aba) !important;
+    border: 0 !important;
+}
+.my-accounts ::ng-deep .togle  .switch-medium.checked small {
+    left: 34px !important;
+}
+.my-accounts ::ng-deep .togle  .switch-medium small {
+    width: 29px !important;
+    height: 29px !important;
+}
+.my-accounts  span.togle {
+    /* text-align: right; */
+    float: right;
+}
+.custom-select{
+height: 50px !important;
+border-radius: 0 !important;
+}
+.drop {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.subscription-account .nav-pills li {
+    width: 25%;
+    text-align: center;
+}
+.tab-pane {
+    display: none;
+}
+.tab-pane.active {
+    display: block;
+}
+div#subscriptionplan {
+    margin-top: 20px;
+}
+.plan-active span {
+    display: block;
+    font-weight: 600;
+    font-size: 16px;
+}
+.plan-active {
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    border-radius: 5px;
+        margin-bottom: 10px;
+}
+.plan-active h4 {
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 7px;
+}
+#subscriptionplan button {
+    color: #fff !important;
+    font-weight: 700;
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    border-radius: 50px;
+    padding: 12px 30px !important;
+    font-family: 'Muli', sans-serif;
+    border: 0;
+        margin-bottom: 15px;
+}
+#paymentinformation {
+    padding-top: 18px;
+}
+#paymentinformation p {
+    margin: 0;
+}
+button.submit-btn {
+    display: block;
+    margin-top: 15px;
+     color: #fff !important;
+    font-weight: 700;
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    border-radius: 50px;
+    padding: 12px 30px !important;
+    font-family: 'Muli', sans-serif;
+    border: 0;
+}
+#paymentinformation input[type="text"] {
+    width: 30%;
+    height: 40px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+#paymentinformation input[type="text"]:focus {
+    width: 30%;
+    height: 40px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    text-decoration: none;
+    outline: none;
+}
+#membership .form-check-input{
+    position: inherit;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: transparent;
+}
+table#membership {
+    margin-top: 20px;
+}
+.subscription-account ul.nav.nav-pills.left-tab-data{
+    background: transparent;
+    padding: 8px 15px;
+    border: 0px solid #ddd;
+    border-radius: 5px;
+    box-shadow: none;
+}
+#step1 li {
+    list-style: none;
+}
+#cancelmembership .nav-pills li {
+    width: 33%;
+    text-align: center;
+    width: 31%;
+    background: #ccc;
+    text-align: center;
+    border-radius: 10px;
+    margin: 0 1%;
+    padding: 8px 31px;
+}
+#step3 h3 {
+    text-align: center;
+    margin: 30px 0 30px 0;
+    font-weight: 600;
+        line-height: 40px;
+}
+#cancelmembership .nav-pills li.active {
+    color: #fff;
+    font-weight: 700;
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    border-radius: 13px;
+    padding: 8px 31px;
+    margin-top: -4px;
+}
+#cancelmembership .nav-pills > li.active > a, #cancelmembership .nav-pills > li.active > a:focus, #cancelmembership  .nav-pills > li.active > a:hover {
+    background: transparent !important;
+    -webkit-background-clip: inherit !important;
+    background-clip: inherit !important;
+    -webkit-text-fill-color: inherit !important;
+}
+
+#cancelmembership li.active a {
+    color: #fff;
+}
+.radio-step1 mat-radio-button .mat-radio-label-content {
+    padding-left: 12px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 16px;
+}
+#step1 {
+    margin-top: 20px;
+}
+
+    .content {
+      margin: 20px 0 60px;
+    }
+    .video-section,.bottom-section{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .video-section {
+        margin-top: 40px;
+    }
+    .content-right h3 {
+        font-size: 22px;
+        margin-bottom: 1rem;
+        font-weight: 700;
+        }
+    .content-right p {
+        font-size: 14px;
+        margin: 0;
+        text-align: center;
+        max-width: 585px;
+    }
+    .bottom-section ul{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .bottom-section {
+        margin-top: 30px;
+        border-top: 1px solid #ccc
+    }
+    .bottom-section .inner-content{
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-top: medium none;
+    }
+    .listing-left{
+      padding-left: 0
+    }
+    .listing-right{
+      padding-right: 0;
+    }
+    .bottom-section h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0;
+    }
+    .bottom-section p {
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    .tick-listing li {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 5px;
+      font-size: 14px;
+      font-family: 'PT Sans', sans-serif;
+    }
+    .tick-listing li .fa-check,.tick-listing li .fa-times {
+      position: absolute;
+      left: 0;
+      font-size: 16px;
+      top: 4px;
+    }
+    .tick-listing li .fa-check {
+      color: #28a745;
+    }
+    .tick-listing li .fa-times {
+      color: #dc3545;
+    }
+    .tick-listing li strike{
+      color: #dc3545;
+    }
+    .bottom-section button.btn {
+        width: 100%;
+        font-size: 12px;
+        font-weight: 700;
+        color: #212529;
+    }
+    .bottom-section button.btn.btn-secondary {
+      margin-top: 20px;
+      background-color: #ccc;
+    }
+    .checkbox input[type="checkbox"] {
+      margin-right: 15px;
+    }
+  .checkbox label {
+      font-size: 14px;
+  }
+  .checkbox label {
+    font-size: 13px;
+    margin-bottom: 0;
+  }
+  .additional-info p {
+    margin-bottom: 0;
+  }
+  .warning-section {
+    background-color: #dc3545;
+    color: #fff;
+    text-align: center;
+    padding: .5rem;
+    border-radius: 9px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .warning-section p{
+      margin-bottom: 0;
+  }
+  .listing-right .checkbox {
+    position: relative;
+    padding-left: 1rem;
+    margin-top: .5rem;
+  }
+  .listing-right input[type="checkbox"] ~ .warning-section{
+    display: none;
+  }
+  .listing-right input[type="checkbox"]:checked ~ .warning-section{
+    display: block;
+  }
+  .full-video-section h3 {
+    text-align: center;
+    max-width: 650px;
+    margin: 20px auto 40px;
+    font-weight: 700;
+}
+.scroll-hidden{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.scroll-hidden .tick-listing{
+  width: 100%;
+  height: 100%;
+  max-height: 140px;
+  overflow-y: scroll;
+  padding-right: 17px;
+  box-sizing: content-box;
+}
+.full-video-section .embed-responsive {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+
+.noti-toggle.ng-star-inserted {
+    /* display: flex; */
+    float: left;
+    width: 100%;
+}
+.noti-toggle p {
+    float: left;
+    width: 70%;
+}
+
+/*=========================== Password Popup Css===============*/
+.password-popup {
+    max-width: 500px;
+    margin: 0 auto;
+}
+.password-popup .form-group {
+    width: 100%;
+    float: none;
+}
+.save-btn1 button{
+    background: linear-gradient(to right,#e51197 , #9d3aba);
+    color: #fff;
+    border: 0;
+    padding: 8px 53px;
+    font-size: 20px;
+    font-family: "Muli";
+    font-weight: 700;
+    border-radius: 30px;
+}
+.save-btn2 button{
+    color: #222222;
+    border: 0;
+    padding: 8px 53px;
+    font-size: 20px;
+    font-family: "Muli";
+    font-weight: 700;
+    border-radius: 30px;
+}
+.buttons-pass {
+    text-align: center;
+    margin-top: 30px;
+}
+.buttons-pass span.save-btn2 {
+    margin-right: 15px;
+}
+
+
+/*=========================== Delete Profile Popup Css===============*/
+.delet-profile p {
+    margin: 0;
+}
+p.really {
+    text-transform: uppercase;
+}
+.delet-profile {
+    max-width: 500px;
+    margin: 0 auto;
+}
+.delet-profile input {
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 12px 10px;
+}
+
+.delet-profile a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+.forgot-pass {
+    text-align: right;
+    margin-bottom: 30px;
+}
+.profile-pass {
+    margin-top: 30px;
+}
+.forgot-pass a {
+    color: #212529;
+}
+.save-btn1 button{
+    background: linear-gradient(to right,#e51197 , #9d3aba);
+    color: #fff;
+    border: 0;
+    padding: 8px 53px;
+    font-size: 20px;
+    font-family: "Muli";
+    font-weight: 700;
+    border-radius: 30px;
+}
+.save-btn2 button{
+    color: #222222;
+    border: 0;
+    padding: 8px 53px;
+    font-size: 20px;
+    font-family: "Muli";
+    font-weight: 700;
+    border-radius: 30px;
+}
+.buttons-pass {
+    text-align: center;
+    margin-top: 30px;
+}
+.buttons-pass span.save-btn2 {
+    margin-right: 15px;
+}
+select.date-of-birth {
+    width: 32%;
+    height: 50px !important;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    background: #fff;
+}
+::ng-deep .subscription-plan .mat-radio-outer-circle {
+    box-sizing: border-box;
+    height: 20px;
+    left: -2px;
+    position: absolute;
+    top: -2px;
+    transition: border-color ease 280ms;
+    width: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 50%;
+}
+::ng-deep mat-radio-button.mat-radio-checked .mat-radio-inner-circle {
+    transform: scale(1);
+    background: linear-gradient(to right, #9d3aba, #e51197) !important;
+    height: 16px;
+    width: 16px;
+}
+::ng-deep .subscription-plan mat-radio-button label.mat-radio-label {
+    margin-bottom: 0;
+}
+
+.hideStep { 
+    pointer-events: none;
+    cursor: not-allowed !important;
+    opacity: .65;
+}
+@media not all and (min-resolution:.001dpcm) {
+.subscription-account .nav-pills li {
+    width: 24%;
+    text-align: center;
+    }
+    .enquiry_table thead{
+        background:#e51197;
+    }
+    .subscription-plan .col-md-6 {
+        flex: 0 0 49%;
+        max-width: 49%;
+        }
+}
+
+/*===================================== Responsive =================*/
+
+@media(max-width:1169px){
+    .my-accounts .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .col-xs-12.col-sm-3.left-tabs {
+        padding-left: 0;
+    }
+}
+
+@media(max-width:1100px){
+    .left-tab-data a {
+        font-size: 12px;
+    }
+    select.date-of-birth {
+    width: 31%;
+    margin-right: 2%;
+}
+}
+
+@media(max-width:999px){
+    ul.nav.nav-pills.left-tab-data{
+        padding: 8px 8px;
+    }
+    .col-xs-12.col-sm-3.left-tabs {
+        padding-right: 15px;
+    }
+}
+
+
+@media(max-width:767px){
+    .col-xs-12.col-sm-3.left-tabs {
+        max-width: 100% !important;
+        flex: 0 0 100%;
+        padding-right: 0;
+    }
+    .col-xs-12.col-sm-9.right-tab-content{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .left-tab-data span {
+        display: none;
+    }
+    .nav-pills li {
+        width: auto;
+        display: inline-block;
+        padding: 0 12px;
+    }
+    ul.nav.nav-pills.left-tab-data {
+        margin-bottom: 10px;
+    }
+    .restore-user {
+        width: 47%;
+    }
+    span.online{
+        padding-right: 0;
+    }
+    .my-accounts {
+    padding-top: 60px;
+}
+#subscription li span {
+    display: block;
+}
+.subscription-account .nav-pills li {
+    width:33.33333%;
+    text-align: center;
+}
+#cancelmembership li {
+    padding: 3px 0 !important;
+	list-style:none;
+}
+#cancelmembership span {
+    margin-left: 0;
+}
+.subscription-plan .col-md-6 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    max-width: 100% !important;
+}
+}
+@media(max-width:479px){
+    .form-group{
+        width: 100%;
+    }
+    .form-group.last{
+        width: 100%;
+        margin-left: 0;
+    }
+    .col-xs-12.col-sm-9.right-tab-content {
+        padding: 30px 15px;
+
+    }
+    .email-txt-cont{
+        display: block;
+        width: 100%;
+        align-items: center;
+            float: left;
+        margin-bottom: 40px;
+    }
+    .email-txt{
+        width: 100%;
+        margin-left: 0;
+        display: block;
+            margin-top: 20px;
+    }
+    span.number {
+        padding: 11px 18px;
+    }
+    .email-icon {
+    margin-top: 10px;
+}
+.apply-center button {
+    background: linear-gradient(to right,#e51197 , #9d3aba);
+    color: #fff;
+    border: 0;
+    padding: 8px 24px;
+    font-size: 18px;
+    color: #ffffff;
+    font-family: "Muli";
+    font-weight: 700;
+    border-radius: 30px;
+}
+.noti-toggle p {
+    float: left;
+    width: 70%;
+    margin-bottom: 0;
+}
+.noti-toggle {
+    float: left;
+    width: 100%;
+    align-items: center;
+    display: flex;
+}
+}
+
+.mat-form-field {
+    width: 33% !important;
+}
+::ng-deep .mat-form-field-wrapper {
+    margin-right: 10px !important;
+}
+
+@media(max-width:420px)
+{
+	.subscription-account .nav-pills li
+	{
+		width:100% !important;
+	}
+	.subscription-account .nav-pills li span
+	{
+		margin:0;
+	}
+}
+
+@media(max-width:367px)
+{
+	#removedprofile
+	{
+		text-align:center;
+	}
+	.restore-user
+	{
+		width:100%;
+		max-width:240px;
+		margin-left:0;
+		margin-right:0;
+	}
+}

@@ -1,0 +1,217 @@
+<div mat-dialog-content style="padding:0;">
+    
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body" style="position: relative;">
+                <div class="inner" *ngIf="isLoading" style="display: flex;justify-content: center;align-items: center;z-index: 99999;top: 0;bottom: 0;left: 0;right: 0;background: #f2f2f2;position: absolute;">
+                    <spinner [isLoading]="true" [viewBox]="1"></spinner>
+                </div>
+                <div class="start-popup">
+                    <div class="overlay"></div>
+                        <div class="container">
+                            <form class="start-feild" [formGroup]="registerForm" (ngSubmit)="onSubmit()" autocomplete="off">
+                                <h2>
+                                    Start Now
+                                </h2>
+                                <span class="cross" (click)="dismissModal()">
+                                    <i class="fa fa-times"></i>
+                                </span>
+                                <div class="inner-form">
+                                <div class="input-txt">
+                                    <div class="radio-buttons">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6 left-radio">
+                                                <ul>
+                                                    <li>
+                                                        <strong>
+                                                            <font color="red">*</font>I am a :
+                                                        </strong>
+                                                    </li>
+                                                    <mat-radio-group name="gender" formControlName="gender" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                                                        <li>
+                                                            <mat-radio-button value="1">
+                                                                Male
+                                                            </mat-radio-button>
+                                                        </li>
+                                                        <li>
+                                                            <mat-radio-button value="2">
+                                                                Female
+                                                            </mat-radio-button>
+                                                        </li>
+                                                    </mat-radio-group>
+
+                                                    <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.gender.errors.required">
+                                                            Please select one option
+                                                        </div>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 right-radio">
+                                                <ul>
+                                                    <li>
+                                                        <strong>
+                                                            <font color="red">*</font>Interested In :
+                                                        </strong>
+                                                    </li>
+                                                    <mat-radio-group name="interest" formControlName="interest" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.interest.errors }">
+                                                        <li>
+                                                            <mat-radio-button value="1">
+                                                                Male
+                                                            </mat-radio-button>
+                                                        </li>
+                                                        <li>
+                                                            <mat-radio-button value="2">
+                                                                Female
+                                                            </mat-radio-button>
+                                                        </li>
+                                                    </mat-radio-group>
+
+                                                    <div *ngIf="submitted && f.interest.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.interest.errors.required">
+                                                            Please select one option
+                                                        </div>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>
+                                            <font color="red">*</font>First Name :
+                                        </label>
+                                        <input matInput type="text" name="fname" formControlName="first_name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" (keypress)="keyPress($event)">
+
+                                        <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                                            <div *ngIf="f.first_name.errors?.required">
+                                                Please enter the first name
+                                            </div>
+
+                                            <div *ngIf="f.first_name.errors?.pattern && f.first_name.errors.maxlength">
+                                                Please enter first name without space
+                                            </div>
+
+                                            <div *ngIf="f.first_name.errors?.pattern && !f.first_name.errors.maxlength">
+                                                Please enter first name without space
+                                            </div>
+
+                                            <div *ngIf="f.first_name.errors?.maxlength && !f.first_name.errors?.pattern">
+                                                Max limit is 12 alphabets
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group last">
+                                        <label>
+                                            <font color="red">*</font>Last Name :
+                                        </label>
+                                        <input matInput type="text" name="lname" formControlName="last_name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" (keypress)="keyPress($event)">
+
+                                        <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                                            <div *ngIf="f.last_name.errors.required">
+                                                Please enter the last name
+                                            </div>
+
+                                            <div *ngIf="f.last_name.errors?.pattern && f.last_name.errors.maxlength">
+                                                Please enter last name without space
+                                            </div>
+
+                                            <div *ngIf="f.last_name.errors?.pattern && !f.last_name.errors.maxlength">
+                                                Please enter last name without space
+                                            </div>
+
+                                            <div *ngIf="f.last_name.errors?.maxlength && !f.last_name.errors?.pattern">
+                                                Max limit is 12 alphabets
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                           <font color="red">*</font>Email :
+                                        </label>
+                                        <input matInput type="email" name="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" >
+
+                                        <div *ngIf="errorMessage" class="already-reg" style="font-size: 80%;color: #dc3545;">
+                                            {{errorMessage}}
+                                        </div>
+
+                                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                            <div *ngIf="f.email.errors.required">
+                                                Please enter the e-mail address
+                                            </div>
+
+                                            <div *ngIf="f.email.errors?.pattern">
+                                                Please enter valid e-mail address.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group last">
+                                        <label>
+                                            <font color="red">*</font>Password :
+                                        </label>
+                                        <input type="password" name="password" style="display: none;">
+                                        <input matInput type="password" name="dfgdfdgfgf" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" #passwordField autocomplete="new-password" (keyup)="pressPass()" (focus)="showTool()" (focusout)="hideTool()">
+                                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                            <div *ngIf="f.password.errors.pattern">
+                                                Please select a strong password.
+                                            </div>
+                                            <div *ngIf="f.password.errors.required">
+                                                Please enter the password
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="condi">
+                                    <mat-checkbox class="check_cstm" formControlName="acceptTerms" id="acceptTerms"  [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }">
+                                        I agree to the  <a [routerLink]="['/home/termsofuse']" target="_blank">
+                                            Terms & Conditions
+                                        </a> and <a [routerLink]="['/home/policy']" target="_blank"> Privacy Policies. </a><font color="red">*</font>
+                                    </mat-checkbox>
+
+                                    <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback agree">
+                                        Accept Terms & Conditions & Privacy Policies is required
+                                    </div>
+                                </div>
+
+                                <div class="go-btn">
+                                    <button class="login" matInput type="submit" value="">
+                                        Let’s Go
+                                    </button>
+                                </div>
+                                <div class="bottom-form-txt">
+                                    <p>
+                                        Already a member?
+                                        <a class="sign" (click)="goToLoginPage()">
+                                                Login
+                                        </a>
+                                    </p>
+                                    <ul>
+                                        <li (click)="socialSignIn('facebook')">
+                                            <a class="fb">
+                                                <span>
+                                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                                </span>
+                                                Login with Facebook
+                                            </a>
+                                        </li>
+
+                                        <li (click)="socialSignIn('google')">
+                                            <a class="gplus">
+                                                <span>
+                                                    <i class="fa fa-google" aria-hidden="true"></i>
+                                                </span>
+                                                Login with Google
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

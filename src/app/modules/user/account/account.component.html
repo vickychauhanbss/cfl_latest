@@ -1,0 +1,792 @@
+<div class="my-accounts">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-3 left-tabs">
+				<ul class="nav nav-pills left-tab-data">
+					<li class="active" [class.active]="activeTabs == 'personaldetails'">
+						<a (click)="activeTabs='personaldetails';">
+							<img class="black" src="assets/account/account.png" alt="">
+							<img class="white" src="assets/account/account-active.png" alt="">
+							<span>
+								Personal Details
+							</span>
+						</a>
+					</li>
+					<li [class.active]="activeTabs == 'subscription'">
+						<a (click)="activeTabs='subscription';">
+							<img class="black" src="assets/account/membership.png" alt="">
+							<img class="white" src="assets/account/membership-active.png" alt="">
+							<span>
+								Membership Subscription
+							</span>
+						</a>
+					</li>
+					<li [class.active]="activeTabs == 'removedprofile'">
+						<a (click)="activeTabs='removedprofile';">
+							<img class="black" src="assets/account/removed.png" alt="">
+							<img class="white" src="assets/account/removed-active.png" alt="">
+							<span>
+								View Removed Profiles
+							</span>
+						</a>
+					</li>
+					<li [class.active]="activeTabs == 'emailpreferences'">
+						<a (click)="activeTabs='emailpreferences';">
+							<img class="black" src="assets/account/email.png" alt="">
+							<img class="white" src="assets/account/email-active.png" alt="">
+							<span>
+								Email Preferences
+							</span>
+						</a>
+					</li>
+					<li [class.active]="activeTabs == 'centerstage'">
+						<a (click)="activeTabs='centerstage';">
+							<img class="black" src="assets/account/center-stage.png" alt="">
+							<img class="white" src="assets/account/center-stage-active.png" alt="">
+							<span>
+								Center Stage
+							</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-xs-12 col-sm-9 right-tab-content">
+				<div class="tab-content">
+					<ng-container [ngSwitch]="activeTabs">
+						<!-- Personal Information tab Profile  -->
+						<div id="personaldetails" *ngSwitchCase="'personaldetails'">
+							<h2>Personal Details</h2>
+							<div class="user-information">
+								<h4>User Information</h4>
+								<div class="form-group">
+									<input type="text" name="fname" placeholder="Name"
+										[(ngModel)]="personal_data.first_name" [attr.disabled]="true">
+								</div>
+								<div class="form-group last">
+									<input type="Email" name="Email" placeholder="Email"
+										[(ngModel)]="personal_data.email" [attr.disabled]="true">
+								</div>
+								<hr>
+								<h2>Change Password</h2>
+								<div class="edit-seprate-form">
+									<div class="form-group pass">
+										<input type="password" name="password" placeholder="Password"
+											[attr.disabled]="true">
+										<span class="edit-pass" (click)="openChangePasswordModal('changePassword')"><i
+												class="fa fa-pencil" aria-hidden="true"></i></span>
+									</div>
+									<div class="clearfix"></div>
+									<div class="online-right-now">
+										<span>
+											<i class="fa fa-wifi" aria-hidden="true"></i>
+										</span>
+										<span>
+											Online Right Now
+										</span>
+										<div class="toggle">
+											<span class="display">
+												Display
+											</span>
+											<span class="togle">
+												<ui-switch [(ngModel)]="online_now_off"></ui-switch>
+											</span>
+										</div>
+
+										<p>
+											Here you can specify whether you tell other members that you are currently
+											online.
+										</p>
+									</div>
+									<div class="usr-right-now">
+										<span>
+											<i class="fa fa-user-o" aria-hidden="true"></i>
+										</span>
+										<span>
+											Profile Visibility
+										</span>
+										<div class="toggle">
+											<span class="display">
+												Visible to all member
+											</span>
+											<span class="togle">
+												<ui-switch [(ngModel)]="visibility_off"></ui-switch>
+											</span>
+										</div>
+										<p>
+											You will not be presented to other members in Search or their All Admirers
+											list
+											if you disable your profile visibility. * Your profile details still appear
+											and
+											you can continue messaging members you have Mutual Interest in.
+										</p>
+									</div>
+									<div class="delet-profile">
+										<p>
+											To delete your profile permanently, please click
+											<a (click)="openChangePasswordModal('deleteProfile')">
+												here
+											</a>
+										</p>
+									</div>
+									<div class="save-btn">
+										<button type="button" (click)="updateVisibleAndOnline('visible')">
+											Save
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+							<!-- ================= Delete Profile ----------->
+							<div class="account-information">
+								<h4> Account Information</h4>
+								<p>To edit this information please contact CFL support at
+									<a href="mailto:cflsupport@yahoo.com">cflsupport@yahoo.com</a></p>
+
+								<form [formGroup]="accountInfo" (ngSubmit)="updateAccountInfo('information')">
+
+									<div class="account-form">
+										<div class="form-group">
+											<input matInput type="text" name="fname" formControlName="first_name"
+												placeholder="First Name"
+												[ngClass]="{ 'is-invalid': submitted && f.first_name.errors }">
+
+											<div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+												<div *ngIf="f.first_name.errors.required">
+													Please enter the first name
+												</div>
+
+												<div *ngIf="f.first_name.errors.maxlength">
+													Max limit is 12 alphabets
+												</div>
+											</div>
+											<!-- <input matInput type="Text" name="Name" placeholder="First Name"> -->
+										</div>
+										<div class="form-group last">
+											<input matInput type="text" name="lname" formControlName="last_name"
+												placeholder="Last Name"
+												[ngClass]="{ 'is-invalid': submitted && f.last_name.errors }">
+
+											<div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+												<div *ngIf="f.last_name.errors.required">
+													Please enter the last name
+												</div>
+
+												<div *ngIf="f.last_name.errors.maxlength">
+													Max limit is 12 alphabets
+												</div>
+											</div>
+										</div>
+										<div class="dob">
+
+											<select class="date-of-birth" formControlName="month">
+												<option *ngFor="let month of months; let index = index;"
+													[value]="month">
+													{{month}}
+												</option>
+											</select>
+
+											<select class="date-of-birth" formControlName="day">
+												<option *ngFor="let day of days; let index = index;" [value]="day">
+													{{day}}
+												</option>
+											</select>
+
+											<select class="date-of-birth" formControlName="year">
+												<option *ngFor="let year of years; let index = index;" [value]="year">
+													{{year}}
+												</option>
+											</select>
+
+										</div>
+										<div class="form-group">
+											<select class="browser-default custom-select" formControlName="height">
+												<option
+													*ngFor="let height of personal_data.height_options; let index = index;"
+													[value]="height.id">
+													{{height.option}}
+												</option>
+											</select>
+										</div>
+
+										<div class="form-group last">
+											<input matInput type="text" name="phone"
+												placeholder="Enter your phone number here" formControlName="phone"
+												pattern="^(\+\d{1,3}[- ]?)?\d{10}$">
+
+											<div *ngIf="f.phone.errors?.pattern" class="invalid-feedback">
+												Phone number should be only number with 10 digit
+											</div>
+										</div>
+
+										<div class="form-group">
+											<input matInput type="text" name="add" placeholder="Address1"
+												formControlName="address1">
+										</div>
+										<div class="form-group last">
+											<input matInput type="text" name="add" placeholder="Address2"
+												formControlName="address2">
+										</div>
+
+										<div class="drop">
+											<select class="browser-default custom-select" formControlName="country"
+												(change)="chooseCountry($event)">
+												<option *ngFor="let country of countiesArray; let index = index;"
+													[value]="country.id">
+													{{country.name}}
+												</option>
+											</select>
+										</div>
+										<div class="form-group " *ngIf="statesArray">
+											<select class="browser-default custom-select" formControlName="state">
+												<option *ngFor="let state of statesArray.states; let index = index;"
+													[value]="state.id">
+													{{state.name}}
+												</option>
+											</select>
+										</div>
+										<div class="form-group last">
+											<input matInput type="text" name="phone" placeholder="City"
+												formControlName="city">
+										</div>
+									</div>
+									<div class="edit-view-address">
+										<a href="#">
+											View/Edit Billing Information
+										</a>
+									</div>
+
+									<div class="save-btn">
+										<button type="submit">
+											Save
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+						<!-- ================= Personal Information tab Profile End -->
+						<!--===================================== Membership======================= -->
+						<div id="subscription" *ngSwitchCase="'subscription'" class=" subscription-account">
+							<h2>Membership Subscription</h2>
+							<ul class="nav nav-pills left-tab-data">
+								<li [class.active]="subscriptionActiveTabs=='subscriptionplan'">
+									<a (click)="subscriptionActiveTabs='subscriptionplan';">
+										<span>Subscription Plan </span>
+									</a>
+								</li>
+								<!-- <li>
+								<a href="#paymentinformation">
+									<span>Payment Information </span>
+								</a>
+							</li> -->
+								<li [class.active]="subscriptionActiveTabs=='invoicehistory'">
+									<a (click)="subscriptionActiveTabs='invoicehistory';">
+										<span>Invoice History</span>
+									</a>
+								</li>
+								<li [class.active]="subscriptionActiveTabs=='cancelmembership'"
+									*ngIf="userData.plan_type > 1">
+									<a (click)="subscriptionActiveTabs='cancelmembership';">
+										<span>Cancel Membership</span>
+									</a>
+								</li>
+							</ul>
+							<ng-container [ngSwitch]="subscriptionActiveTabs">
+								<div id="subscriptionplan" *ngSwitchCase="'subscriptionplan'"
+									class=" active subscription-plan">
+									<div class="plan-active">
+										<h4>
+											Subscription Active
+										</h4>
+										<span *ngIf="membership && membership.subscription">
+											{{membership.subscription.amount}}
+										</span>
+										<span *ngIf="membership && membership.subscription">
+											{{membership.subscription.plan}}
+										</span>
+									</div>
+									<p *ngIf="membership && membership.subscription">
+										Your subscribed to Crazy Filipina Love’s {{membership.subscription.plan}} at
+										{{membership.subscription.amount}}. Subscriptions renews on
+										{{membership.subscription.end_date}}.
+									</p>
+									<button (click)="goToPlanPage()" *ngIf="userData.plan_type <= 2">
+										Apply for Center Stage
+									</button>
+									<p>
+										This is only for serious individuals 100% committed to finding the most
+										compatible,
+										trusworthy, and sincare marriage minded partner possible
+									</p>
+								</div>
+
+								<!-- <div id="paymentinformation" class="paymentinformation">
+								<div rel="kM0ZLsNnAzYf" article="" product="" embedded = "1" id="kartra_live_chat" class="kartra_helpdesk_sidebar" >
+									<div rel="kM0ZLsNnAzYf" id="display_kartra_helpdesk" class="kartra_helpdesk_sidebar_button open">
+									</div>
+								</div>
+								-->
+								<div id="invoicehistory" *ngSwitchCase="'invoicehistory'" class=" invoicehistory">
+									<div class="col-md-12  table-responsive enquiry_table">
+										<table id="membership"
+											class="table table-striped budget-table mail_msg member-table">
+											<thead>
+												<tr class="main-ttl">
+													<th class="check">
+														<input type="checkbox" class="form-check-input title-head"
+															id="exampleCheck1">
+													</th>
+													<th class="date">
+														Date
+													</th>
+													<th class="discription">
+														Discription
+													</th>
+													<th class="amount">
+														Amount
+													</th>
+													<th class="status">
+														status
+													</th>
+												</tr>
+											</thead>
+											<tbody *ngIf="membership && membership.all_transactions">
+												<tr *ngFor="let transactions of membership.all_transactions">
+													<td><input type="checkbox" class="form-check-input"
+															id="exampleCheck1"></td>
+													<td>{{transactions.transaction_date}}</td>
+													<td>{{transactions.plan}}</td>
+													<td>${{transactions.amount}}</td>
+													<td>Paid (Thank You!)</td>
+												</tr>
+											</tbody>
+
+											<div *ngIf="membership && !membership.all_transactions" class="not-data">No
+												transactions Yet.</div>
+										</table>
+									</div>
+								</div>
+								<div id="cancelmembership" *ngSwitchCase="'cancelmembership'" class=" cancelmembership">
+									<ul class="nav nav-pills left-tab-data">
+										<li [class.active]="cancelSubscriptionTabs=='step1'" (click)="cancelSubscriptionTabs = 'step1'">
+											<a>
+												<span>Step 1 </span>
+											</a>
+										</li>
+										<li [class.active]="cancelSubscriptionTabs=='step2'" [ngClass]="reason === undefined ? 'hideStep' : 'showStep' "
+											(click)="cancelSubscriptionTabs = 'step2'">
+											<a>
+												<span>Step 2 </span>
+											</a>
+										</li>
+										<li [class.active]="cancelSubscriptionTabs=='step3'" [ngClass]="showThirdStep === false  ? 'hideStep' : 'showStep' " #tabs3
+											(click)="cancelSubscriptionTabs = 'step3'">
+											<a>
+												<span>Step 3</span>
+											</a>
+										</li>
+									</ul>
+									<ng-container [ngSwitch]="cancelSubscriptionTabs">								
+										<div  *ngSwitchCase="'step1'" class="subscription-plan">
+											<div class="row">
+												<div class="col-md-6">
+													<ng-container *ngIf="cancelVideoInfo?.matched != null; else elseBlock">
+														<div class="vimeo-full-width"
+															style="padding: 56.25% 0 0 0;position: relative;">
+															<iframe [src]="cancelVideoInfo?.video_path"
+																style="width:100%; position: absolute;		top: 0;left: 0;width: 100%;height: 100%;"
+																allow="autoplay" frameborder="0" webkitallowfullscreen
+																mozallowfullscreen allowfullscreen></iframe>
+														</div>
+													</ng-container>
+													<ng-template #elseBlock>
+														<video _ngcontent-coverr-redesign-c19="" allowfullscreen="false"
+															preload="auto" loop src="{{cancelVideoInfo?.video_path}}"
+															class="ng-star-inserted" width="100%" height="100%"
+															controls></video>
+													</ng-template>
+													<p>
+														We're sorry to see you go... Mind giving us a little feedback to
+														help us
+														improve?
+													</p>
+												</div>
+												<div class="col-md-6">
+													<mat-radio-group name="gender" class="radio-step1" [(ngModel)]="reason">
+														<li>
+															<mat-radio-button value="Found someone I like">
+																Found someone I like
+															</mat-radio-button>
+														</li>
+														<li>
+															<mat-radio-button value="Just No luck">
+																Just No luck
+															</mat-radio-button>
+														</li>
+														<li>
+															<mat-radio-button value="Don’t like upgrade features">
+																Don’t like upgrade features
+															</mat-radio-button>
+														</li>
+														<li>
+															<mat-radio-button value="Like another site better">
+																Like another site better
+															</mat-radio-button>
+														</li>
+														<li>
+															<mat-radio-button value="Can’t afford at this time">
+																Can’t afford at this time
+															</mat-radio-button>
+														</li>
+														<li>
+															<mat-radio-button value="Some features not working">
+																Some features not working
+															</mat-radio-button>
+														</li>
+														<li>
+															<mat-radio-button value="Will just use Free version">
+																Will just use Free version
+															</mat-radio-button>
+														</li>
+													</mat-radio-group>
+												</div>
+											</div>
+
+											<div class="next-btn">
+												<button class="visit-nxt" (click)="cancelSubscriptionTabs='step2'"
+													[disabled]="reason == undefined">
+													Next
+												</button>
+											</div>
+										</div>
+										<div *ngSwitchCase="'step2'" class="subscription-plan" #stepSecond>
+											<div class="content">
+												<div class="video-section">
+													<div class="col-md-5 video-left ">
+														<ng-container
+															*ngIf="cancelVideoInfo?.matched != null; else elseBlock">
+															<div class="vimeo-full-width" style="padding: 56.25% 0 0 0;position: relative;">
+																<iframe [src]="cancelVideoInfo?.video_path" style="width:100%; position: absolute;top: 0;left: 0;width: 100%;height: 100%;" allow="autoplay" frameborder="0" webkitallowfullscreen mozallowfullscreen
+																	allowfullscreen></iframe>
+															</div>
+														</ng-container>
+														<ng-template #elseBlock>
+															<video _ngcontent-coverr-redesign-c19="" allowfullscreen="false"
+																preload="auto" loop src="{{cancelVideoInfo?.video_path}}"
+																class="ng-star-inserted" width="100%" height="100%"
+																controls></video>
+														</ng-template>
+													</div>
+													<div class="col-md-7 content-right">
+														<div class="inner-content">
+															<h3>
+																WAIT! Final Step BEFORE your membership is cancelled
+															</h3>
+															<p>
+																Special One Time Offer-This offer may not be available again
+																if you
+																close ths page.
+															</p>
+														</div>
+													</div>
+												</div>
+												<div class="bottom-section">
+													<div class="col-md-6 listing-left">
+														<div class="inner-content">
+															<h4>
+																Stop The Dating, Keep Your CFL All Access Membership
+															</h4>
+															<p>
+																Exclusive coaching content and support you need for the next
+																steps
+																in your journey
+															</p>
+															<div class="scroll-hidden">
+																<ul class="tick-listing">
+																	<li><i class="fa fa-check"></i>
+																		Access to your current courses and content with
+																		updates
+																	</li>
+																	<li><i class="fa fa-check"></i>
+																		Access to all NEW monthly content and course
+																		releases. Real
+																		solutions created from your questions
+																	</li>
+																	<li><i class="fa fa-check"></i>
+																		Access to Weekly Live Q&A web events with Bryan and
+																		Angelica.
+																	</li>
+																	<li><i class="fa fa-check"></i>
+																		Access to your Trust Plus VIP Facebook group
+																		community.
+																	</li>
+																	<li><i class="fa fa-check"></i>
+																		Continued access to Trust Standard with all your
+																		profile
+																		data and message history
+																	</li>
+																</ul>
+															</div>
+															<div class="additional-info">
+																<p>
+																	<strong>
+																		Additional options for your convenience:
+																	</strong>
+																</p>
+																<div class="checkbox">
+																	<label>
+																		<input type="checkbox" value=""
+																			[(ngModel)]="not_delete">
+																		Maintain my profile data securely. Don’t delete my
+																		profile
+																		for non use
+																	</label>
+																</div>
+																<div class="checkbox">
+																	<label>
+																		<input type="checkbox" value=""
+																			[(ngModel)]="visibilty_off">
+																		Make sure my profile is deactivated and hidden from
+																		other
+																		users. Stop notifications
+																	</label>
+																</div>
+																<button class="btn btn-warning" (click)="goToPaymentPage()">
+																	Keep my CFL All Access membership perks!! Only $9.99/m
+																</button>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-6 listing-right">
+														<div class="inner-content">
+															<ul class="tick-listing">
+																<li>
+																	<i class="fa fa-check"></i>
+																	Continued access to Trust Standard with all your profile
+																	data
+																	and message history.
+																</li>
+																<li><i class="fa fa-check"></i>
+																	Access to your Trust Plus VIP Facebook group community.
+																</li>
+																<li><i class="fa fa-times"></i>
+																	Access to your current courses and content with update.
+																</li>
+																<li><i class="fa fa-times"></i>
+																	Access to all NEW monthly content and course release.
+																	Real
+																	solutions created from your solution.
+																</li>
+																<li><i class="fa fa-times"></i>
+																	Access to Weekly Live Q&A web events with Bryan and
+																	Angelica.
+																</li>
+																<li><i class="fa fa-times"></i>
+																	Access to your Trust Plus VIP Facebook group community
+																</li>
+															</ul>
+															<button class="btn btn-secondary"
+																(click)="cancelAccount('', tabs3)">
+																Finalize Cancellation
+															</button>
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" [(ngModel)]="deleteCheckbox"
+																		(ngModelChange)="openPopup($event, '', tabs3)" />
+																	Permanently delete my profile and data.
+																</label>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="full-video-section">
+													<h3>Important Info About Your Crazy Filipina Love
+														All Access Membership!</h3>
+													<ng-container *ngIf="cancelVideoInfo?.matched != null; else elseBlock">
+														<div class="vimeo-full-width" style="padding: 56.25% 0 0 0;position: relative;">
+															<iframe [src]="cancelVideoInfo?.video_path" style="width:100%; position: absolute;top: 0;left: 0; width: 100%;height: 100%;" allow="autoplay" frameborder="0" webkitallowfullscreen mozallowfullscreen
+																allowfullscreen></iframe>
+														</div>
+													</ng-container>
+													<ng-template #elseBlock>
+														<video _ngcontent-coverr-redesign-c19="" allowfullscreen="false"
+															preload="auto" loop src="{{cancelVideoInfo?.video_path}}"
+															class="ng-star-inserted" width="100%" height="100%"
+															controls></video>
+													</ng-template>
+												</div>
+											</div>
+										</div>
+										<div *ngSwitchCase="'step3'" class="subscription-plan" #stepTrird>
+											<h3>Your All Set!!<br />
+												Your Trust Plus Membership Has Been Cancelled.</h3>
+											<h3>Confirmation email has been sent to<br />
+												({{userData.email}})</h3>
+										</div>
+								</ng-container>
+								</div>
+							</ng-container>
+						</div>
+						<!--======================================End Membership ================== -->
+						<!-- ================= Removed tab Profile  -->
+						<div id="removedprofile" *ngSwitchCase="'removedprofile'" class=" removedprofile-account">
+							<h2>
+								View Removed Profiles
+							</h2>
+							<div class=restore-user *ngFor="let blockUsers of blocked_users ; let i = index">
+								<div class="user-img">
+									<cus-image *ngIf="blockUsers?.profile_photo; else elseImageBlock"
+										style="cursor: pointer" [url]="blockUsers.profile_photo.path"
+										[actualDimension]="blockUsers.profile_photo.path_dimension"
+										[dimension]="'360x262'" [widthIns]="'.user-img'" [loaderSize]="0.5">
+									</cus-image>
+									<ng-template #elseImageBlock>
+										<img src="assets/dashboard/maria.jpg" alt="" *ngIf="blockUsers.gender == 1">
+										<img src="assets/profile/dummy-image.jpg" alt="" *ngIf="blockUsers.gender == 2">
+									</ng-template>
+								</div>
+								<div class="restore-prof"
+									(click)="save_account_settings('blocked_users', blockUsers, i)">
+									<button>
+										Restore Profile
+									</button>
+								</div>
+								<div class="user-info">
+									<div class="username-info">
+										<span>
+											{{blockUsers.first_name}}
+										</span>
+										<span class="online" *ngIf="blockUsers.is_online == '1' ">
+											<i class="fa fa-circle" aria-hidden="true"></i>
+										</span>
+										<span class="offline" *ngIf="blockUsers.is_online == '0'">
+											<i class="fa fa-circle" aria-hidden="true"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div *ngIf="blocked_users.length == 0">
+								No User Removed Yet.
+							</div>
+						</div>
+						<!-- ================= Removed tab Profile End -->
+						<!-- ================= Email tab Profile  -->
+						<div id="emailpreferences" *ngSwitchCase="'emailpreferences'" class=" emailpreferences">
+							<h2>
+								Email Preferences
+							</h2>
+							<div *ngIf="email_preferences">
+								<div class="email-txt-cont"
+									*ngIf="email_preferences && email_preferences.Instant_Notifications">
+									<span class="number">
+										1
+									</span>
+									<div class="email-txt">
+										<strong>
+											{{email_preferences.Instant_Notifications.name}}
+										</strong>
+										<div *ngFor="let preferences of email_preferences.Instant_Notifications.value; let i = index"
+											class="noti-toggle">
+											<p [innerHTML]="preferences.description | safeHtml">
+												<!-- {{preferences.description}} -->
+											</p>
+
+											<div class="email-icon">
+												<ui-switch [(ngModel)]="preferences.preference_value"></ui-switch>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="email-txt-cont"
+									*ngIf="email_preferences && email_preferences.Your_Daily_Dating_Update">
+									<span class="number">
+										2
+									</span>
+									<div class="email-txt">
+										<strong>
+											{{email_preferences.Your_Daily_Dating_Update.name}}
+										</strong>
+										<div *ngFor="let preferences of email_preferences.Your_Daily_Dating_Update.value; let i = index"
+											class="noti-toggle">
+											<p [innerHTML]="preferences.description | safeHtml">
+												<!-- {{preferences.description}} -->
+											</p>
+
+											<div class="email-icon">
+												<ui-switch [(ngModel)]="preferences.preference_value"></ui-switch>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="email-txt-cont"
+									*ngIf="email_preferences && email_preferences.Keep_it_currentKeep_it_REAL">
+									<span class="number">
+										3
+									</span>
+									<div class="email-txt">
+										<strong>
+											{{email_preferences.Keep_it_currentKeep_it_REAL.name}}
+										</strong>
+										<div *ngFor="let preferences of email_preferences.Keep_it_currentKeep_it_REAL.value; let i = index"
+											class="noti-toggle">
+											<p [innerHTML]="preferences.description | safeHtml">
+												<!-- {{preferences.description}} -->
+											</p>
+
+											<div class="email-icon">
+												<ui-switch [(ngModel)]="preferences.preference_value"></ui-switch>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="save-btn" (click)="save_account_settings('email_preferences', '', '')">
+								<button>
+									Save
+								</button>
+							</div>
+						</div>
+						<!-- ================= Email tab Profile End -->
+						<!-- ================= Center Stage tab Profile  -->
+						<div id="centerstage" *ngSwitchCase="'centerstage'" class=" center-stage-account">
+							<h2>
+								Center Stage
+							</h2>
+							<p [innerHtml]="centerStage.text"></p>
+							<div class="saftey-image" #centerstageIns>
+								<ng-container *ngIf="centerStage.matched != null; else elseBlock">
+									<div class="vimeo-full-width" style="padding: 56.25% 0 0 0; position: relative;">
+										<iframe [src]="centerStage.video" style="width:100%; position: absolute;
+								top: 0;
+								left: 0;
+								width: 100%;
+								height: 100%;" allow="autoplay" frameborder="0" webkitallowfullscreen="" mozallowfullscreen=""
+											allowfullscreen=""></iframe>
+									</div>
+								</ng-container>
+								<ng-template #elseBlock>
+									<video _ngcontent-coverr-redesign-c19="" allowfullscreen="false" preload="auto" loop
+										src="{{centerStage.video}}" class="ng-star-inserted" width="100%" height="100%"
+										controls></video>
+								</ng-template>
+							</div>
+							<div class="apply-center">
+								<button (click)="goToPlanPage()" *ngIf="userData.plan_type <= 2">
+									Apply for Center Stage
+								</button>
+							</div>
+						</div>
+						<!-- ================= Center Stage tab Profile End -->
+					</ng-container>
+				</div>
+			</div>
+		</div>
+
+		<div rel="kM0ZLsNnAzYf" article="" product="" embedded="1" id="kartra_live_chat"
+			class="kartra_helpdesk_sidebar">
+			<div rel="kM0ZLsNnAzYf" id="display_kartra_helpdesk" class="kartra_helpdesk_sidebar_button open">
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,63 @@
+<div class="complete-profile">
+    <div class="container">
+        <div class="overlay"></div>
+        <form class="download" *ngIf="checkPage == 'userprofile'">
+            <h2>
+               {{showNextPopup == false ? 'Let’s get right to it!' :'Create A Magnetic Profile'}}
+            </h2>
+            <span class="cross" (click)="showNextPopup == false ? dismissModal('next') : dismissModal('')">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </span>
+            <div class="inner-form" *ngIf="showNextPopup == false">
+                <img src="assets/profile/welcome.png" alt="">
+                <p class="thnk-txt">
+                    Time to find that perfect somebody, and it starts with creating a magnetic profile.
+                </p>
+                <p class="thnk-txt">
+                    We've made it simple and fun to create an amazing profile that showcases the best version of the real you!
+                </p>
+            </div>
+
+            <div class="inner-form" *ngIf="showNextPopup == true">
+                <div class="inner-form">
+                    <div class="vimeo-full-width" *ngIf="!checkVideoType"  style="padding: 56.25% 0 0 0; position: relative;">
+                        <iframe [src]="videoUrl" style="width:100%; position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;" allow="autoplay" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                    </div>
+                    <video _ngcontent-coverr-redesign-c19="" allowfullscreen="false" preload="auto" autoplay="autoplay" playsinline loop [src]="videoUrl" class="ng-star-inserted" width="100%" height="100%"  poster="assets/home-img/poster.jpg" id="VideoPlay" *ngIf="checkVideoType"></video>
+                </div>
+            </div>
+
+            <button class="down" matInput type="submit" value="" (click)="showNextPopup == false ?dismissModal('next') : dismissModal('')">
+                Continue
+            </button>
+        </form>
+
+        <form class="download" *ngIf="checkPage == 'dashboard'">
+            <div>
+                <h2>How CFL Works <br> <span class="head-sec">Quick Start Guide</span></h2>
+            </div>
+            <span class="cross" (click)="dismissModal('')">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </span>
+            <div class="inner-form">
+                <div class="vimeo-full-width" *ngIf="!checkVideoType"  style="padding: 56.25% 0 0 0; position: relative;">
+                    <iframe [src]="videoUrl" style="width:100%; position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;" allow="autoplay" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                </div>
+                
+                <video _ngcontent-coverr-redesign-c19="" allowfullscreen="false" preload="auto" autoplay="autoplay" playsinline loop [src]="videoUrl" class="ng-star-inserted" width="100%" height="100%"  poster="assets/home-img/poster.jpg" id="VideoPlay" *ngIf="checkVideoType"></video>
+
+                <button class="down" matInput type="submit" value="" (click)="dismissModal('')">
+                    Continue
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

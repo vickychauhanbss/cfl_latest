@@ -1,0 +1,618 @@
+<div class="onboarding progress-sect" [ngStyle]="{'background' : 'url(assets/home-img/form-back.jpg)'}">
+  
+  <div class="logo-hed">
+    <img src="assets/home-img/logo-white.png" alt="">
+  </div>
+  <div class="container" *ngIf="showTemplate">
+    <div class="inner-cont" style="position: relative;">
+      <div class="inner" *ngIf="isLoading" style="display: flex;justify-content: center;align-items: center;z-index: 99999;top: 0;bottom: 0;left: 0;right: 0;background: #f2f2f2;position: absolute;">
+        <spinner [isLoading]="true" [viewBox]="1"></spinner>
+      </div>
+      <div *ngIf="existing == 'no'">
+        <div class="js_kartra_trackable_object" style="display:none" data-kt-type="page_tracking" data-kt-value="y7seFt2g0urK" data-kt-owner="8g8b5Xar"></div>
+        <h2>
+          Thank’s {{userName}}!
+        </h2>
+        <div class="cnt-src">VERY IMPORTANT!</div>
+        <p class="text-big">
+          Now that we have your basic information, it’s time for the most important steps! Watch this short video before you click continue!
+        </p>
+        <ng-container *ngIf="onboardingVideoQuery?.matched != null; else elseBlock">
+          <div class="vimeo-full-width" style="padding: 56.25% 0 0 0;
+          position: relative;">
+          <iframe [src]="onboardingVideoQuery?.video_path" style="width:100%; position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;" allow="autoplay" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
+        </ng-container>
+        <ng-template #elseBlock>
+            <video _ngcontent-coverr-redesign-c19="" allowfullscreen="false" preload="auto"  loop src="{{onboardingVideoQuery?.video_path}}" class="ng-star-inserted" width="100%" height="100%" controls></video>
+        </ng-template>
+        <div class="cont-btn">
+            <button (click)="continuefxn()">
+              Continue
+            </button>
+        </div>
+      </div>
+
+      <form [formGroup]="formGroup" *ngIf="existing == 'yes'">
+        <mat-horizontal-stepper  class="custom-step" formArrayName="bookingForm" #stepper [selectedIndex]="gotoParticularIndex">
+          <mat-step [stepControl]="firstFormGroup">
+            <h2>
+              TELL US ABOUT YOURSELF?
+            </h2>
+            <label class="birth-heading">
+              {{generalQuestion[0].question}}
+            </label>
+            <mat-form-field class="born-date month" >
+              <label>
+                Month
+              </label>
+              <select matNativeControl required class="age"  (change)="changeDob($event.target.value , 'month')">
+                <option *ngFor="let month of months; let index = index;" [value]="month" [attr.selected]="month == selectMonth ? true : null">
+                  {{month}}
+                </option>
+              </select>
+            </mat-form-field>
+            <mat-form-field class="born-date">
+              <label>
+                Day
+              </label>
+              <select matNativeControl required  class="age"  (change)="changeDob($event.target.value , 'day')">
+                <option *ngFor="let day of days; let index = index;" [value]="day" [attr.selected]="day == selectDate ? true : null">
+                  {{day}}
+                </option>
+              </select>
+            </mat-form-field>
+            <mat-form-field class="born-date year" >
+              <label>
+                Year
+              </label>
+              <select matNativeControl required  class="age"  (change)="changeDob($event.target.value, 'year')" >
+                <option *ngFor="let year of years; let index = index;" [value]="year" [attr.selected]="year == selectYear ? true : null">
+                  {{year}}
+                </option>
+              </select>
+            </mat-form-field>
+
+            <div>
+              <div class="second-question">
+                <mat-form-field class="height-persion">
+                  <label>
+                    {{generalQuestion[1].question}}
+                  </label>
+                  <select matNativeControl required  class="height" (change)="filterChanged($event.target.value , generalQuestion[1], '')" *ngIf="generalQuestion[1]" >
+                    <option *ngFor="let data of generalQuestion[1].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[1].choosed_option == data.option_id ? true : null">
+                      {{data.option}}
+                    </option>
+                  </select>
+                </mat-form-field>
+              </div>
+              <button mat-button (click)="goToNextGerenalQuestion(stepper, 0 , 2)">
+                Next
+              </button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="firstForm2Group" *ngIf="generalQuestion">
+            <h2>
+              HOW DO YOU FEEL ABOUT SMOKING AND DRINKING?
+            </h2>
+            <mat-form-field class="smoke" >
+                <label>
+                  {{generalQuestion[2].question}}
+                </label>
+                <select matNativeControl required  class="smk" (change)="filterChanged($event.target.value , generalQuestion[2], '')" *ngIf="generalQuestion[2]" >
+                  <option *ngFor="let data of generalQuestion[2].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[2].choosed_option == data.option_id ? true : null">
+                    {{data.option}}
+                  </option>
+                </select>
+            </mat-form-field>
+            <mat-form-field class="smoke" >
+              <label>
+                {{generalQuestion[3].question}}
+              </label>
+              <select matNativeControl required  class="drink" (change)="filterChanged($event.target.value , generalQuestion[3], '')" *ngIf="generalQuestion[3]" >
+                  <option *ngFor="let data of generalQuestion[3].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[3].choosed_option == data.option_id ? true : null">
+                    {{data.option}}
+                  </option>
+              </select>
+            </mat-form-field>
+            <div class="buttons">
+              <button mat-button matStepperPrevious>
+                Previous
+              </button>
+              <button mat-button (click)="goToNextGerenalQuestion(stepper, 2 , 4)">
+                Next
+              </button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="firstForm3Group" *ngIf="generalQuestion">
+            <h2>
+              WHAT ABOUT CHILDREN?
+            </h2>
+            <mat-form-field class="smoke">
+              <label>
+                {{generalQuestion[4].question}}
+              </label>
+              <select matNativeControl required  class="smk" (change)="filterChanged($event.target.value , generalQuestion[4], 'hideQuestion5')" *ngIf="generalQuestion[4]" >
+                <option *ngFor="let data of generalQuestion[4].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[4].choosed_option == data.option_id ? true : null">
+                  {{data.option}}
+                </option>
+              </select>
+            </mat-form-field>
+            <mat-form-field class="smoke" >
+              <label>
+                {{generalQuestion[5].question}}
+              </label>
+              <select matNativeControl required  class="drink" (change)="filterChanged($event.target.value , generalQuestion[5], '')" *ngIf="generalQuestion[5]" [disabled]="hideQuestiontwoFour === 'hideQuestion2and4'">
+                  <option [value]="" *ngIf="showDedualt2and3 == true" selected>----</option>
+                  <option *ngFor="let data of generalQuestion[5].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[5].choosed_option == data.option_id ? true : null">
+                    {{data.option}}
+                  </option>
+              </select>
+            </mat-form-field>
+            <div class="buttons">
+              <button mat-button matStepperPrevious>
+                Previous
+              </button>
+              <button mat-button (click)="goToNextGerenalQuestion(stepper, 4 , 6)">
+                Next
+              </button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="firstForm4Group" *ngIf="generalQuestion && showDedualt2and3 == false">
+            <h2>
+              TELL US ABOUT YOUR CHILDREN?
+            </h2>
+            <mat-form-field class="smoke">
+              <label>
+                {{generalQuestion[6].question}}
+              </label>
+              <select matNativeControl required  class="smk" (change)="filterChanged($event.target.value , generalQuestion[6], '')" *ngIf="generalQuestion[6]" >
+                <option *ngFor="let data of generalQuestion[6].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[6].choosed_option == data.option_id ? true : null">
+                  {{data.option}}
+                </option>
+              </select>
+            </mat-form-field>
+            <mat-form-field class="smoke" >
+              <label>
+                {{generalQuestion[7].question}}
+              </label>
+              <select matNativeControl required  class="drink" (change)="filterChanged($event.target.value , generalQuestion[7], '')" *ngIf="generalQuestion[7]">
+                  <option *ngFor="let data of generalQuestion[7].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[7].choosed_option == data.option_id ? true : null">
+                    {{data.option}}
+                  </option>
+              </select>
+            </mat-form-field>
+            <div class="buttons">
+              <button mat-button matStepperPrevious>
+                Previous
+              </button>
+              <button mat-button (click)="goToNextGerenalQuestion(stepper, 6 , 8)">
+                Next
+              </button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="firstForm4Group" *ngIf="generalQuestion">
+            <h2>
+              WHAT ABOUT HAVING KIDS WITH A NEW PARTNER?
+            </h2>
+            <mat-form-field class="">
+              <label>
+                {{generalQuestion[8].question}}
+              </label>
+              <select matNativeControl required  class="" (change)="filterChanged($event.target.value , generalQuestion[8], '')" *ngIf="generalQuestion[8] " [disabled]="hideQuestiontwoFour === 'hideQuestion2and4'">
+                  <option [value]="" *ngIf="showDedualt2and3 == true" selected>----</option>
+                  <option *ngFor="let data of generalQuestion[8].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[8].choosed_option == data.option_id ? true : null">
+                    {{data.option}}
+                  </option>
+              </select>
+            </mat-form-field>
+            <mat-form-field class="" >
+              <label>
+                {{generalQuestion[9].question}}
+              </label>
+              <select matNativeControl required  class="" (change)="filterChanged($event.target.value , generalQuestion[9], '')" *ngIf="generalQuestion[9]" [disabled]="hideQuestionFive === 'hideQuestion5'">
+                  <option [value]="" *ngIf="showDefualt == true" selected>----</option>
+                  <option *ngFor="let data of generalQuestion[9].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[9].choosed_option == data.option_id ? true : null" >
+                    {{data.option}}
+                  </option>
+              </select>
+            </mat-form-field>
+            <div class="buttons">
+              <button mat-button matStepperPrevious>
+                Previous
+              </button>
+              <button mat-button (click)="goToNextGerenalQuestion(stepper, 8 , 10)">
+                Next
+              </button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="firstForm5Group" *ngIf="generalQuestion">
+            <h2>
+              NOW SHARE A LITTLE ABOUT ETHNICITY AND RELIGION?
+            </h2>
+
+            <mat-form-field class="">
+              <label>
+                {{generalQuestion[10].question}}
+              </label>
+              <select matNativeControl required  class="" (change)="filterChanged($event.target.value , generalQuestion[10], '')" *ngIf="generalQuestion[10]" >
+                <option *ngFor="let data of generalQuestion[10].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[10].choosed_option == data.option_id ? true : null">
+                  {{data.option}}
+                </option>
+              </select>
+            </mat-form-field>
+
+            <mat-form-field class="" >
+              <label>
+                {{generalQuestion[11].question}}
+              </label>
+              <select matNativeControl required  class="" (change)="filterChanged($event.target.value , generalQuestion[11], '')" *ngIf="generalQuestion[11]" >
+                <option *ngFor="let data of generalQuestion[11].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[11].choosed_option == data.option_id ? true : null">
+                  {{data.option}}
+                </option>
+              </select>
+            </mat-form-field>
+            <div class="buttons">
+              <button mat-button matStepperPrevious>
+                Previous
+              </button>
+              <button mat-button (click)="goToNextGerenalQuestion(stepper, 10 , 12)">
+                Next
+              </button>
+            </div>
+          </mat-step>
+
+
+          <mat-step [stepControl]="firstForm6Group" *ngIf="generalQuestion">
+            <h2>
+              NEXT, HOW ABOUT YOUR LANGUAGE?
+            </h2>
+            <mat-form-field class="">
+              <label>
+                {{generalQuestion[12].question}}
+              </label>
+              <select matNativeControl required  class="" (change)="filterChanged($event.target.value , generalQuestion[12], 'hideOption')" *ngIf="generalQuestion[12]" >
+
+                <optgroup *ngFor="let data of generalQuestion[12].options; let index = index; let last = last">
+                  <option [value]="data.option_id" [attr.selected]="generalQuestion[12].choosed_option == data.option_id ? true : null" [disabled]="data.option === hidefluency">{{data.option}}</option>
+
+                  <option *ngIf="index == 1" disabled>-----------------------------------------------------------------------------------------</option>
+               </optgroup>
+
+                <!-- <option *ngFor="let data of generalQuestion[12].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[12].choosed_option == data.option_id ? true : null" [disabled]="data.option === hidefluency">
+                  {{data.option}}
+                </option> -->
+              </select>
+            </mat-form-field>
+
+            <mat-form-field class="" >
+              <label>
+                {{generalQuestion[13].question}}
+              </label>
+              <select matNativeControl required  class="" (change)="filterChanged($event.target.value , generalQuestion[13], 'hidefluency')" *ngIf="generalQuestion[13]" >
+
+                <optgroup *ngFor="let data of generalQuestion[13].options; let index = index; let last = last">
+                  <option [value]="data.option_id" [attr.selected]="generalQuestion[13].choosed_option == data.option_id ? true : null" [disabled]="data.option === selectedOptionId">{{data.option}}</option>
+
+                  <option *ngIf="index == 2" disabled>
+                    -----------------------------------------------------------------------------------------
+                  </option>
+               </optgroup>
+                <!-- <option *ngFor="let data of generalQuestion[13].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[13].choosed_option == data.option_id ? true : null"  [disabled]="data.option === selectedOptionId">
+                  {{data.option}}
+                </option> -->
+              </select>
+            </mat-form-field>
+            <div class="buttons">
+              <button mat-button matStepperPrevious>
+                Previous
+              </button>
+              <button mat-button (click)="goToNextGerenalQuestion(stepper, 12 , 14)">
+                Next
+              </button>
+            </div>
+          </mat-step>
+
+          <mat-step [stepControl]="firstForm7Group" *ngIf="generalQuestion">
+            <h2>
+              TELL US MORE ABOUT YOUR SECOND LANGUAGE
+            </h2>
+
+            <mat-form-field class="">
+              <label>
+                {{generalQuestion[14].question}}
+              </label>
+              <select matNativeControl required  class="" (change)="filterChanged($event.target.value , generalQuestion[14], '')" *ngIf="generalQuestion[14]" [disabled]="hidefluency == 'No second language spoken'">
+                <option [value]="" *ngIf="hidefluency == 'No second language spoken'" selected>----</option>
+                <option *ngFor="let data of generalQuestion[14].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[14].choosed_option == data.option_id ? true : null">
+                  {{data.option}}
+                </option>
+              </select>
+            </mat-form-field>
+            <mat-form-field class="">
+              <label>
+                {{generalQuestion[15].question}}
+              </label>
+              <select matNativeControl required  class="" (change)="filterChanged($event.target.value , generalQuestion[15], '')" *ngIf="generalQuestion[15]" >
+                <option *ngFor="let data of generalQuestion[15].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[15].choosed_option == data.option_id ? true : null">
+                  {{data.option}}
+                </option>
+              </select>
+            </mat-form-field>
+            <div class="buttons">
+              <button mat-button matStepperPrevious>
+                Previous
+              </button>
+              <button mat-button (click)="goToNextGerenalQuestion(stepper, 14 , 16)">
+                Next
+              </button>
+            </div>
+          </mat-step>
+
+          <mat-step [stepControl]="firstForm8Group" *ngIf="generalQuestion">
+            <h2>
+              HOW ABOUT EDUCATION?
+            </h2>
+
+            <mat-form-field class="" >
+              <label>
+                {{generalQuestion[16].question}}
+              </label>
+              <select matNativeControl required  class="" (change)="filterChanged($event.target.value , generalQuestion[16], '')" *ngIf="generalQuestion[16]">
+                  <option *ngFor="let data of generalQuestion[16].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[16].choosed_option == data.option_id ? true : null">
+                    {{data.option}}
+                  </option>
+              </select>
+            </mat-form-field>
+
+            <mat-form-field class="">
+              <label>
+                {{generalQuestion[17].question}}
+              </label>
+              <select matNativeControl required  class="" (change)="filterChanged($event.target.value , generalQuestion[17], '')" *ngIf="generalQuestion[17]" >
+                <option *ngFor="let data of generalQuestion[17].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[17].choosed_option == data.option_id ? true : null">
+                  {{data.option}}
+                </option>
+              </select>
+            </mat-form-field>
+
+            <div class="buttons">
+              <button mat-button matStepperPrevious>
+                Previous
+              </button>
+              <button mat-button (click)="goToNextGerenalQuestion(stepper, 16 , 18)">
+                Next
+            </button>
+            </div>
+          </mat-step>
+
+          <mat-step [stepControl]="firstForm9Group" *ngIf="generalQuestion">
+            <h2>
+              WHERE DO YOU CALL HOME!
+            </h2>
+            <label class="city-countary">
+              {{generalQuestion[18].question}}
+            </label>
+            <div class="row">
+              <div class="col-sm-6">
+                <mat-form-field class="" >
+                  <select matNativeControl required  class="" (change)="changeCounterState($event.target.value, generalQuestion[18], '')" *ngIf="generalQuestion[18]" >
+                    <option *ngFor="let data of generalQuestion[18].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[18].country == data.option_id ? true : null">
+                      {{data.option}}
+                    </option>
+                  </select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field class="" >
+                  <select matNativeControl required  class="" (change)="filterChanged($event.target.value , generalQuestion[18], 'changeState')" *ngIf="generalQuestion[18]" >
+                    <option *ngFor="let data of states; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[18].choosed_option == data.option_id ? true : null">
+                      {{data.option}}
+                    </option>
+                  </select>
+                </mat-form-field>
+              </div>
+            </div>
+            <mat-form-field class="">
+              <label>
+                {{generalQuestion[19].question}}
+              </label>
+              <select matNativeControl required  class="" (change)="filterChanged($event.target.value, generalQuestion[19], '')" *ngIf="generalQuestion[19]" >
+                <option *ngFor="let data of generalQuestion[19].options; let index = index; let last = last;" [value]="data.option_id" [attr.selected]="generalQuestion[19].choosed_option == data.option_id ? true : null">
+                  {{data.option}}
+                </option>
+              </select>
+            </mat-form-field>
+
+            <div class="buttons">
+              <button mat-button matStepperPrevious>
+                Previous
+              </button>
+              <button mat-button (click)="goToNextGerenalQuestion(stepper, 18 , 20)">
+                Next
+              </button>
+            </div>
+          </mat-step>
+
+          <mat-step>
+            <h2>
+              LET’S GET STARTED!
+            </h2>
+            <p class="congo">
+              This section takes a few minutes to complete.<br />
+              Just don’t rush, be yourself and Keep it Real!
+            </p>
+            <progress-bar [progress]="totalPer" class="back-color"></progress-bar>
+            <p class="out-txt">
+              <span>
+                1
+              </span>
+              out of
+              <span>
+                9
+              </span>
+              steps has been completed.
+            </p>
+            <div class="cont-btn">
+              <button matStepperPrevious>
+                Previous
+              </button>
+              <button (click)="goToNext()">
+                Continue
+              </button>
+            </div>
+            <div class="save-cont" (click)="logout()">
+              <a class="save-btn ng-star-inserted" >
+                Save Now!  Complete Later.
+              </a>
+            </div>
+            <div class="js_kartra_trackable_object" style="display:none" data-kt-type="page_tracking" data-kt-value="4nQeRS9tx79c" data-kt-owner="8g8b5Xar">
+            </div>
+          </mat-step>
+
+
+          <mat-step *ngFor="let item of formData(); let i = index" [formGroupName]="i" >
+            <div>
+              <h2>
+                {{item.value.question.title}}
+              </h2>
+              <h3 class="ttl-cat" *ngIf="item.value.question.question_check == 2">
+                {{item.value.question.question}}
+              </h3>
+
+              <div class="custom-slider" *ngIf="item.value.question.question_check == 2">
+                <ng5-slider [(value)]="item.value.answer" [options]="options" formControlName="answer"></ng5-slider>
+                <div class="text-sld">
+                  <span class="left-sld">
+                    Not Important
+                  </span>
+                  <span class="right-sld">
+                    Very Important
+                  </span>
+                </div>
+                <img src="assets/home-img/emoji1.png" alt="">
+              </div>
+
+              <mat-radio-group class="radio-select"  fxLayout="column"  *ngIf="item.value.question.question_check == 3" formControlName="answer" required>
+                <mat-radio-button *ngFor="let option of item.value.options; let i = index" [value]="option.option_id" name="opList" class="radio-sect" [checked]="item.value.answer == option.option_id" [disabled]="item.value.question.existing_option_id == option.option_id"  (change)="getOrderNumber(i + 1, item.value)">
+                  {{option.option}}
+                </mat-radio-button>
+              </mat-radio-group>
+
+
+              <div class="buttons comunity-btn" *ngIf="item.value.question">
+                <button  class="btn btn-primary" type="button" (click)="removeCurrent(i)">
+                  Previous
+                </button>
+                <button  class="btn btn-primary" type="button"  (click)="nextStep(item.value ,i, 'nextButton')" [disabled]="!item.valid">
+                  Next
+                </button>
+                <a class="save-btn" (click)="nextStep(item.value ,i, 'save')" >
+                  Save Now!  Complete Later.
+                </a>
+              </div>
+            </div>
+            
+          </mat-step>
+
+          <mat-step *ngIf="index > 0 && index == formArrayLength">
+            <h2 *ngIf="totalPer < 100">
+              {{order == 1 ? 'GREAT ANSWERS!' : order == 2 ? 'LOOKING GOOD!': order == 3 ? 'YOUR VERY INTERESTING!' :  order == 4 ? 'JUST KEEPS GETTING BETTER!'  :  order == 5 ? 'VERY IMPRESSIVE!' : order == 6 ? 'ALMOST DONE!' :  order == 7 ? 'WAIT UNTIL YOU SEE!': ''}}
+            </h2>
+            <p class="congo" *ngIf="totalPer < 100">
+              Each section takes a few minutes to complete.<br />
+              Don’t rush, be yourself, and Keep it Real!
+            </p>
+            <progress-bar [progress]="totalPer" class="back-color" *ngIf="totalPer < 100"></progress-bar>
+            <p class="out-txt" *ngIf="totalPer < 100">
+              <span>
+                {{order + 1}}
+              </span>out of
+              <span>
+                9
+              </span>
+              steps has been completed.
+            </p>
+
+            <h2 *ngIf="totalPer == 100">FANTASTIC!</h2>
+            <h3 class="compet" *ngIf="totalPer == 100">
+              Quiz 100% Complete!
+            </h3>
+            <p *ngIf="totalPer == 100">
+              See your results in the Value/Beliefs section of your profile.
+            </p>
+
+            <p style="font-size: 16px;font-weight: bold" *ngIf="totalPer == 100">
+              Your quiz results are very important to yourprofile. Did you take it seriously?
+            </p>
+            <!-- {{ totalPer }} -->
+            <form [formGroup]="lastFrom" (ngSubmit)="goToSubscribe()" *ngIf="totalPer == 100">
+              <mat-radio-group (change)="radioChange($event)" name="lastStep" formControlName="lastStep" [ngClass]="{ 'is-invalid': submitted && f.lastStep.errors }" >
+                <li>
+                  <mat-radio-button value="1">
+                    Yes! I took my time and answered sincerely.
+                  </mat-radio-button>
+                </li>
+                <li>
+                  <mat-radio-button value="0">
+                    Ooops! Got too excited and didn’t think about my answers much.
+                  </mat-radio-button>
+                </li>
+              </mat-radio-group>
+              <div *ngIf="submitted && f.lastStep.errors" class="invalid-feedback">
+                  <div *ngIf="f.lastStep.errors.required">
+                      Please select one option
+                  </div>
+              </div>
+
+              <div class="cont-btn">
+                <button (click)="go_to_back()">
+                    Previous
+                </button>
+
+                <button type="submit">
+                  Finish
+                </button>
+              </div>
+            </form>
+
+            <div class="cont-btn" *ngIf="totalPer < 100">
+              <button (click)="go_to_back()">
+                Previous
+              </button>
+              <button (click)="get_next_questions('template')">
+                Continue
+              </button>
+            </div>
+            <div class="save-cont" (click)="logout()" *ngIf="totalPer < 100">
+              <a class="save-btn ng-star-inserted">
+                Save Now!  Complete Later.
+              </a>
+            </div>
+
+            <div class="js_kartra_trackable_object" style="display:none" data-kt-type="page_tracking" data-kt-value="WKTQyIpSm0Yf" data-kt-owner="8g8b5Xar" *ngIf="totalPer == 22"></div>
+
+            <div class="js_kartra_trackable_object" style="display:none" data-kt-type="page_tracking" data-kt-value="8uOBic6IlprK" data-kt-owner="8g8b5Xar" *ngIf="totalPer == 33"></div>
+
+            <div class="js_kartra_trackable_object" style="display:none" data-kt-type="page_tracking" data-kt-value="VC3wj4KkFGYf" data-kt-owner="8g8b5Xar" *ngIf="totalPer == 44"></div>
+
+            <div class="js_kartra_trackable_object" style="display:none" data-kt-type="page_tracking" data-kt-value="cSKDsqA5V9rK" data-kt-owner="8g8b5Xar" *ngIf="totalPer == 56"></div>
+
+            <div class="js_kartra_trackable_object" style="display:none" data-kt-type="page_tracking" data-kt-value="47DayBxTK8oQ" data-kt-owner="8g8b5Xar" *ngIf="totalPer == 67"></div>
+
+            <div class="js_kartra_trackable_object" style="display:none" data-kt-type="page_tracking" data-kt-value="ATEbxJNtsaZa" data-kt-owner="8g8b5Xar" *ngIf="totalPer == 78"></div>
+
+            <div class="js_kartra_trackable_object" style="display:none" data-kt-type="page_tracking" data-kt-value="1VHDzjBsUTrK" data-kt-owner="8g8b5Xar" *ngIf="totalPer == 89"></div>
+
+            <div class="js_kartra_trackable_object" style="display:none" data-kt-type="page_tracking" data-kt-value="v5PKYo0UMNZa" data-kt-owner="8g8b5Xar" *ngIf="totalPer == 100"></div>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </form>
+    </div>
+  </div>
+</div>
+

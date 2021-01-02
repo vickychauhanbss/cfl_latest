@@ -1,0 +1,162 @@
+/*====================== Download ====================*/
+.download h4 {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 26px;
+    color: #222222;
+    margin-top: 24px;
+}
+button.down {
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    border-radius: 50px;
+    padding: 0.5rem 1.5rem;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    border: 0;
+    margin: 24px auto 0;
+    text-align: center;
+    display: block;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+}
+
+ .found-one-main {
+    background: #f3f1f4;
+    margin: 0 auto;
+    max-width: 550px;
+    border: 0px solid #fff;
+    border-radius: 60px;
+    position: relative;
+}
+span.cross {
+    position: absolute;
+    right: 5px;
+    top: -8px;
+    background: #fff;
+    border-radius: 100%;
+    padding: 0px 6px;
+    color: #9a3cbc;
+    border: 1px solid;
+}
+.found-one-main .container {
+    padding: 0;
+}
+
+span.profile-txt {
+    text-transform: uppercase;
+    color: #222222;
+    font-weight: bold;
+    font-size: 24px;
+    font-family: 'Muli', sans-serif;
+}
+.inner-text {
+    padding-top: 10px;
+    padding-bottom:10px; 
+}
+
+.inner-text p {
+    text-align: center;
+}
+h3.thnk-txt {
+    text-transform: uppercase;
+    background: linear-gradient(to right, #e51197 , #9d3aba);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-size: 32px !important;
+    margin-top: 33px;
+    margin-bottom: 0 !important;
+    text-align: center;
+}
+
+@media(max-width: 767px){
+    .found-one-main {
+    margin: 16px 10px;
+}
+}
+
+
+
+/* *********************************** */
+.good-luck {
+    margin: 0px auto;
+    padding: 30px;
+    border: 2px solid #9d3aba;
+    border-radius: 60px;
+    max-width: 440px;
+}
+.good-luck h2 {
+    margin: auto;
+    font-size: 26px;
+    margin-bottom: 20px;
+    text-align: center;
+    max-width: 350px;
+}
+.couple-images {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.couple-images img.radial-image {
+    max-width: 110px;
+    height: 110px;
+    width: 100%;
+    border: 2px solid #9d3aba;
+    border-radius: 100%;
+}
+.couple-images {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 300px;
+    margin: 0 auto;
+}
+.couple-images img.logo-couple {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 110px;
+}
+.good-luck p {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 30px;
+    margin: 0;
+}
+button.skip-couple,button.skip-couple:hover,
+button.skip-couple:active,button.skip-couple:focus {
+    color: #222;
+    font-size: 16px;
+    background-color: transparent;
+    border: medium none;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: unset !important;
+    outline: 0 none !important;
+}
+.good-luck i{
+    font-size: 26px;
+    color: #222;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+::ng-deep  button.owl-next {
+    margin-top: 32% !important;
+}
+
+::ng-deep  button.owl-prev {
+    margin-top: 32% !important;
+}
+
+
+.liked-user {
+    color: #8a146f !important;
+}

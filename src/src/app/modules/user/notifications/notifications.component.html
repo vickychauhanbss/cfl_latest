@@ -1,0 +1,33 @@
+<ngx-spinner></ngx-spinner>
+<div class="notification" infiniteScroll [infiniteScrollDistance]="0"
+[infiniteScrollThrottle]="300" (scrolled)="onScrollDown()">
+   <div class="container">
+      <div class="row">
+         <h2 class="noti-header">
+            Notification
+         </h2>
+         <ul *ngFor="let noti of notificationArray">
+            <li>
+               <span class="left-side">
+                  <div class="left-txt-img"><i class="fa fa-check-circle"></i>
+                  <img src="assets/dashboard/maria.jpg" class="notification-image" *ngIf="!noti.profile_image"/>
+                  <img [src]="noti.profile_image" class="notification-image" *ngIf="noti.profile_image"/>
+               </div>
+
+               <div  [innerHTML]="noti.message | safeHtml">
+                  <!-- {{noti.text}} -->
+               </div> <a *ngIf="noti != null" class="ach-tag" (click)="goToProfilepage(noti)">{{noti.link}}</a>
+               </span>
+               <p class="right-side">
+                  {{noti.date | date : 'M/d/yyyy, h:mm a'}}
+               </p>
+            </li>
+         </ul>
+         <ul *ngIf="notificationArray.length == 0" class="no-data">
+            <li>
+               No new notification.
+            </li>
+         </ul>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,267 @@
+.col-xs-12.col-sm-6.plans {
+    padding: 0;
+    margin: 0 1.49%;
+    flex: 0 0 33.333333%;
+    max-width: 50%;
+    background: #fdfbfb;
+}
+h5.plan-ttl {
+    background: #f7f6f3;
+    padding: 10px 0;
+    font-size: 18px;
+    color: #222;
+    font-family: "Muli";
+    font-weight: 400;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    text-align: center; 
+    margin-bottom: 0;
+}
+.plans li {
+    font-size: 16px;
+    line-height: 20px;
+    color: #888786;
+    font-family: "PT Sans";
+    font-weight: 400;
+    list-style: none;
+    position: relative;
+    padding: 5px 18px 5px 38px;
+}
+
+.membershipplan .row {
+    justify-content: center !important;
+}
+
+.membershipplan .nav-link.active {
+    color: #e51197;
+}
+
+ul.plans-name {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.plan-txt ul li p {
+    position: relative;
+}
+
+.plan-txt ul li p::before {
+    content: "";
+    background: #a834b5;
+    position: absolute;
+    left: 16px;
+    top: 13px;
+    width: 8px;
+    height: 8px;
+    border-radius: 100px;
+}
+
+.plans ul{
+    margin: 0;
+    padding: 0;
+}
+
+.plan-txt {
+    border: 2px solid #a435b6;
+    border-radius: 4px;
+    padding: 25px 0;
+}
+
+.plan-txt small {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.col-xs-12.col-sm-6.plans:first-child {
+    margin-left: 0;
+}
+
+.col-xs-12.col-sm-6.plans:last-child {
+    margin-right: 0;
+}
+
+.plan-txt strong {
+    display: block;
+    font-size: 30px;
+    color: #000000;
+    font-family: "Muli";
+    font-weight: 400;
+    text-align: center;
+    line-height: 34px;
+}
+
+.membershipplan {
+    padding: 60px 0;
+}
+
+.membershipplan h2 {
+    margin-bottom: 25px;
+    font-size: 42px;
+    color: #222222;
+    font-family: "Muli";
+    font-weight: 400;
+    text-align: center;
+}
+
+.col-xs-12.col-sm-6.plans:hover .plan-ttl {
+    background: #a435b6;
+    border-top-left-radius: 5px;
+    color: #fff;
+    border-top-right-radius: 5px;
+}
+
+.col-xs-12.col-sm-6.plans:hover .plan-txt {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.plan-btn button {
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    border: 0;
+    padding: 6px 20px;
+    border-radius: 30px;
+    font-size: 18px;
+    color: #ffffff;
+    font-family: "Muli";
+    font-weight: 400;
+}
+
+.plan-btn {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.Payment-method {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 40px;
+}
+
+.Payment-method button {
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    border: 0;
+    padding: 6px 20px;
+    border-radius: 30px;
+    font-size: 18px;
+    color: #ffffff;
+    font-family: "Muli";
+    font-weight: 800;
+    min-width: 200px;
+    text-transform: uppercase;
+}
+
+.Payment-method > *{
+    width: 50%;
+    max-width: 33.33%;
+}
+
+.Payment-method .stripe-btn {
+    text-align: center;
+}
+
+.Payment-method .stripe-btn img {
+    width: 100%;
+    max-width: 80%;
+}
+
+.Payment-method .stripe-btn {
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.Payment-method ngx-paypal {
+    margin-right: 15px;
+}
+
+div#zoid-paypal-buttons-cd99456dbe_mtm6ntq6ndg {
+    width: 25%;
+    max-width: 50%;
+    margin-top: 20px;
+}
+.membershipplan {
+    padding: 60px 0;
+    min-height:700px;
+}
+@media not all and (min-resolution:.001dpcm) {
+    .col-xs-12.col-sm-6.plans{
+        margin: 0 1.49%;
+        flex: 0 0 31%;
+        max-width: 31%;;
+    }
+}
+/*========================Responsive ===============================*/
+@media(max-width:767px){
+    .col-xs-12.col-sm-6.plans {
+        padding: 0;
+        margin: 0;
+        flex: 100%;
+        max-width: 400px;
+        background: #fdfbfb;
+        width: 100%;
+        margin: 0 auto 25px !important;
+        float: none;
+        display: block;
+    }
+}
+
+@media(max-width:480px){
+    .col-xs-12.col-sm-6.plans {
+        padding: 0;
+        margin: 0;
+        flex: 100%;
+        max-width: 300px;
+        background: #fdfbfb;
+        width: 100%;
+        margin: 0 auto 25px !important;
+        float: none;
+        display: block;
+    }
+    .membershipplan h2 {
+        font-size: 34px;
+    }
+}
+
+.right-head {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (min-width: 768px){
+    .navbar-expand-md {
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        width: 100% !important;
+    }
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 120px;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #a434b6 !important;
+    border-color: #6c757d;
+}
+.membershipplan{
+    padding: 120px 0 60px;
+}
+
+@media(max-width: 767px){
+    .plan-txt{
+    margin-bottom: 30px;
+}
+.membershipplan {
+    padding: 50px 0 60px;
+}
+}

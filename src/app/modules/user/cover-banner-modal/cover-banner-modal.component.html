@@ -1,0 +1,41 @@
+<div mat-dialog-content>
+    <div class="modal-dialog" role="document">
+
+        <div class="modal-content" *ngIf="coverBanner.length > 0">
+            <div class="modal-body">
+                <div class="login-popup">
+                    <div class="overlay"></div>
+                    <span class="cross" (click)="dismissModal('')">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                    <p class="valid-error">
+                        {{showError}}
+                    </p>
+                    <div class="container">
+                        <ul class="update-image">
+                            <li>
+                                <div class="upload-section">
+                                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                                    <input #filesc type="file" id="filesc" class="hidden"
+                                        (change)="chooseCoverImages($event)" (click)="filesc.value =''" accept="image/png,image/gif,image/jpeg" />
+                                    <label class="upload" for="filesc" title="Upload new photo">
+                                        Upload new
+                                    </label>
+                                </div>
+                            </li>
+                            <li *ngFor="let icon of coverBanner; let i = index" class="mydiv"  (click)="activeBanner(icon)">
+                                <cus-image style="cursor: pointer" [url]="icon.path"
+                                    [actualDimension]="icon?.path_dimension" [dimension]="'360x262'"
+                                    [widthIns]="'.mydiv'" [loaderSize]="0.5">
+                                </cus-image>
+                                <span>
+                                    <i *ngIf="icon.type == 'banner_img'" class="fa fa-trash-o delete-icon" title="Remove image" aria-hidden="true" (click)="deleteImage(i, icon, 'banner')"></i>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

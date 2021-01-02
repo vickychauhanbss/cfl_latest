@@ -1,0 +1,97 @@
+/*====================== Download ====================*/
+.download h4 {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 26px;
+    color: #222222;
+    margin-top: 24px;
+}
+button.down {
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    border-radius: 50px;
+    padding: .5rem 1.5rem;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    border: 0;
+    margin: 23px auto 0;
+    text-align: center;
+    display: block;
+    text-transform: capitalize;
+    margin-bottom: 23px;
+}
+
+ .complete-profile{
+    background: #f3f1f4;
+    margin: 0 auto;
+    max-width: 550px;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    position: relative;
+}
+ .download h2{
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    text-align: center;
+    color: #fff;
+    font-size: 1.5625rem;
+    font-weight: bold;
+    padding: 14px 0 18px;
+    margin-bottom: 0;
+}
+span.cross {
+    position: absolute;
+    right: -5px;
+    top: -8px;
+    background: #fff;
+    border-radius: 100%;
+    padding: 0px 6px;
+    color: #9a3cbc;
+    border: 1px solid;
+}
+.complete-profile .container {
+    padding: 0;
+}
+.inner-form img {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+}
+span.profile-txt {
+    text-transform: uppercase;
+    color: #222222;
+    font-weight: bold;
+    font-size: 24px;
+    font-family: 'Muli', sans-serif;
+}
+.inner-form {
+    padding-top: 10px;
+    padding-bottom:10px; 
+}
+h3.thnk-txt {
+    text-transform: uppercase;
+    background: linear-gradient(to right, #e51197 , #9d3aba);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-size: 32px !important;
+    margin-top: 33px;
+    margin-bottom: 0 !important;
+    text-align: center;
+}
+
+p.thnk-txt {
+    text-align: center;
+    font-size: 19px;
+}
+
+.head-sec {
+    font-size: 17px;
+}
+
+@media(max-width: 767px){
+    .complete-profile {
+    margin: 16px 10px;
+}
+}

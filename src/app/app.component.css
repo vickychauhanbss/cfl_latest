@@ -1,0 +1,38 @@
+.tp-h2 {
+  margin: 10px;
+}
+.tp-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+}
+.tp-margin {
+  margin: 0 10px;
+}
+.tp-container {
+  display: flex;
+  flex-direction: column;
+}
+.tp-container > * {
+  width: 100%;
+}
+.tp-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.tp-full-width {
+  width: 100%;
+}
+.tp-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+.tp-radio-button {
+  margin: 5px;
+}
+.tp-selected-value {
+  margin: 15px 0;
+}

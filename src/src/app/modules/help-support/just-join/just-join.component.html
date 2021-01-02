@@ -1,0 +1,23 @@
+<div class="just-join">
+   <ngx-spinner></ngx-spinner>
+    <div class="container">
+        <h1>
+            {{page_title}}
+        </h1>
+        <div class="inner-txt-sect">
+            <div class="row" *ngFor="let join of just_join">
+                <div class="col-xs-12 col-sm-4 video-img">
+                    <video _ngcontent-coverr-redesign-c19="" allowfullscreen="false" preload="auto"  loop src="{{join.video_link}}" class="ng-star-inserted" width="100%" height="100%" controls></video>
+                </div>
+                <div class="col-xs-12 col-sm-8 conttent-txt">
+                    <h3>
+                        {{join.heading}}
+                    </h3>
+                    <p>
+                        {{join.description | helpAndSupport}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

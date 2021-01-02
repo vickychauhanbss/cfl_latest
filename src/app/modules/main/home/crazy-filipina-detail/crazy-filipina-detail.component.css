@@ -1,0 +1,45 @@
+
+
+.term-page h1 {
+    font-size: 36px;
+    font-weight: 700;
+    font-family: Muli,sans-serif;
+    background: linear-gradient(to right,#e51197 ,#9d3aba);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    text-align: center;
+}
+.page-text-term p {
+    font-size: 18px;
+    line-height: 30px;
+    color: #555;
+}
+.page-text-term h2 {
+    margin-top: 30px;
+    font-size: 22px;
+    font-weight: bold;
+}
+.page-text-term img{
+    width: auto;
+    max-width: 100%;
+}
+.detail-post .page-text-term img {
+    width: 100% !important;
+    max-width: 100%;
+}
+.page-text-term.col-md-12.post-cnt {
+    margin-top: 20px;
+}
+.inner-container.term-page{
+    background: #fff;
+    margin: 130px 0 50px;
+    padding: 40px 30px;
+}
+@media(max-width: 767px){
+    .inner-container.term-page{
+    margin:50px 0 50px;
+}
+}

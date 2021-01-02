@@ -1,0 +1,457 @@
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+    height: 0px !important;
+}
+::ng-deep .mat-form-field-infix {
+    display: block;
+    position: relative;
+    flex: auto;
+    min-width: 0;
+    width: 100% !important;
+}
+
+.mat-checkbox-layout {
+    white-space: normal !important;
+    }
+    
+    .mat-radio-label {
+    white-space: normal !important;
+    }
+
+    
+select.smk.mat-input-element {
+    border: 1px solid #ddd;
+    padding: 0 15px;
+    height: 40px;
+    top: 0;
+    margin-bottom:0; 
+}
+::ng-deep .morepreferences .mat-form-field-infix::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid;
+    position: absolute;
+    top: inherit !important;
+    bottom: 22px !important;
+    right: 7px !important;
+    margin-top: 0px!important;
+    pointer-events: none;
+}
+.morepreferences {
+    background: #fff;
+    background: #fff;
+    margin-top: 30px;
+    padding: 30px 30px;
+    max-width: 1170px;
+    margin: 30px auto 60px;
+    border-radius: 5px;
+    position: relative;
+}
+::ng-deep mat-checkbox {
+    width: 100% !important;
+    /* float: left; */
+    display: block;
+}
+::ng-deep .rel-section mat-checkbox {
+    width: 50% !important;
+    display: inline-block;
+}
+.religos .mat-radio-button {
+    display: inline-block;
+    outline: 0;
+    width: 48%;
+}
+.radio-select .mat-radio-button {
+    display: block;
+    outline: 0;
+}
+.lang-radio .religos mat-radio-button {
+    display: block !important;
+}
+.religions h5 {
+    font-weight: 700;
+    margin-top: 40px;
+}
+select.age {
+    width: 100%;
+    border: 1px solid #ddd;
+    height: 40px;
+    padding: 0 12px;
+    top: 0;
+    margin-bottom: 0;
+}
+.height {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.height span {
+    width: 14%;
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+    margin-top: -19px;
+}
+.mat-form-field.born-date {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    width: 40%;
+}
+.morepreferences h4 {
+    color: #222;
+    font-weight: bold;
+    font-size: 20px;
+    width: 100%;
+    margin-top: 50px;
+}
+::ng-deep.height .mat-form-field-infix::after {
+    margin-top: 0 !important;
+}
+.checkboxes.rel-section {
+    margin-top: 20px;
+}
+::ng-deep .mat-form-field-infix {
+    padding: 0 0;
+    border-top: 0 solid transparent;
+}
+.col-xs-6.col-sm-6.left-religios {
+    padding-right: 6%;
+}
+.col-xs-6.col-sm-6.right-religios {
+    padding-left: 6%;
+}
+::ng-deep .rel-section .mat-radio-label-content{
+    white-space: pre-line;
+}
+.language {
+    margin-top: 20px;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-ripple {
+    top: 0;
+    height: 0 !important;
+    overflow: hidden;
+}
+
+* CUSTOM SLIDER */
+ 
+::ng-deep .custom-slider .ng5-slider .ng5-slider-bar {
+      background: #9e3aba;
+      height: 2px;
+    }
+::ng-deep .custom-slider .ng5-slider .ng5-slider-selection {
+      background: #9e3aba;
+    }
+  
+    ::ng-deep.custom-slider .ng5-slider .ng5-slider-pointer {
+        width: 20px;
+        height: 20px;
+        top: -8px;
+        background-color: #9e3aba;
+        border-radius: 50%;
+            margin-left: -1px;
+    }
+    ::ng-deep.custom-slider .ng5-slider .ng5-slider-active {
+        width: 20px;
+        height: 20px;
+        top: -10px;
+        background-color: #9e3aba;
+        border-radius: 50%;
+        outline: none;
+    }
+  ::ng-deep.custom-slider .ng5-slider .ng5-slider-bar {
+    left: 0;
+    width: 96%;
+    height: 4px;
+    z-index: 1;
+    background: #d8e0f3;
+    border-radius: 2px;
+}
+    ::ng-deep   .custom-slider .ng5-slider .ng5-slider-pointer:after {
+      display: none;
+    }
+  
+    ::ng-deep  .custom-slider .ng5-slider .ng5-slider-bubble {
+      bottom: 14px;
+    }
+  
+    ::ng-deep  .custom-slider .ng5-slider .ng5-slider-limit {
+      font-weight: bold;
+      color: #9e3aba;
+    }
+  
+    ::ng-deep .custom-slider .ng5-slider .ng5-slider-tick {
+      width: 1px;
+      height: 10px;
+      margin-left: 0px;
+      border-radius: 0;
+      background: #9e3aba;
+      top: -1px;
+    }
+    ::ng-deep .ng5-slider {
+        margin: 35px 0 5px !important;
+    }
+    ::ng-deep .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
+      background: #9e3aba;
+    }
+    ::ng-deep .custom-slider span.ng5-slider-span.ng5-slider-bubble.ng5-slider-model-value{
+        display: none; 
+    }
+    /* ::ng-deep .custom-slider span.ng5-slider-span.ng5-slider-bubble.ng5-slider-limit.ng5-slider-floor:before {
+        content: "Not Important";
+        font-size: 14px !important;
+        font-size: 0;
+        color: #222222;
+        font-weight: 400 !important;
+    } */
+    ::ng-deep .custom-slider .ng5-slider .ng5-slider-bubble.ng5-slider-limit {
+        color: #222222;
+        font-size: 0;
+    }
+    .custom-slider img {
+        text-align: center;
+        display: block;
+        margin: 0 auto;
+    }
+    span.right-sld {
+        text-align: right;
+        float: right;
+        font-size: 18px;
+        font-weight: 400;
+        font-family: 'PT Sans', sans-serif;
+    }
+    span.left-sld {
+        text-align: left;
+        font-size: 18px;
+        font-weight: 400;
+        font-family: 'PT Sans', sans-serif;
+    }
+    .text-sld {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        right: 0;
+        padding: 0 0;
+    }
+    .custom-slider {
+        margin-bottom: 50px;
+        margin-top: 30px;
+        position: relative;
+    }
+
+    ::ng-deep .mat-radio-button .mat-radio-ripple{
+        display: none !important;
+    }
+    ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background{
+        background:linear-gradient(to right, #e51197 , #9d3aba) !important;
+    }
+    .your-height label {
+        margin-right: 3%;
+    }
+    .lang-radio h5 {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+    .sec-lang {
+        margin-top: 15px;
+    }
+
+    ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle, ::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+    ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, ::ng-deep .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+        background: linear-gradient(to right, #e51197 , #9d3aba) !important;
+    }
+    ::ng-deep .morepreferences .mat-radio-checked .mat-radio-inner-circle {
+        transform: scale(1) !important;
+        height: 20px !important;
+        width: 20px !important;
+    }
+
+    ::ng-deep .morepreferences mat-radio-button .mat-radio-label-content {
+        padding-left: 8px !important;
+    }
+
+    ::ng-deep .morepreferences mat-radio-button label.mat-radio-label {
+            display: flex !important;
+        margin-bottom: .5rem !important;
+        align-items: flex-start;
+    }
+
+    .lang-radio .religos mat-radio-button {
+        display: block !important;
+        width: 100% !important;
+    }
+    ::ng-deep.lang-radio .mat-radio-label-content {
+        white-space: pre-line;
+    }
+    span.somewhat-imp {
+        text-align: center;
+        display: inherit;
+        font-weight: 400;
+        font-family: 'PT Sans', sans-serif;
+        font-size: 12px;
+    }
+    span.right-sld{
+        font-size: 12px;
+        font-weight: 400;
+        font-family: 'PT Sans', sans-serif;
+    }
+    span.left-sld {
+        text-align: left;
+        font-size: 12px;
+        font-weight: 400;
+        font-family: 'PT Sans', sans-serif;
+    }
+    .morepreferences button {
+        color: #fff !important;
+        font-weight: 700;
+        background: linear-gradient(to right, #9d3aba, #e51197);
+        border-radius: 50px;
+        padding: 12px 30px !important;
+        margin-top: -4px;
+        border: 0 !important;
+        float: right;
+    }
+
+    .btn-right {
+        text-align: right;
+        width: 100%;
+        flex-direction: row;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .btn-right p {
+        margin-bottom: 0;
+        margin-right: 15px;
+        text-decoration: underline;
+        color: #a633b5;
+        cursor: pointer;
+    }
+
+    button[disabled] {
+        cursor: not-allowed;
+        opacity: .65;
+    }
+
+    .smoke.mat-form-field {
+        width: 100% !important;
+    }
+
+    p.text-right.clear-btn {
+        margin-bottom: 0;
+        margin-top: 13px;
+        position: absolute;
+        right: 15px;
+        top: 0;
+        color: #fff !important;
+        font-weight: 700;
+        background: linear-gradient(to right, #9d3aba, #e51197);
+        border-radius: 50px;
+        padding: 9px 17px !important;
+        border: 0 !important;
+        z-index: 99999;
+        cursor: pointer;
+    }
+    ::ng-deep .morepreferences .your-height .radio-sect-more .mat-radio-outer-circle {
+        top: 3px !important;
+    }
+    ::ng-deep .morepreferences .mat-radio-checked .mat-radio-inner-circle {
+       top: 3px !important;
+    }
+
+ ::ng-deep .morepreferences .mat-radio-outer-circle {
+    top: 3px;
+
+}
+.morepreferences {
+    min-height: calc(100vh - 244px);
+}
+.morepreferences{
+    margin-top: 122px !important;
+}
+::ng-deep .togal-per .switch-medium {
+    width: 54px !important;
+    height: 20px !important;
+    border-radius: 30px;
+    /* background-color:  #9d3aba !important; */
+    background-color:#f2f2f2  !important;
+    border: 1px solid #ccc !important;
+}
+::ng-deep .togal-per .checked{
+    background: linear-gradient(to right,#e51197 , #9d3aba) !important;
+    border: 0 !important;
+}
+::ng-deep .togal-per .switch-medium.checked small {
+    left: 34px !important;
+}
+::ng-deep .togal-per .switch-medium small {
+    width:20px !important;
+    height: 20px !important;
+}
+.togal-per a {
+    display: block;
+    color: #c125a8;
+    font-weight: bold;
+}
+.togal-per {
+    float: right;
+}
+.txt{
+    display: none;
+}
+
+  @media(max-width:990px){
+.rel-section mat-checkbox {
+    width: 100% !important;
+    display: block;
+}
+}
+@media(max-width:767px){
+    .morepreferences .col-sm-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    ::ng-deep .right-religios .mat-checkbox-layout .mat-checkbox-label {
+        line-height: 24px;
+        white-space: pre-line;
+    }
+    ::ng-deep .morepreferences mat-radio-button .mat-radio-label-content {
+        padding-left: 8px !important;
+        white-space: pre-line !important;
+    }
+    .btn-right {
+        text-align: center;
+        width: 100%;
+        flex-direction: row;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }   
+    .morepreferences {
+    margin-top: 40px !important;
+}
+.txt{
+    display: block;
+        width: 100%;
+    float: left
+}
+}
+@media(max-width:480px){
+    .morepreferences{
+        padding: 30px 10px;
+    }
+    span.somewhat-imp {
+        font-size: 11px;
+    }
+    span.right-sld{
+        font-size: 11px;
+    }
+    span.left-sld {
+        font-size: 11px;
+    }
+}

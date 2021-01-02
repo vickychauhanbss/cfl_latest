@@ -1,0 +1,523 @@
+ /* Model css end */
+
+ .popup-feild , .start-feild , .subscribe , .download{
+    background: #fff;
+    margin: 0 auto;
+    /* border: 2px solid #fff; */
+    border-radius: 4px;
+    position: relative;
+}
+.popup-feild {
+    border: 0px solid #fff;
+}
+.forgotpass {
+    cursor: pointer
+}
+
+/* .form-control.is-invalid{
+    border-color: #dc3545 !important
+} */
+.popup-feild h2 , .start-feild h2 , .subscribe h2 , .download h2{
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    text-align: center;
+    color: #fff;
+    font-size: 1.5625rem;
+    font-weight: bold;
+    padding: 6px 0 10px;
+    margin-bottom: 0;
+}
+::ng-deep .mat-checkbox .mat-checkbox-ripple {
+    height: 0;
+    width: 0;
+}
+.input-txt input:hover, 
+.input-txt input:focus, 
+.input-txt input:active {
+    outline: 0 none;
+}
+.inner-form {
+    padding: 10px 30px;
+}
+
+.input-txt {
+    margin-top: 0px;
+}
+
+.input-txt label {
+    width: 100%;
+    display: block;
+}
+.input-txt input {
+    width: 100%;
+    height: 36px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+
+.sign{
+    cursor: pointer;
+}
+
+.lost a {
+    color: #222222;
+    font-size: 1rem;
+    width: 70%;
+}
+.lost {
+    display: flex;
+}
+
+::ng-deep mat-checkbox.check_cstm .mat-checkbox-frame{
+    border-color: #a9a9a9 !important;
+    border: 1px solid #a9a9a9 !important;
+    border-width: 1px !important;
+    border-radius: 4px !important;
+ }
+
+ button.login {
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    border-radius: 50px;
+    padding: 7px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: 0;
+    margin: 23px auto 0;
+    text-align: center;
+    display: block;
+    text-transform: capitalize;
+}
+
+.bottom-form-txt span.or-txt {
+    text-align: center;
+    display: block;
+    text-transform: uppercase;
+    margin-top: 22px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.bottom-form-txt p {
+    text-align: center;
+    color: #3d3d41;
+    font-size: 1rem;
+}
+a.fb {
+    background: #4e71ab;
+    color: #FFF;
+    padding: 10px 16px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    /* cursor: pointer; */
+}
+.bottom-form-txt li {
+    display: inline-block;
+    padding: 0 0px;
+}
+a.gplus {
+    background: #e35442;
+    color: #FFF;
+    padding: 10px 16px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    /* cursor: pointer; */
+}
+.bottom-form-txt ul {
+    padding: 0;
+    margin: 25px auto 20px;
+    text-align: center;
+}
+a.sign {
+    color: #9e3aba;
+    font-weight: 700;
+}
+.bottom-form-txt li span:after {
+    content: "";
+    background: #fff;
+    height: 44px;
+    width: 1px;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+}
+.bottom-form-txt li span {
+    position: relative;
+    margin-right: 18px;
+}
+.bottom-form-txt li:last-child{
+    padding-left: 15px;
+}
+
+span.or-txt:before {
+    content: "";
+    background: #f3f1f4;
+    width: 34%;
+    right: 56%;
+    position: absolute;
+    height: 1px;
+    top: 11px;
+}
+span.or-txt:after {
+    content: "";
+    background: #f3f1f4;
+    width: 34%;
+    right: 10%;
+    position: absolute;
+    height: 1px;
+    top: 11px;
+}
+
+span.cross {
+    position: absolute;
+    right: -5px;
+    top: -8px;
+    background: #fff;
+    border-radius: 100%;
+    padding: 0px 6px;
+    color: #9a3cbc;
+    border: 1px solid;
+}
+
+.modal-body {
+    /* position: relative; */
+    padding: 0px !important;
+}
+
+.modal-content {
+    border: 2px solid #fff;
+}
+
+.modal-dialog .container {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.invalid-feedback{
+    position: absolute;
+    left:10px;
+    bottom:0;
+}
+
+.popup-feild .form-group {
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 0;
+    position: relative;
+}
+a.fb:hover {
+    color: #fff;
+    }
+    a.gplus:hover {
+        color: #fff;
+    }
+
+
+    /* new css */
+
+    .upload-section {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        flex-direction: column;
+    }
+    .upload-section i{
+        font-size: 36px;
+    }
+
+    label.upload {
+        color: #fff;
+        font-weight: 700;
+        background: linear-gradient(to right, #9d3aba, #e51197);
+        border-radius: 50px;
+        padding: 9px 15px;
+        border: 0;
+        cursor: pointer;
+    }
+
+
+ /*=========================== Modal Css ==================*/
+ ul.update-image {
+    padding: 0 5px;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    min-width: 700px;
+    justify-content: space-between;
+}   
+
+.update-image li img{
+    width: auto;
+    max-width: 100%;
+    min-height: 100px;
+}
+
+.delete-icon {
+    cursor: pointer;
+}
+
+.update-image li {
+    margin: 15px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    max-width: 45.5%;
+    width: 100%;
+    position: relative;
+}
+
+.update-image li span {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background: rgba(0,0,0,.7);
+    left: 0;
+    padding: 3px 20px 3px 0;
+    color: #fff;
+    text-align: right;
+}
+
+p.valid-error {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+/* ::ng-deep .cropper span  {
+    display: none !important;
+  }  */
+  
+
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 700px !important;
+        margin: 0;
+    }
+
+}
+@media(max-width:1024px){
+    .input-txt {
+        margin-top: 5px;
+ 
+    }
+    .input-txt input {
+        margin-bottom: 10px;
+    }
+    button.login{
+        margin: 14px auto 0;
+    }
+    ul.update-image {
+    min-width: 100%;
+
+}
+.update-image li {
+    max-width: 44.5%;
+    width: 100%;
+}
+}
+@media(max-width:767px){
+    a.fb {
+        padding: 14px 12px;
+        font-size: 16px;
+    }
+    a.gplus {
+        padding: 14px 12px;
+        font-size: 16px;
+    }
+
+}
+@media(max-width:639px){
+    .bottom-form-txt li:last-child {
+        padding-left: 0;
+    }
+    .bottom-form-txt li {
+        display: inline-block;
+        padding: 16px 0px;
+    }
+    .bottom-form-txt ul {
+        padding: 0;
+        margin: 15px auto 15px;
+        text-align: center;
+    }
+    .lost a {
+        color: #222222;
+        font-size: 1rem;
+        width: 100%;
+        margin-top: 25px;
+    }
+    .lost {
+        display: block;
+    }
+    .invalid-feedback{
+        bottom: -8px;
+    }
+    }
+    @media(max-width:459){
+    .lost{
+        display: block;
+    }
+    .lost a {
+        width: 100%;
+    }
+}
+/* Resize image css */
+:host {
+    display: flex;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    padding: 5px;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    }
+    :host > div {
+        position: relative;
+        width: 100%;
+    }
+:host > div  img.source-image {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .cropper {
+        position: absolute;
+        display: flex;
+        color: #53535C;
+        background: transparent;
+        outline-color: rgba(255,255,255,0.3);
+        outline-width: 100vw;
+        outline-style: solid;
+        touch-action: none;
+    }
+    .cropper:after {
+        position: absolute;
+        content: '';
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        pointer-events: none;
+        border: dashed 1px;
+        opacity: .75;
+        color: inherit;
+        z-index: 1;
+    }
+
+
+        .move {
+            width: 100%;
+            cursor: move;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .resize {
+            position: absolute;
+            display: inline-block;
+            line-height: 6px;
+            padding: 8px;
+            opacity: .85;
+            z-index: 1;
+        }
+        .resize   .square {
+                display: inline-block;
+                background: #53535C;
+                width: 6px;
+                height: 6px;
+                border: 1px solid rgba(255, 255, 255, 0.5);
+                box-sizing: content-box;
+            }
+
+            .resize.topleft {
+                top: -12px;
+                left: -12px;
+                cursor: nwse-resize;
+            }
+            .resize.top {
+                top: -12px;
+                left: calc(50% - 12px);
+                cursor: ns-resize;
+            }
+            .resize.topright {
+                top: -12px;
+                right: -12px;
+                cursor: nesw-resize;
+            }
+            .resize.right {
+                top: calc(50% - 12px);
+                right: -12px;
+                cursor: ew-resize;
+            }
+            .resize.bottomright {
+                bottom: -12px;
+                right: -12px;
+                cursor: nwse-resize;
+            }
+            .resize.bottom {
+                bottom: -12px;
+                left: calc(50% - 12px);
+                cursor: ns-resize;
+            }
+            .resize.bottomleft {
+                bottom: -12px;
+                left: -12px;
+                cursor: nesw-resize;
+            }
+            .resize.left {
+                top: calc(50% - 12px);
+                left: -12px;
+                cursor: ew-resize;
+            }
+        .resize-bar {
+            position: absolute;
+            z-index: 1;
+        }
+        .resize-bar.top {
+                top: -11px;
+                left: 11px;
+                width: calc(100% - 22px);
+                height: 22px;
+                cursor: ns-resize;
+            }
+            .resize-bar.right {
+                top: 11px;
+                right: -11px;
+                height: calc(100% - 22px);
+                width: 22px;
+                cursor: ew-resize;
+            }
+            .resize-bar.bottom {
+                bottom: -11px;
+                left: 11px;
+                width: calc(100% - 22px);
+                height: 22px;
+                cursor: ns-resize;
+            }
+            .resize-bar.left {
+                top: 11px;
+                left: -11px;
+                height: calc(100% - 22px);
+                width: 22px;
+                cursor: ew-resize;
+            }
+
+@media(max-width: 767px){
+    .update-image li {
+    max-width: 90%;
+    width: 100%;
+
+
+}
+}

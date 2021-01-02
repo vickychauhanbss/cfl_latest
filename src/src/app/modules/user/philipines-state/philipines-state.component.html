@@ -1,0 +1,22 @@
+<div mat-dialog-content>
+<ngx-spinner></ngx-spinner>
+    <div class="modal-dialog state-data" role="document">
+        <div class="modal-content state-feilds">
+            <div class="modal-body">
+                <div class="login-popup">
+                    <div class="overlay"></div>
+                    <span class="cross" (click)="dismissModal('')">
+                        <i class="fa fa-times" aria-hidden="true" ></i>
+                    </span>
+                    <div class="container">
+                        <ul class="update-image state-list">
+                            <li *ngFor="let List of Lists" (click)="dismissModal(List.id)">
+                                <span>{{List.name}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

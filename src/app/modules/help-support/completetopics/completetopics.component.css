@@ -1,0 +1,320 @@
+.complete-help-topic {
+    padding-top: 90px;
+}
+#accordion .panel {
+    border-radius: 5px;
+    border: 0;
+    border: 1px solid #ddd;
+    margin: 6px 1.5%;
+    width: 47%;
+    float: left;
+    padding: 0 0px;
+}
+  #accordion a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+  }
+  #accordion .panel-heading a.collapsed:hover,
+  #accordion .panel-heading a.collapsed:focus {
+    /* background-color: #b42b2b; */
+    color: #222;
+    transition: all 0.2s ease-in;
+  }
+  #accordion .panel-heading a.collapsed:hover::before,
+  #accordion .panel-heading a.collapsed:focus::before {
+    color: #222;
+  }
+  #accordion .panel-heading {
+    padding: 0;
+    border-radius: 0px;
+    text-align: center;
+  }
+  #accordion .panel-heading a:not(.collapsed) {
+    color: #222;
+    /* background-color: #b42b2b; */
+    transition: all 0.2s ease-in;
+  }
+  
+  /* Add Indicator fontawesome icon to the left */
+  #accordion .panel-heading .accordion-toggle::before {
+    font-family: 'FontAwesome';
+    content: '\f00d';
+    float: left;
+    color: #222;
+    font-weight: lighter;
+    transform: rotate(0deg);
+    transition: all 0.2s ease-in;
+  }
+  #accordion .panel-heading .accordion-toggle.collapsed::before {
+    color: #444;
+    transform: rotate(-135deg);
+    transition: all 0.2s ease-in;
+  }
+  .tab-content>.active.in{
+      display: block;
+      opacity: 1;
+  }
+  .collapse.in {
+    display: block;
+}
+.active img.black {
+    display: none;
+}
+img.white {
+    display: none;
+}
+.active img.white {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+button.activeButon {
+    background: #ca21a4 !important;
+}
+
+.panel-title.activeButon {
+    background: #ca21a4 !important;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    background:linear-gradient(to right, #e51197 , #9d3aba) !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    -webkit-background-clip: text !important;
+}
+.nav-pills span {
+    font-size: 16px;
+    line-height: 15px;
+    color: #222222;
+    font-family: "Muli";
+    font-weight: 700;
+    text-align: center;
+    display: block;
+}
+.tab-section .nav-pills li {
+    float: none;
+    text-align: center;
+}
+.tab-section .nav-pills li {
+    float: none;
+    text-align: center;
+    width: 14%;
+    padding-bottom: 20px
+}
+.tab-section .panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: inherit;
+    font-size: 16px!important;
+    color: #222222!important;
+    font-family: "Muli"!important;
+    font-weight: 700!important;
+    text-align: left !important;
+}
+#accordion a{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: inherit;
+    font-size: 16px!important;
+    color: #222222!important;
+    font-family: "Muli"!important;
+    font-weight: 700!important;
+    text-align: left !important;
+}
+#accordion .panel-title.activeButon a {
+    color: #fff !important;
+}
+#accordion .panel-title.activeButon{
+    background:linear-gradient(to right, #9d3aba, #e51197);
+}
+#accordion .panel-heading .accordion-toggle.collapsed::before {
+    color: #444;
+    transform: rotate(0deg) !important;
+    transition: all 0.2s ease-in;
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    color: #fff;
+    border-radius: 100%;
+    left: -22px;
+    position: relative;
+    height: 20px;
+    width: 20px;
+    padding: 1px 4px;
+    font-size: 16px;
+    font-family: 'FontAwesome';
+    content: '\f067';
+    
+}
+#accordion .panel-heading .accordion-toggle::before {
+    font-family: 'FontAwesome';
+    content: '\f068';
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    color: #fff;
+    border-radius: 100%;
+    left: -22px;
+    position: relative;
+    height: 20px;
+    width: 20px;
+    padding: 1px 4px;
+    font-size: 16px;
+    transition: all 0.2s ease-in;
+}
+#accordion .panel-heading a.collapsed:hover::before,
+ #accordion .panel-heading a.collapsed:focus::before {
+    color: #fff;
+    outline: none;
+}
+.tab-content {
+    background: #fff;
+    width: 100%;
+    float: left;
+    margin-top: 0px;
+    margin-bottom: 60px;
+    padding: 1px 10px 20px 10px;
+}
+.tab-content .panel-body p {
+    font-size: 15px;
+    line-height: 23px;
+    color: #222222;
+    font-family: "PT Sans";
+    font-weight: 400;
+    padding: 0 15px;
+}
+.question h2 {
+    font-size: 16px;
+    line-height: 23px;
+    color: #222222;
+    font-family: "PT Sans";
+    font-weight: 700;
+} 
+.question button {
+    font-size: 15px;
+    line-height: 23px;
+    color: #222222;
+    font-family: "PT Sans";
+    font-weight: 400;
+    border: 1px solid #bf27a9;
+    background: transparent;
+    padding: 0px 20px;
+    border-radius: 30px;
+    margin: 0 7px;
+}
+button:focus{
+  outline: none;
+}
+.complete-help-topic h1 {
+    font-size: 28px;
+    color: #222222;
+    font-family: "Muli";
+    font-weight: 700;
+    text-align: center;
+    padding: 60px 0 30px;
+}
+
+.tab-section li.active:after{
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 87px;
+    height: 3px;
+    content: "";
+    margin: 0 auto;
+    bottom: 0;
+    background: linear-gradient(to right, #9d3aba, #e51197);
+}
+.tab-section li.active a:after {
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 18px;
+    bottom: -17px;
+    text-align: center;
+    border-bottom: 9px solid #9d3aba;
+}
+.tab-content{
+    background: #fff;
+    width: 100%;
+    float: left;
+    margin-top: 0px;
+    min-height: calc(100vh - 323px);
+    margin-bottom: 60px;
+    padding: 1px 10px 20px 10px;
+}
+@media not all and (min-resolution:.001dpcm) {
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    background:transparent !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: #e51197!important;
+    color: #e51197;
+}
+.nav-pills>li.active>a span{
+    color: #e51197;
+}
+
+}
+
+
+
+
+@media(max-width:999px){
+    .nav-pills span {
+        font-size: 14px;
+    }
+}
+@media(max-width:900px){
+    .nav-pills span {
+        font-size: 11px;
+    }
+}
+@media(max-width:767px){
+span.hide-mobile {
+    display: none !important;
+}
+.complete-help-topic {
+    padding-top: 0;
+}
+}
+@media(max-width:640px){
+.tab-section .nav-pills li {
+    float: none;
+    text-align: center;
+    width: 10%;
+    padding-bottom: 20px;
+}
+
+#accordion .panel {
+    border-radius: 5px;
+    border: 0;
+    border: 1px solid #ddd;
+    margin: 6px 0%;
+    width: 100%;
+    float: left;
+    padding: 0 0px;
+}
+}
+@media(max-width:500px){
+.complete-help-topic img.black , .complete-help-topic img.white {
+    width: 100%;
+}
+.tab-section .nav-pills li {
+    float: none;
+    text-align: center;
+    width: 13%;
+    padding-bottom: 20px;
+}
+.tab-section .nav-pills li a {
+    position: relative;
+    display: block;
+    padding: 10px 2px !important;
+}
+.tab-section li.active:after {
+    width: 40px;
+
+}
+}

@@ -1,0 +1,25 @@
+<div class="icon-model" mat-dialog-content *ngIf="IntersetIcons.length > 0">
+    <div class="modal-dialog icon" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="login-popup">
+                    <div class="overlay"></div>
+                    <span class="cross" (click)="dismissModal('')">
+                        <i class="fa fa-times" aria-hidden="true" ></i>
+                    </span>
+                    <div class="container">
+                        <ul class="update-image" *ngIf="IntersetIcons.length > 0">
+                            <li *ngFor="let icon of IntersetIcons" (click)="dismissModal(icon)">
+                                <img alt="" [lazyLoad]="icon.logo_link" title="{{icon.logo_name.split('.')[0]}}">
+                                <!-- <img src="{{icon.logo_link}}" alt="" title="{{icon.logo_name.split('.')[0]}}"> -->
+                                <p>
+                                    {{icon.interest_name}}
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

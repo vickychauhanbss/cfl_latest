@@ -1,0 +1,114 @@
+<div mat-dialog-content >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="login-popup">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <form class="popup-feild" *ngIf="condition == 'register'">
+                            <h2>
+                                Account Signup Successful
+                            </h2>
+                            <span class="cross" (click)="dismissModal()">
+                                <i class="fa fa-times" aria-hidden="true" ></i>
+                            </span>
+                            <div class="inner-form">
+                                <p>
+                                    A confirmation email has been sent to {{email}}. It contains an activation link you have to follow to confirm the email and activate your account.
+                                </p>
+                                <div class="bottom-form-txt">
+                                    <ul>
+                                        <li>
+                                            <a class="fb" (click)="dismissModal()">
+                                                Okay
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+
+                        <form class="popup-feild" *ngIf="condition == 'socialLogin'" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                            <h2>
+                                Please fill the from to complete registration
+                            </h2>
+                            <span class="cross" (click)="dismissModal()">
+                                <i class="fa fa-times" aria-hidden="true" ></i>
+                            </span>
+                            <div class="inner-form">
+                                <div class="radio-buttons">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 left-radio">
+                                            <ul>
+                                                <li>
+                                                    <strong>
+                                                        I am a :
+                                                    </strong>
+                                                </li>
+                                                <mat-radio-group name="gender" formControlName="gender" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                                                    <li>
+                                                        <mat-radio-button value="1">
+                                                            Male
+                                                        </mat-radio-button>
+                                                    </li>
+                                                    <li>
+                                                        <mat-radio-button value="2">
+                                                            Female
+                                                        </mat-radio-button>
+                                                    </li>
+                                                </mat-radio-group>
+
+                                                <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.gender.errors.required">
+                                                        Please select one option
+                                                    </div>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 right-radio">
+                                            <ul>
+                                                <li>
+                                                    <strong>
+                                                        Interested In :
+                                                    </strong>
+                                                </li>
+                                                <mat-radio-group name="interest" class="form-control" formControlName="interest"  [ngClass]="{ 'is-invalid': submitted && f.interest.errors }">
+                                                    <li>
+                                                        <mat-radio-button value="1">
+                                                            Male
+                                                        </mat-radio-button>
+                                                    </li>
+                                                    <li>
+                                                        <mat-radio-button value="2">
+                                                            Female
+                                                        </mat-radio-button>
+                                                    </li>
+                                                </mat-radio-group>
+
+                                                <div *ngIf="submitted && f.interest.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.interest.errors.required">
+                                                        Please select one option
+                                                    </div>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="go-btn">
+                                    <button class="login" matInput type="submit" value="">
+                                        Let’s Go
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button  cdkFocusInitial>Ok</button>
+</div> -->

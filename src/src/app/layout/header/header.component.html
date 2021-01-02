@@ -1,0 +1,187 @@
+<header class="main-header">
+    <ngx-spinner></ngx-spinner>
+    <div class="container">
+        <div class="row">
+            <nav class="navbar navbar-expand-md navbar-dark without-login" *ngIf="loggedInHeaderView == false">
+                <a class="navbar-brand" (click)="reloadPage()">
+                    <img src="assets/cfl-logo.png">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav main-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" (click)="scroll('about')" title="About You">
+                                About You
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" (click)="scroll('Community')" title="Big Promise">
+                                Big Promise
+                            </a>
+                        </li>
+                        <li class="nav-item register" (click)="start_now_modal()">
+                            <a class="nav-link">
+                                Start Now
+                            </a>
+                        </li>
+                        <li class="nav-item sign-in">
+                            <span>
+                                Already a member?
+                            </span>
+                            <a class="nav-link" (click)="loginModal()">
+                                LOGIN
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <nav class="navbar navbar-expand-md navbar-dark login-pages" *ngIf="loggedInHeaderView == true">
+                <a class="navbar-brand" (click)="goToDashboard()">
+                    <img src="assets/cfl-logo.png">
+                </a>
+                <div class="show-mobile">
+                    <ul>
+                        <li (click)="goToNotificationPage()">
+                            <a class="icons">
+                                <img src="assets/profile/bell-icon.png">
+                            </a>
+                        </li>
+                        <li (click)="currentUser.plan_type == 1 ||  currentUser.plan_type == '' ?  showValidationPopup('chat') : goToChatPage()" *ngIf="currentUser">
+                            <a class="icons">
+                                <img src="assets/profile/chat-icon.png">
+                            </a>
+                        </li>
+                        <li (click)="goToProfilePage()">
+                            <a class="icons">
+                                <img src="assets/profile/profile-icon.png">
+                            </a>
+                        </li>
+                    </ul>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <ul class="navbar-nav main-nav">
+                            <li class="nav-item" (click)="headerFilter($event, 'onlinenow')">
+                                <a class="nav-link">
+                                    Online Now
+                                </a>
+                            </li>
+                            <li class="nav-item" (click)="headerFilter($event, 'all_admirers')">
+                                <a class="nav-link">
+                                    All Admirers
+                                </a>
+                            </li>
+                            <li class="nav-item"  (click)="currentUser.plan_type == 1 || currentUser.plan_type == '' ?  showValidationPopup('its_mutual') : headerFilter($event, 'its_mutual')" *ngIf="currentUser"> 
+                                <a class="nav-link">
+                                    Its Mutual
+                                </a>
+                            </li>
+                            <li class="nav-item" (click)="headerFilter($event, 'more_preferences')">
+                                <a class="nav-link">
+                                    My Preferences
+                                </a>
+                            </li>
+
+                            <li class="nav-item img-item hed-ico">
+                                <ui-switch (change)="headerFilter($event, 'more_preferences')"  [(ngModel)]="toggle" checkedLabel="on" uncheckedLabel="off"></ui-switch>
+                            </li>
+                            <!-- <li class="nav-item img-item" (click)="headerFilter($event, 'set_Preferences')">
+                                <img src="assets/home-img/icon.png"  title="set Preferences"/>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+                <button class="navbar-toggler hide-mobile" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav main-nav" >
+                        <li class="nav-item" (click)="headerFilter($event, 'onlinenow')">
+                            <a class="nav-link"  title="View online users">
+                                Online Now
+                            </a>
+                        </li>
+                        <li class="nav-item" (click)="headerFilter($event, 'all_admirers')" >
+                            <a class="nav-link" title="View All Admirers">
+                                All Admirers
+                            </a>
+                        </li>
+                        <li class="nav-item" (click)="currentUser.plan_type == 1 ||  currentUser.plan_type == '' ?  showValidationPopup('its_mutual') : headerFilter($event, 'its_mutual')" *ngIf="currentUser">
+                            <a class="nav-link" title="View Mutual users">
+                                Its Mutual
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item" (click)="headerFilter($event, 'more_preferences')" >
+                            <a class="nav-link" title="View My Preferences">
+                                My Preferences
+                            </a>
+                        </li> -->
+
+                        <li class="nav-item" (click)="headerFilter($event, 'set_Preferences')" >
+                            <a class="nav-link" title="Set Preferences">
+                                Set Preferences
+                            </a>
+                        </li>
+                       <!--  <li class="nav-item img-item" (click)="headerFilter($event, 'set_Preferences')">
+                            <img src="assets/home-img/icon.png"  title="set Preferences"/>
+                        </li> -->
+                         <li class="nav-item img-item hed-ico">
+                            <ui-switch (change)="headerFilter($event, 'more_preferences')"  [(ngModel)]="toggle"></ui-switch>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right-head">
+                    <ul>
+                        <li class="setting1 mb hide-mobile notify-count" (click)="goToNotificationPage()">
+                            <span *ngIf="totalCount > 0">
+                                {{totalCount}}
+                            </span>
+                            <i class="fa fa-bell" title="Notifications"></i>
+                        </li>
+                        <li class="setting1 mb">
+                            <a class="nav-link"  (click)="goToProfilePage()" title="User profile">
+                                <!-- <img src="assets/profile/user-new.png" alt="" *ngIf="!showProfileImage && currentUser.gender == 1"> -->
+                                <img src="assets/profile/dummy-image.jpg" alt="" *ngIf="!userImage && currentUser.gender == 2">
+                                <img src="assets/dashboard/maria.jpg" *ngIf="!userImage && currentUser.gender == 1">
+                                <img [src]="userImage" *ngIf="userImage">
+                            </a>
+                        </li>
+                        <li class="setting1 ">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary nav-link1 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Settings
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <div class="profile-progress">
+                                        <p>
+                                            Profile
+                                        </p>
+                                        <progress-bar [progress]="totalPer" class="back-color"></progress-bar>
+                                    </div>
+                                    <a class="dropdown-item" title="Account settings" (click)="goToAccountSettingPage()">
+                                        Account Settings
+                                    </a>
+                                    <a class="dropdown-item"(click)="goToHelpAndSupportPage()" title="Help & support">
+                                        Help
+                                    </a>
+                                    <a class="dropdown-item" (click)="logout()" title="Logout user">
+                                        Logout
+                                    </a>
+                                    <a class="dropdown-item" title="Upgrade Plan" (click)="goToMemberShipPage()" *ngIf="currentUser && (currentUser.plan_type == 1 || currentUser.plan_type == 2)">
+                                        <span>
+                                            {{currentUser.plan_type == 1 ? 'GET TRUST PLUS' : currentUser.plan_type == 2 ? 'GET CENTER STAGE' : ''}}
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>

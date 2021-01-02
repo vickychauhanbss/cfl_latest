@@ -1,0 +1,52 @@
+<div class="found-one-main" *ngIf="foundUsers.length > 0">
+   
+    <div class="container">
+        <div class="overlay"></div>
+        <form class="download">
+        <!--     <span class="cross" (click)="dismissModal()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </span> -->
+            <div class="good-luck" *ngIf="condition == 'notitfication'">
+                <div>
+                <h2>Another Crazy Love Story in the Making!</h2>
+                <div class="couple-images">
+                    <img class="radial-image" src="assets/profile/user-new.png" *ngIf="foundUsers[0].img1 == ''">
+                    <img class="radial-image" [src]="foundUsers[0].img1" *ngIf="foundUsers[0].img1 != ''">
+                    <img class="logo-couple" src="assets/couple.png">
+                    <img class="radial-image" src="assets/profile/user-new.png" *ngIf="foundUsers[0].img2 == ''">
+                    <img class="radial-image" [src]="foundUsers[0].img2" *ngIf="foundUsers[0].img2 != ''">
+                </div>
+                <p>Wish good luck to<br/> {{foundUsers[0].fname}} and {{foundUsers[0].sname}} <br/> as they continue thier journey together!</p>
+                <i class="fa fa-thumbs-up" aria-hidden="true" (click)="likeFoundUser(foundUsers[0], '1')" *ngIf="foundUsers[0].like == '0'"></i>
+
+                <i class="fa fa-thumbs-up liked-user" aria-hidden="true" (click)="likeFoundUser(foundUsers[0], '0')" *ngIf="foundUsers[0].like == '1'"></i>
+
+                <button class="skip-couple" (click)="dismissModal()" >< Skip ></button>
+                </div>
+            </div>
+
+            <div class="good-luck" *ngIf="condition == 'dashboard'">
+
+
+                <owl-carousel style="width: 100%;" [options]="carouselOptions" [items]="foundUsers" [carouselClasses]="['owl-theme', 'sliding']" #owlElement>
+                    <div class="item-carousel" *ngFor="let founds of foundUsers;let i = index">
+                        <h2>Another Crazy Love Story in the Making!</h2>
+                        <div class="couple-images">
+                            <img class="radial-image" src="assets/profile/user-new.png" *ngIf="founds.img1 == ''">
+
+                            <img class="radial-image" [src]="founds.img1" *ngIf="founds.img1 != ''">
+                            <img class="logo-couple" src="assets/couple.png">
+                            <img class="radial-image" src="assets/profile/user-new.png" *ngIf="founds.img2 == ''">
+                            <img class="radial-image" [src]="founds.img2" *ngIf="founds.img2 != ''">
+                        </div>
+                        <p>Wish good luck to<br/> {{founds.fname}} and {{founds.sname}} <br/> as they continue thier journey together!</p>
+                        <i class="fa fa-thumbs-up" aria-hidden="true" (click)="likeFoundUser(founds, '1')" *ngIf="founds.like == '0'"></i>
+
+                        <i class="fa fa-thumbs-up liked-user" aria-hidden="true" (click)="likeFoundUser(founds,'0')" *ngIf="founds.like == '1'"></i>
+                        <button class="skip-couple" (click)="dismissModal()">< Skip ></button>
+                    </div>
+                 </owl-carousel>
+            </div>
+        </form>
+    </div>
+</div>

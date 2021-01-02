@@ -1,0 +1,765 @@
+::ng-deep.custom-step .mat-horizontal-stepper-header-container {
+    display: none !important;
+}
+
+.onboarding-video {
+    padding-top: 30px;
+    background-color: #505354;
+}
+.onboarding {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: -170px !important;
+    background-attachment: fixed !important;
+}
+
+.cnt-src {
+    text-align: center;
+    font-weight: bold;
+}
+
+.birth-heading {
+    width: 100%;
+    color: #b52dae;
+    font-size: 18px;
+}
+
+.logo-hed {
+    text-align: right;
+    float: right;
+    position: absolute;
+    right: 40px;
+    top: 12px;
+    max-width: 179px;
+}
+.logo-hed img {
+    width: 100%;
+}
+.inner-cont {
+    max-width: 550px;
+    padding: 38px 0px 20px 0px !important;
+}
+.inner-cont {
+    display: block;
+    float: left;
+    background: #fff;
+    max-width: 550px !important;
+    width: 100%;
+}
+.inner-cont .cont-btn, .inner-cont h2, .inner-cont p {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+.container:after{
+    clear: both;
+    display: table;
+    content: "";
+}
+.age {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 8px 5px;
+    height: 40px;
+    margin-top: 15px;
+}
+.born-date.mat-form-field {
+    width: 30.35% !important;
+    margin: 0 9px;
+}
+.born-date.month{
+    margin-left: 0;
+}
+.born-date.year{
+    margin-right: 0;
+}
+::ng-deep.born-date .mat-form-field-infix::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid;
+    position: absolute;
+    top: 50%;
+    right: 7px !important;
+    margin-top: 12px!important;
+    pointer-events: none;
+}
+.onboarding button {
+    color: #fff;
+    font-weight: 700;
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    border-radius: 50px;
+    padding: 0;
+    border: 0;
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+    max-width: 130px;
+    height: 50px;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+    height: 0px !important;
+}
+.born-date label {
+    color: #b52dae;
+    font-size: 18px;
+}
+.inner-cont h2 {
+    text-align: center;
+    font-size: 22px;
+    color: #000;
+    font-weight: 700;
+}
+.height {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 8px 5px;
+    height: 40px;
+    margin-top: 15px;
+    width: 100%;
+}
+ .mat-form-field.height-persion {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    width: 100% !important;
+}
+::ng-deep.height-persion .mat-form-field-infix::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid;
+    position: absolute;
+    top: 50%;
+    right: 7px !important;
+    margin-top: 12px!important;
+    pointer-events: none;
+}
+.mat-form-field label{
+    color: #b52dae;
+    font-size: 18px;
+}
+::ng-deep .onboarding .mat-form-field-infix::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid;
+    position: absolute;
+    top: 50%;
+    right: 7px !important;
+    margin-top: 12px!important;
+    pointer-events: none;
+}
+::ng-deep  .mat-form-field-subscript-wrapper {
+    display: none !important;
+}
+::ng-deep .onboarding .mat-form-field-appearance-legacy .mat-form-field-ripple{
+    height: 0 !important;
+}
+::ng-deep  .mat-form-field.smoke {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    width: 100% !important;
+}
+::ng-deep  .mat-form-field{
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    width: 100%;
+}
+.onboarding select{
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 8px 5px !important;
+    height: 40px;
+    margin-top: 15px;
+    width: 100% !important;
+}
+.mat-form-field{
+    width: 100% !important;   
+}
+.buttons button {
+    text-align: center;
+    display: inline-block !important;
+    margin: 0 9px;  
+}
+button:focus {
+outline: none;
+}
+.buttons {
+    margin: 0 auto;
+    text-align: center;
+}
+.inner-cont h2.born {
+    font-size: 18px !important;
+    text-align: left !important;
+    margin-bottom: 0;
+    text-transform: capitalize;
+}
+.inner-cont{
+    z-index: 9999;
+    position: relative;
+}
+.onboarding{
+    position: relative;
+}
+.onboarding:before {
+    width: 100%;
+    background: rgba(0, 0, 0, .65 );
+    height: 100%;
+    position: absolute;
+    content: "";
+}
+.mat-slider-horizontal{
+    min-width: 100% !important;
+    
+}
+.comunity p {
+    font-size: 12px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.mat-horizontal-content-container {
+    overflow: hidden;
+    padding: 0 15px 24px 15px !important;
+}
+h3.ttl-cat {
+    color: #fff;
+    font-weight: 600;
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    border-radius: 0;
+    padding: .63rem 3rem;
+    border: 0;
+    margin: 44px auto 0;
+    display: block;
+    text-align: center;
+    text-transform: capitalize;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 22px;
+}
+.onboarding .comunity-btn button {
+    background: transparent !important;
+    border: 1px solid #9e3aba !important;
+    color: #9e3aba !important;
+}
+a.save-btn {
+    display: block;
+    color: #9e3aba;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+::ng-deep .radio-sect label.mat-radio-label {
+    font-size: 18px;
+    font-weight: 700;
+    /* width: 100% !important; */
+    border-radius: 0;
+    color: #9e3aba;
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+    padding: 3px 15px;
+    text-align: center !important;
+    background-color: transparent;
+    line-height: 30px;
+    /* max-width: 300px; */
+    margin: 15px auto 0;
+    /* display: block; */
+    border: 1px solid #ccc;
+    font-family: 'Muli', sans-serif;
+    text-align: center;
+    width: auto;
+    display: inline-block;
+    min-width: 270px;
+}
+::ng-deep .radio-sect.mat-radio-button{
+    display: block;
+}
+::ng-deep .radio-sect .mat-radio-inner-circle{
+    height: 0;
+    width: 0;
+}
+::ng-deep .radio-sect .mat-radio-outer-circle{
+    height: 0;
+    width: 0;  
+    border: 0 !important;
+}
+::ng-deep .radio-sect .mat-radio-container{
+    height: 0;
+    width: 0;  
+}
+::ng-deep .radio-sect.mat-radio-checked label.mat-radio-label{
+    background: linear-gradient(to right,#e51197, #9d3aba) !important;
+    color: #fff;
+    border: 1px solid #9d3aba;
+}
+.radio-select {
+    margin-bottom: 40px !important;
+    margin: 0 auto;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+/* CUSTOM SLIDER */
+ 
+::ng-deep .custom-slider .ng5-slider .ng5-slider-bar {
+      background: #9e3aba;
+      height: 2px;
+    }
+::ng-deep .custom-slider .ng5-slider .ng5-slider-selection {
+      background: #9e3aba;
+    }
+  
+    ::ng-deep.custom-slider .ng5-slider .ng5-slider-pointer {
+        width: 20px;
+        height: 20px;
+        top: -10px;
+        background-color: #9e3aba;
+        border-radius: 50%;
+    }
+    ::ng-deep.custom-slider .ng5-slider .ng5-slider-active {
+        width: 20px;
+        height: 20px;
+        top: -10px;
+        background-color: #9e3aba;
+        border-radius: 50%;
+        outline: none;
+    }
+  
+    ::ng-deep   .custom-slider .ng5-slider .ng5-slider-pointer:after {
+      display: none;
+    }
+  
+    ::ng-deep  .custom-slider .ng5-slider .ng5-slider-bubble {
+      bottom: 14px;
+    }
+  
+    ::ng-deep  .custom-slider .ng5-slider .ng5-slider-limit {
+      font-weight: bold;
+      color: #9e3aba;
+    }
+  
+    ::ng-deep .custom-slider .ng5-slider .ng5-slider-tick {
+      width: 1px;
+      height: 10px;
+      margin-left: 4px;
+      border-radius: 0;
+      background: #9e3aba;
+      top: -1px;
+    }
+    ::ng-deep .ng5-slider {
+        margin: 35px 0 5px !important;
+    }
+    ::ng-deep .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
+      background: #9e3aba;
+    }
+    ::ng-deep .custom-slider span.ng5-slider-span.ng5-slider-bubble.ng5-slider-model-value{
+        display: none; 
+    }
+    /* ::ng-deep .custom-slider span.ng5-slider-span.ng5-slider-bubble.ng5-slider-limit.ng5-slider-floor:before {
+        content: "Not Important";
+        font-size: 14px !important;
+        font-size: 0;
+        color: #222222;
+        font-weight: 400 !important;
+    } */
+    ::ng-deep .custom-slider .ng5-slider .ng5-slider-bubble.ng5-slider-limit {
+        color: #222222;
+        font-size: 0;
+    }
+    ::ng-deep .custom-step .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #a435b6;
+    background: #a635b6;
+}
+    .custom-slider img {
+        text-align: center;
+        display: block;
+        margin: 0 auto;
+        max-width: 110px;
+    }
+    span.right-sld {
+        text-align: right;
+        float: right;
+        font-size: 18px;
+        font-weight: 400;
+        font-family: 'PT Sans', sans-serif;
+    }
+    span.left-sld {
+        text-align: left;
+        font-size: 18px;
+        font-weight: 400;
+        font-family: 'PT Sans', sans-serif;
+    }
+    .text-sld {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        right: 0;
+        padding: 0 0;
+    }
+    .custom-slider {
+        margin-bottom: 35px;
+        margin-top: 30px;
+        position: relative;
+    }
+
+    ::ng-deep .mat-radio-button .mat-radio-ripple{
+        display: none !important;
+    }
+    ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background{
+        background:linear-gradient(to right, #e51197 , #9d3aba) !important;
+    }
+
+    label.city-countary {
+        color: #b52dae;
+        font-size: 18px;
+        margin-bottom: 0;
+    }
+    ::ng-deep .onboarding .col-sm-6 .mat-form-field-infix::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid;
+        position: absolute;
+        top: 35%;
+        right: 7px !important;
+        margin-top:-4px!important;
+        pointer-events: none;
+    }
+    /* select#mat-input-16 {
+        margin-top: 0;
+    }
+    select#mat-input-17 {
+        margin-top: 0;
+    } */
+    /* Instructions css */
+    .inner-cont {
+        z-index: 9999;
+        position: relative;
+    }
+    .inner-cont {
+        display: block;
+        float: left;
+        background: #fff;
+        max-width: 620px !important;
+        width: 100%;
+        padding-top: 60px;
+        padding-bottom: 80px;
+        padding-left: 30px;
+        padding-right: 30px;
+        background-position: left center !important;
+        background-size: contain !important;
+        padding-bottom: 0 !important;
+    }
+    .onboarding{
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+    .onboarding:before {
+        width: 100%;
+        background: rgba(0, 0, 0, .65 );
+        height: 100%;
+        position: absolute;
+        content: "";
+    }
+    .cont-btn {
+        display: flex;
+        justify-content: center;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+.cont-btn button{
+        margin: 0 !important;
+    }
+.cont-btn button:nth-child(2) {
+    margin-left: 20px !important;
+    }
+.cont-btn button {
+    color: #fff;
+    font-weight: 700;
+    background: linear-gradient(to right, #9d3aba, #e51197);
+    border-radius: 50px;
+    padding: 0;
+    border: 0;
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+    max-width: 130px;
+    height: 50px;
+    }
+    .inner-cont h2 {
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+        background: linear-gradient(to right, #e51197 , #9d3aba);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-transform: uppercase;
+        border-bottom: 1px solid #c921a4;
+        padding-bottom: 25px;
+        margin-bottom: 30px;    
+    }
+    .inner-cont p.congo{
+        font-size: 18px !important;
+    }
+    .inner-cont p {
+        font-size: 25px;
+        line-height: 40px;
+        color: #222222;
+        font-family: "Muli";
+        font-weight: 400;
+        text-align: center;
+    }
+    
+    .cont-btn {
+      margin-top: 26px;
+      margin-bottom: 30px
+    }
+    /* .inner-cont h3{
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+        background: linear-gradient(to right, #e51197 , #9d3aba);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-transform: uppercase; 
+        font-size: 30px;
+        margin-bottom: 40px;
+        text-align: center;
+    } */
+    
+    .progress-bar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        /* background-color: #e51197; */
+        background: linear-gradient(to right, #e51197, #9d3aba);
+        transition: width .6s ease;
+        border-radius: 30px;
+    }
+    .progress {
+        border-radius: 30px;
+        height: 20px;
+        margin-top: 32px;
+    }
+    .progress-sect .inner-cont p.text-big{
+        font-size: 18px;
+        padding: 1rem;
+    }
+    .inner-cont p.out-txt {
+        font-size: 20px;
+        line-height: 30px;
+        color: #555555;
+        font-family: "Muli";
+        font-weight: 400;
+        text-align: center;
+    }
+    .inner-cont p.out-txt span {
+        font-size: 20px;
+        line-height: 30px;
+        color: #e61096;
+        font-family: "Muli";
+        font-weight: 400;
+        text-align: center;
+    }
+    .progress-sect .inner-cont p {
+        font-size: 12px;
+        line-height: 22px;
+        color: #555555;
+        font-family: "Muli";
+        padding: 0;
+        font-weight: 400;
+        text-align: center;
+    }
+    a.save-btn {
+        display: block;
+        color: #9e3aba;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 25px;
+        text-decoration: none;
+        cursor: pointer;
+        position: relative;
+    }
+    .save-cont {
+        text-align: center;
+    }
+    a.save-btn:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        bottom: 0;
+        width: 45%;
+        background: #9e3aba;
+        height: 1px;
+    }
+h3.compet{
+    text-align: center !important;
+}
+ ::ng-deep .onboarding.progress-sect .mat-form-field-type-mat-native-select .mat-form-field-infix::after {
+    bottom: 18px;
+    margin: 0 !important;
+    top: initial !important;
+}
+::ng-deep .onboarding mat-radio-button .mat-radio-label-content {
+    white-space: pre-line !important;
+}
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: none;
+}
+@media not all and (min-resolution:.001dpcm) {
+ ::ng-deep .onboarding .mat-radio-group{
+    display: block !important;
+ }
+}
+/*======================================= Responsive ===================*/
+
+@media(max-width:1250px){
+    .inner-cont{
+        margin: 22px 0;
+    }
+}
+
+@media(max-width:909px){
+.logo-hed {
+    display: none;
+}
+}
+@media(max-width:767px){
+    .onboarding {
+        /* min-height: auto; */
+        display: flex;
+        align-items: center;
+        padding: 50px 0;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+            background-position: 0px center !important;
+    }
+    ::ng-deep .radio-sect label.mat-radio-label {
+        font-size: 16px;
+        line-height: 24px;
+        white-space: pre-wrap;
+    }
+    .onboarding button {
+        width: 100%;
+        max-width: 110px;
+        height: 38px;  
+    }
+    .buttons button {
+        margin: 0 4px;
+    }
+    .logo-hed {
+        display: none;
+    }
+    .inner-cont h2 {
+    font-size: 18px;
+
+}
+a.save-btn:after {
+    width: 203px;
+
+}
+#toastr-container.bottom-full-width > div, #toastr-container.top-full-width > div {
+    width: 88% !important;
+    margin: 10px auto;
+}
+.onboarding select {
+    padding-right: 22px !important;
+}
+}
+
+    @media(max-width:479px){
+        .born-date.mat-form-field {
+            width: 100% !important;
+            margin: 0;
+        }
+        ::ng-deep.mat-form-field-appearance-legacy .mat-form-field-infix {
+            padding: 0 !important;
+        }
+     
+        .height-persion {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        ::ng-deep .born-date .mat-form-field-wrapper {
+            padding-bottom: 0;
+        }
+        ::ng-deep .radio-sect label.mat-radio-label {
+            min-width: 245px !important;
+        }
+        .custom-slider{
+            margin-bottom: 45px;
+        }
+        a.save-btn{
+            font-size: 16px;
+
+        }
+        h3.ttl-cat{
+            padding: .63rem 1rem;
+            font-size: 20px;
+        }
+          .onboarding {
+            background-position: -370px center !important;
+    }
+    }
+
+    @media(max-width:420px){
+        .onboarding .buttons button.mat-button {
+            max-width: 111px;
+            height: 44px;
+            margin: 0 5px;
+        }
+        .onboarding button.mat-button{
+            margin: 0 auto ;
+            text-align: center;
+            display: block;
+            max-width: 112px;
+            height: 44px;
+        }
+        span.right-sld {
+            font-size: 14px;
+        }
+        span.left-sld {
+            font-size: 14px;
+        }
+    }
+
+
+    li {
+        list-style-type: none;
+      }
+
+      .invalid-feedback{
+        position: absolute;
+    }
+
+    .is-invalid~.invalid-feedback{
+        display: block !important;
+    }

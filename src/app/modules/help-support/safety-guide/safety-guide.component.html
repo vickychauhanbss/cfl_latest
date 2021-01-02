@@ -1,0 +1,38 @@
+<div class="safety-section">
+   
+   <div class="container">
+        <h1 *ngIf="safety_guide">
+            {{safety_guide.text}}
+        </h1>
+       <div class="row inner-txt-sect ">
+           <div class="col-xs-12 col-sm-12">
+            <h2 *ngIf="safety_guide">
+                {{safety_guide.heading1}}
+            </h2>
+             <p *ngIf="safety_guide">
+                 {{safety_guide.description1 | helpAndSupport}}
+            </p>
+            <div class="saftey-image" #interSectWidth>
+                <ng-container *ngIf="safety_guide.matched != null; else elseBlock">
+                    <div class="vimeo-full-width" style="padding: 56.25% 0 0 0; position: relative;">
+                        <iframe [src]="safety_guide.video" style="width:100%; position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;" allow="autoplay" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                    </div>
+                </ng-container>
+                <ng-template #elseBlock>
+                    <video _ngcontent-coverr-redesign-c19="" allowfullscreen="false" preload="auto"  loop src="{{safety_guide.video}}" class="ng-star-inserted" width="100%" height="100%" controls></video>
+                </ng-template>
+            </div>
+            <h2 *ngIf="safety_guide">
+                {{safety_guide.heading2}}
+            </h2>
+            <p *ngIf="safety_guide.description2">
+                {{safety_guide.description2 | helpAndSupport}}
+            </p>
+           </div>
+       </div>
+   </div>
+</div>

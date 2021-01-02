@@ -1,0 +1,134 @@
+<!-- <ul class="user-list">
+	<li *ngFor="let user of chatListUsers"
+		(click)="selectedUser(user)"
+		[class.active]="isUserSelected(user.id)"
+	>
+		{{ user.first_name}}
+		<span [ngClass]="user.is_online === '1' ? 'online' : 'offline'"> </span>
+	</li>
+</ul> -->
+
+
+<div class="chats-histroy">
+	<div class="chats-head">
+		<div class="search-box">
+			<input type="text" name="search" placeholder="Search" (input)="onSearchChange($event.target.value)">
+			<i class="fa fa-search"></i>
+		</div>
+	</div>
+
+	<div class="scrollbar" id="style-4">
+		<div class="force-overflow">
+			<div class="chat-list" *ngFor="let user of chatListUsers" (click)="selectedUser(user)" [class.active]="isUserSelected(user.id)">
+				<div class="chat-img">
+					<cus-image style="cursor: pointer" [url]="user.path" [actualDimension]="user?.path_dimension" [dimension]="'360x262'" [widthIns]="'.user-image-profile'" [loaderSize]="0.5"></cus-image>
+
+				</div>
+				<div class="chat-title">
+					<div class="chat-name">
+						<h5>
+							{{ user.first_name}}
+						</h5>
+						<p *ngIf="user.unread" class="count-read">
+							{{user.unread}}
+						</p>
+						<time *ngIf="user.message_visible == null || user.message_visible == userId">
+							{{ user.created_at | amLocale:'en' | amDateFormat: 'h:mm a' }}
+							<!-- {{user.message_time | dateFormat: user.message_date}} -->
+						</time>
+					</div>
+
+					<p [innerHTML]= "sheet !== '' ? (user.message | utf8EmojisToImages) : user.message"  *ngIf="user.type == 'simple' && (user.message_visible == null || user.message_visible == userId)" ></p>
+
+
+
+					<!-- <p *ngIf="user.type == 'simple' && (user.message_visible == null || user.message_visible == userId)" >
+						{{user.message}}
+					</p> -->
+					<p *ngIf="user.type == 'image' && (user.message_visible == null || user.message_visible == userId)">
+						<i class="fa fa-camera"></i>
+					</p>
+					<p *ngIf="user.type == 'video' && (user.message_visible == null || user.message_visible == userId) ">
+						<i class="fa fa-video-camera" aria-hidden="true"></i>
+					</p>
+				</div>
+			</div>
+
+
+			<div class="alert" alert-info.class="!loading" *ngIf='chatListUsers.length === 0 && filterApply == false'>
+				{{ loading && chatListUsers.length === 0 ? 'Loading your chat list...' : 'No User Avilable to chat.'}}
+			</div>
+
+			<div class="alert" alert-info.class="!loading" *ngIf='chatListUsers.length === 0 && filterApply == true'>
+				No user avilable.
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="chats-histroy mobile-show">
+	<div class="chats-head">
+		<div class="search-box">
+			<input type="text" name="search" placeholder="Search" (input)="onSearchChange($event.target.value)">
+			<i class="fa fa-search"></i>
+		</div>
+	</div>
+
+	<div class="scrollbar" id="style-4">
+		<div class="force-overflow">
+			<div class="chat-list" *ngFor="let user of chatListUsers" (click)="selectedUserMobile(user)" [class.active]="isUserSelected(user.id)">
+				<div class="chat-img">
+					<!-- <img [defaultImage]="defaultImage" [lazyLoad]="user.path" *ngIf="user.path"> -->
+					<cus-image *ngIf="user.path" style="cursor: pointer" [url]="user.path" [actualDimension]="user?.path_dimension" [dimension]="'360x262'" [widthIns]="'.user-image-profile'" [loaderSize]="0.5"></cus-image>
+
+					<img src="assets/profile/user-new.png" alt="" *ngIf="!user.path">
+					<!-- <img [src]="user.path"> -->
+				</div>
+				<div class="chat-title">
+					<div class="chat-name">
+						<h5>
+							{{ user.first_name}}
+						</h5>
+						<p *ngIf="user.unread" class="count-read">
+							{{user.unread}}
+						</p>
+						<time *ngIf="user.message_visible == null || user.message_visible == userId">
+
+							{{ user.created_at | amLocale:'en' | amDateFormat: 'h:mm a' }}
+							<!-- {{ user.message_date+' '+user.message_time | amFromUtc | amDateFormat: 'YYYY-MM-DD' }} -->
+							<!-- {{user.message_time}} -->
+						</time>
+					</div>
+
+					<p [innerHTML]= "sheet !== '' ? (user.message | utf8EmojisToImages) : user.message"  *ngIf="user.type == 'simple' && (user.message_visible == null || user.message_visible == userId)" ></p>
+
+
+<!-- 
+					<p *ngIf="user.type == 'simple' && (user.message_visible == null || user.message_visible == userId)" >
+						{{user.message}}
+					</p> -->
+					<p *ngIf="user.type == 'image' && (user.message_visible == null || user.message_visible == userId)">
+						<i class="fa fa-camera"></i>
+					</p>
+					<p *ngIf="user.type == 'video' && (user.message_visible == null || user.message_visible == userId) ">
+						<i class="fa fa-video-camera" aria-hidden="true"></i>
+					</p>
+				</div>
+			</div>
+
+
+			<div class="alert" alert-info.class="!loading" *ngIf='chatListUsers.length === 0 && filterApply == false'>
+				{{ loading && chatListUsers.length === 0 ? 'Loading your chat list...' : 'No User Avilable to chat.'}}
+			</div>
+
+			<div class="alert" alert-info.class="!loading" *ngIf='chatListUsers.length === 0 && filterApply == true'>
+				No user avilable.
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+

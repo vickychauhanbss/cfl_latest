@@ -1,0 +1,104 @@
+<div mat-dialog-content >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body" style="position: relative;">
+                <div class="inner" *ngIf="isLoading" style="display: flex;justify-content: center;align-items: center;z-index: 99999;top: 0;bottom: 0;left: 0;right: 0;background: #f2f2f2;position: absolute;">
+                    <spinner [isLoading]="true" [viewBox]="1"></spinner>
+                </div>
+                <div class="login-popup">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <form class="popup-feild" [formGroup]="loginForm" (ngSubmit)="onSubmit('website')">
+                            <h2>
+                                Login
+                            </h2>
+                            <span class="cross" (click)="dismissModal()">
+                                <i class="fa fa-times" aria-hidden="true" ></i>
+                            </span>
+                            <div class="inner-form">
+                                <div class="form-group input-txt">
+                                    <label>
+                                        <font color="red">*</font>Email :
+                                    </label>
+                                    <input matInput type="email" name="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">
+                                            Please enter the email address
+                                        </div>
+
+                                        <div *ngIf="f.email.errors?.pattern">
+                                            Email must be a valid e-mail address
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group last input-txt">
+                                    <label>
+                                        <font color="red">*</font>Password :
+                                    </label>
+                                    <input type="password" name="pass" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"  (input)="hideValidation()">
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.password.errors.required">
+                                            Please enter the Password
+                                        </div>
+                                        <div *ngIf="f.password.errors.minlength">
+                                            Password must be at least 6 characters
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="red-txt" *ngIf="errorMessage && hideMessage == false" style="color:red">
+                                    {{errorMessage}}
+                                </div>
+
+                                <div class="lost">
+                                    <span class="ft-pass">
+                                        <a (click)="forgotPassword()" class="forgotpass">
+                                            Lost Your Password?
+                                        </a>
+                                    </span>
+                                    <mat-checkbox class="check_cstm" (click)="rememberMe()" formControlName="rememberMe">
+                                        Remember me
+                                    </mat-checkbox>
+                                </div>
+                                <div class="login-btn">
+                                    <button class="login" matInput type="submit" value="">
+                                        login
+                                    </button>
+                                </div>
+                                <div class="bottom-form-txt">
+                                    <span class="or-txt">
+                                        or
+                                    </span>
+                                    <p>
+                                        Not a Member Yet?
+                                        <a class="sign" (click)="goToLoginPage()">
+                                            Sign Up!
+                                        </a>
+                                    </p>
+                                    <ul>
+                                        <li (click)="socialSignIn('facebook')">
+                                            <a class="fb" >
+                                                <span>
+                                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                                </span>
+                                                Login with Facebook
+                                            </a>
+                                        </li>
+                                        <li (click)="socialSignIn('google')">
+                                            <a class="gplus">
+                                                <span>
+                                                    <i class="fa fa-google" aria-hidden="true"></i>
+                                                </span>
+                                                Login with Google
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

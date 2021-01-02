@@ -1,0 +1,70 @@
+<div mat-dialog-content >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div>
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <form class="popup-feild">
+                            <span class="cross" (click)="dismissModal()">
+                                <i class="fa fa-times" aria-hidden="true" ></i>
+                            </span>
+                            <div class="inner-form video-pp">
+                                <div>
+                                    <h2 class="header-popup">
+                                        Upgrade To Trust Plus
+                                    </h2>
+                                    <div class="desc-popup" *ngIf="text == 'image'">
+                                        <p class="popup-txt" style="text-align: center;">Sorry, there is a 4 picture upload limit for your current membership level. When you upgrade you can add up to 8 high resolution photos, create custom video greetings to instantly send to all members, and Broadcast stories daily for all members to see.</p>
+                                        <p style="text-align: center;">This is only a few of the many benefits you get with Trust Plus.</p>
+                                    </div>
+
+                                    <div class="desc-popup" *ngIf="text == 'story'">
+                                        <p class="popup-txt" style="text-align: center;">Sorry, your not able to broadcast stories at your  current membership level. When you upgrade you can Broadcast stories daily for all members to see on their dashboard, and in their notifications.</p>
+
+                                        <p style="text-align: center;">There are so many more great benefits you get with Trust Plus. What are you waiting for?</p>
+                                    </div>
+
+                                    <p class="desc-popup" *ngIf="text == 'its_mutual'">
+                                         Wouldn’t you like to know if the person you wish to pursue is on the same interest level as you? Make the most of your time here with our unique “it’s Mutual” feature. It matches mutual ratings of dating interest, and so much more...
+                                    </p>
+
+                                    <p class="desc-popup" *ngIf="text == 'notification'">
+                                        You didn't see the notifications with current plan. Please upgrade your plan to see the notifications.
+                                    </p>
+
+                                    <p class="desc-popup" *ngIf="text == 'biggest_admir'">
+                                        Some one Really Thinks Your Hot Stuff! Find out who that special person is, and be instantly notified anytime their online
+                                    </p>
+
+                                    <p class="desc-popup" *ngIf="text == 'admir'">
+                                        You didn't access more then 6 admirer with current plan. Please upgrade your plan to access the other admirers.
+                                    </p>
+
+                                    <div class="desc-popup" *ngIf="text == 'chat'">
+                                        <p class="popup-txt" style="text-align: center;">Someone catch your eye? Make the most of the opportunity and send unlimited messages, video greetings, and share stories to any Trust  Standard, Trust Plus, or Center Stage members.</p>
+                                        <p style="text-align: center;">But that’s not all, you get so much more...</p>
+                                    </div>
+
+                                    <p class="desc-popup" *ngIf="text == 'trust_score'">
+                                        Get the insights you need with Trust Score. Put an end to your worries of romance scams and insincere  people that are in it for the wrong reasons.
+                                    </p>
+
+                                    <p class="desc-popup" *ngIf="text == 'image_total'">
+                                        You can only upload 8 images with your plan.
+                                    </p>
+
+                                    <div class="Upgrade-btn">
+                                        <button class="Upgrade" matInput type="button" (click)="goToUpgradeNowPage()">
+                                            Upgrade Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

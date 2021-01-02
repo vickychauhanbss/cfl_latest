@@ -1,0 +1,23 @@
+<div mat-dialog-content >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="login-popup">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <form class="popup-feild">
+                            <span class="cross" (click)="dismissModal()"><i class="fa fa-times" aria-hidden="true" ></i></span>
+                            <div class="inner-form video-pp">
+                                <div *ngIf="!checkVideoType" class="vimeo-full-width" style="padding: 56.25% 0 0 0;position: relative;">
+                                    <iframe [src]="videoLink" style="width:100%; position: absolute;top: 0;left: 0;width: 100%;height: 100%;" allow="autoplay" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+                                    </iframe>
+                                </div>
+                                <video playsinline=""  autoplay="autoplay" playsinline controls  [src]="videoLink" class="ng-star-inserted" width="100%" height="100%" poster="{{ image }}" *ngIf="checkVideoType"></video>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

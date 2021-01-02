@@ -1,0 +1,47 @@
+<div mat-dialog-content >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="login-popup">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <form class="popup-feild">
+                            <h2>
+                                Confirmation
+                            </h2>
+                            <span class="cross" (click)="dismissModal('')">
+                                <i class="fa fa-times" aria-hidden="true" ></i>
+                            </span>
+                            <div class="inner-form" *ngIf="condition == 'clear'">
+                                <p style="width: 100%;text-align: center;">
+                                    Are you sure you want to clear messages in this chat?
+                                </p>
+
+                                <button class="login" matInput type="submit" value="" (click)="dismissModal('')">
+                                    Cancel
+                                </button>
+                                <button class="login" matInput type="submit" value="" (click)="dismissModal('clear')">
+                                    Clear
+                                </button>
+                            </div>
+
+
+                            <div class="inner-form" *ngIf="condition == 'block'">
+                                <p style="width: 100%; text-align: center;">
+                                    Are you sure you want to block this user?
+                                </p>
+
+                                <button class="login" matInput type="submit" value="" (click)="dismissModal('')">
+                                    Cancel
+                                </button>
+                                <button class="login" matInput type="submit" value="" (click)="dismissModal('block')">
+                                    Block
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

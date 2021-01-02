@@ -1,0 +1,10 @@
+<div class="container">
+   <ngx-spinner></ngx-spinner>
+   <div class="inner-container term-page">
+      <h1>{{name}}</h1>
+      <div class="page-text-term">
+         <p [innerHTML]="divMessages | safeHtml"></p>
+      </div>
+      <div *ngIf="!divMessages && showDiv == true" style="text-align: center">No record yet.</div>
+   </div>
+</div>

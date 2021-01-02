@@ -1,0 +1,38 @@
+<div mat-dialog-content >
+    <div class="modal-dialog video-modal" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="login-popup">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <form class="popup-feild">
+                            <span class="cross" (click)="dismissModal()"><i class="fa fa-times" aria-hidden="true" ></i></span>
+                            <div class="inner-form video-pp">
+                                <div class="video-section">
+                                    <div class="video" #modalBody>
+                                        
+                                        <div *ngIf="!checkVideoType" class="vimeo-full-width" style="padding: 56.25% 0 0 0;">
+                                            <iframe [src]="videoLink" style="width:100%; position: absolute;top: 0;left: 0;width: 100%;height: 100%;" allow="autoplay" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+                                            </iframe>
+                                        </div>
+
+                                        <video allowfullscreen="false" preload="auto" autoplay="autoplay" playsinline loop [src]="videoLink" class="ng-star-inserted" width="100%" height="100%"  poster="assets/home-img/poster.jpg" id="VideoPlay" *ngIf="checkVideoType"></video>
+
+                                        <!-- <a class="watch-btn" (click)="playStop()">
+                                            <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                        </a> -->
+                                        <!-- <mat-video [autoplay]="true" [preload]="true" [fullscreen]="false" [download]="false" color="accent" spinner="spin" poster="assets/home-img/poster.jpg">
+                                            <source matVideoSource src="assets/home-img/client-video-old.mp4" type="video/mp4">
+                                        </mat-video> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

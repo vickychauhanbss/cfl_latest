@@ -1,0 +1,49 @@
+<div class="notification" infiniteScroll [infiniteScrollDistance]="0" [infiniteScrollThrottle]="300"
+	(scrolled)="onScrollDown()">
+	<div class="container">
+		<div class="row">
+			<h2 class="noti-header" *ngIf="notificationArray.length > 0">
+				Notification
+			</h2>
+			<ul *ngFor="let noti of notificationArray">
+				<li>
+					<span class="left-side">
+						<div class="left-txt-img"><i class="fa fa-check-circle"></i>
+							<cus-image *ngIf="noti.profile_image; else elseImageBlock" class="notification-image"
+								style="cursor: pointer" [url]="noti.profile_image.path"
+								[actualDimension]="noti.profile_image.path_dimension" [dimension]="'360x262'"
+								[widthIns]="'.left-txt-img'" [loaderSize]="0.5"></cus-image>
+							<ng-template #elseImageBlock>
+								<img src="assets/dashboard/maria.jpg" class="notification-image" alt=""
+									*ngIf="noti.gender == 1">
+								<img src="assets/profile/dummy-image.jpg" class="notification-image" alt=""
+									*ngIf="noti.gender == 2">
+							</ng-template>
+						</div>
+
+						<div [innerHTML]="noti.message | safeHtml">
+						</div> <a *ngIf="noti != null" class="ach-tag" (click)="goToProfilepage(noti)">{{noti.link}}</a>
+					</span>
+					<p class="right-side">
+						{{noti.date | date : 'M/d/yyyy, h:mm a'}}
+					</p>
+				</li>
+			</ul>
+			<div *ngIf="loadingMore" style="width: 100%; text-align: center;">
+				<div class="lds-ellipsis">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+			<div class="no-data-found profiles-main text-center" *ngIf="noMoreData">
+				<img src="assets/bell.png" alt="" style="width: 180px;
+				margin: auto;
+				margin-bottom: 30px;">
+				<h1> No Notifications Yet!</h1>
+				<p>When you will get notifications, they'll show up here.</p>
+			</div>
+		</div>
+	</div>
+</div>

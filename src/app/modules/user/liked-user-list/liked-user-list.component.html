@@ -1,0 +1,29 @@
+<div mat-dialog-content>
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="login-popup">
+                    <div class="overlay"></div>
+                    <span class="cross" (click)="dismissModal('')">
+                        <i class="fa fa-times" aria-hidden="true" ></i>
+                    </span>
+                    <div class="container">
+                        <ul class="update-image">
+                            <li *ngFor="let users of userList">
+                                <img src="assets/dashboard/maria.jpg" alt="" *ngIf="users.profile_img == ''">
+
+                                <img [defaultImage]="defaultImage" alt="" [lazyLoad]="users.profile_img" *ngIf="users.profile_img != ''">
+
+                                <!-- <img [src]="users.profile_img" alt="" *ngIf="users.profile_img != ''"> -->
+                                <span (click)="goToUserProfile(users)">
+                                    {{users.name}} liked your image
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

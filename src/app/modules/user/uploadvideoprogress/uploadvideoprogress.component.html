@@ -1,0 +1,27 @@
+<div mat-dialog-content >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="login-popup">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <form class="popup-feild">
+                            <h2>
+                                Uploading...
+                            </h2>
+                            <div class="inner-form" style="width: 360px;">
+                                <mat-progress-bar style="height: 10px;" class="example-margin" [color]="'#801b5d'" [mode]="'buffer'"
+                                [value]="data.percentage">
+                                </mat-progress-bar>
+
+                                <button class="continue" matInput (click)="cancelUploading()">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

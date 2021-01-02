@@ -1,0 +1,422 @@
+<div mat-dialog-content >
+   <div class="quick-view-popup">
+      <span class="cross" (click)="dismissModal()">
+         <i class="fa fa-times" aria-hidden="true" ></i>
+      </span>
+      <div class="w-100" style="overflow: hidden;">
+         <div class="container">
+            <div [@animSlider]="counter">
+               <ng-container *ngFor="let o of [].constructor(dataLength); let i=index">
+                  <ng-container *ngIf="i===counter">
+                     <div class="row">
+                        <div class="col-xs-12 col-sm-4">
+                           <div class="big-adminer">
+                              <div class="admier-img">
+                                 <cus-image *ngIf="user.profile_photo; else elseImageBlock" style="cursor: pointer" [url]="user.profile_photo.path" [actualDimension]="user.profile_photo.path_dimension" [dimension]="'360x262'" [widthIns]="'.admier-img'" [loaderSize]="0.5"></cus-image>
+                                 <ng-template #elseImageBlock>
+                                    <img src="assets/dashboard/maria.jpg" alt="" *ngIf="user.gender == 1">
+                                    <img src="assets/profile/dummy-image.jpg" alt="" *ngIf="user.gender == 2">
+                                 </ng-template>
+                              </div>
+                              <div class="like-icons">
+                                 <img src="assets/profile/like-thumb.png" alt="">
+                              </div>
+                              <div class="bottom-info">
+                                 <div class="name-info">
+                                    <span style="text-transform: capitalize;">
+                                       {{ user.first_name }}
+                                    </span>
+                                    <span class="online" *ngIf="user.online == '1'">
+                                       <i class="fa fa-circle" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="offline" *ngIf="user.isOnline == '0'">
+                                       <i class="fa fa-circle" aria-hidden="true"></i>
+                                    </span>
+                                 </div>
+                                 <div class="chat-info">
+                                    <ul>
+                                       <li>
+                                          <i class="fa fa-comments" aria-hidden="true"></i>
+                                       </li>
+                                       <li>
+                                          <i class="fa fa-video-camera" aria-hidden="true"></i>
+                                       </li>
+   
+                                       <ng-container [ngSwitch]="user.interest_user_id?.interest">
+                                          <li *ngSwitchDefault class="star-chat" (click)="openInterestDiv(i)">
+                                             <img src="assets/dashboard/star-grey.png" alt="" id="check-open">
+                                          </li>
+                                          
+                                          <li class="star-chat" *ngSwitchCase="'1'" (click)="openInterestDiv(i)" >
+                                             <img src="assets/dashboard/center-stage-star.png" alt="" id="check-open">
+                                          </li>
+   
+                                          <li class="star-chat" *ngSwitchCase="'2'" (click)="openInterestDiv(i)">
+                                             <img src="assets/dashboard/center-stage-star.png" alt="" id="check-open">
+                                             <img src="assets/dashboard/center-stage-star.png" alt="" id="check-open">
+                                          </li>
+   
+                                          <li class="star-chat" *ngSwitchCase="'3'" (click)="openInterestDiv(i)">
+                                             <img src="assets/dashboard/center-stage-star.png" alt="" id="check-open">
+                                             <img src="assets/dashboard/center-stage-star.png" alt="" id="check-open">
+                                             <img src="assets/dashboard/center-stage-star.png" alt="" id="check-open">
+                                          </li>
+                                       </ng-container>
+                                    </ul>
+                                 </div>
+                              </div>
+                              <div [ngClass]="quickIndex === i ? 'show-intrest' : 'hide-intrest' ">
+                                 <mat-radio-group class="radio-select">
+                                    <mat-radio-button #button class="radio-sect-dash" *ngFor="let inerest of interestOptions" [value]="inerest.id" (click)="updateInterest(button.value)">
+                                       <img [src]="inerest.image" alt="">
+                                       {{inerest.name}}
+                                    </mat-radio-button>
+                                 </mat-radio-group>
+                              </div>
+                           </div>
+                           <div class="buttons">
+                              <ul>
+                                 <button mat-button type="button" (click)="onPrevious()" *ngIf="counter>0">Back</button>
+                                 <button mat-button type="button" (click)="onNext()" *ngIf="counter < dataLength - 1">Next</button>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-8">
+                           <div class=" right-quick-section">
+                              <div class="top-ttl">
+                                 <span class="personal-description">
+                                    {{user.profile_status?.name}}
+                                 </span>
+                                 <span class="height-info" *ngIf="user.quickViewData.quesData[0]">
+                                    <img src="assets/profile/heigh-sect.png" alt="">
+                                    {{user.quickViewData.quesData[0].choosed_option}}
+                                 </span>
+                              </div>
+                              <div class="row inner-user-data-profile">
+                                 <div class="col-xs-12 col-sm-6">
+                                    <div class="user-data">
+                                       <span>
+                                          <img src="assets/profile/children.png" alt="">
+                                       </span>
+                                       <span class="data-info">
+                                          Children:
+                                       </span>
+                                       <p *ngIf="user.quickViewData.quesData[3]">
+                                          {{user.quickViewData.quesData[3].choosed_option}}
+                                       </p>
+                                    </div>
+                                    <div class="user-data">
+                                       <span>
+                                          <img src="assets/profile/drink.png" alt="">
+                                       </span>
+                                       <span class="data-info">
+                                          Drink:
+                                       </span>
+                                       <p *ngIf="user.quickViewData.quesData[2]">
+                                          {{user.quickViewData.quesData[2].choosed_option}}
+                                       </p>
+                                    </div>
+                                    <div class="user-data">
+                                       <span>
+                                          <img src="assets/profile/religion.png" alt="">
+                                       </span>
+                                       <span class="data-info">
+                                          Religion:
+                                       </span>
+                                       <p *ngIf="user.quickViewData.quesData[5]">
+                                          {{user.quickViewData.quesData[5].choosed_option}}
+                                       </p>
+                                    </div>
+                                    <div class="user-data">
+                                       <span>
+                                          <img src="assets/profile/ethinicity.png" alt="">
+                                       </span>
+                                       <span class="data-info">
+                                          Ethnicity:
+                                       </span>
+                                       <p *ngIf="user.quickViewData.quesData[4]">
+                                          {{user.quickViewData.quesData[4].choosed_option}}
+                                       </p>
+                                    </div>
+                                 </div>
+                                 <div class="col-xs-12 col-sm-6">
+                                    <div class="user-data">
+                                       <span>
+                                          <img src="assets/profile/smoke.png" alt="">
+                                       </span>
+                                       <span class="data-info">
+                                          Smoke:
+                                       </span>
+                                       <p *ngIf="user.quickViewData.quesData[1]">
+                                          {{user.quickViewData.quesData[1].choosed_option}}
+                                       </p>
+                                    </div>
+                                    <div class="user-data">
+                                       <span>
+                                          <img src="assets/profile/education.png" alt="">
+                                       </span>
+                                       <span class="data-info">
+                                          Education:
+                                       </span>
+                                       <p *ngIf="user.quickViewData.quesData[7]">
+                                          {{user.quickViewData.quesData[7].choosed_option}}
+                                       </p>
+                                    </div>
+                                    <div class="user-data">
+                                       <span>
+                                          <img src="assets/profile/language.png" alt="">
+                                       </span>
+                                       <span class="data-info">
+                                          Language:
+                                       </span>
+                                       <p *ngIf="user.quickViewData.quesData[6]">
+                                          {{user.quickViewData.quesData[6].choosed_option}}
+                                       </p>
+                                    </div>
+                                    <div class="user-data">
+                                       <span>
+                                          <img src="assets/profile/relocation.png" alt="">
+                                       </span>
+                                       <span class="data-info">
+                                          Relocation:
+                                       </span>
+                                       <p *ngIf="user.quickViewData.quesData[8]">
+                                          {{user.quickViewData.quesData[8].choosed_option}}
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="full-bio" (click)="goToDetailPage(user)">
+                                 <a>
+                                    View {{user.first_name}}’s Full Profile
+                                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row chat-box">
+                        <div class="col-xs-12 col-sm-4 center-stag-users-data">
+                           <div class="inner-wrap">
+                              <h3 class="ttl-value">Value Belief Score</h3>
+                              <div class="connection" *ngFor ="let score of user.category_score">
+                                 <h2>
+                                    {{score.categoryName}}
+                                 </h2>
+                                 <div class="range-slider">
+                                    <!-- {{ score.score }}
+                                    {{ options | json }} -->
+                                    <ng5-slider [(value)]="score.score" [options]="options" [manualRefresh]="manualRefresh"></ng5-slider>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+   
+   
+                        <div class="chatbox col-xs-12 col-sm-8">
+                           <div class="chat-drop-dots">
+                              <button (click)="currentUesr?.plan_type == 2 ||  currentUesr?.plan_type == 3 ? showDiv = !showDiv : show_popup('chat')">
+                                 <i class="fa fa-ellipsis-v"></i>
+                              </button>
+                              <div *ngIf="showDiv" class="show-options-top" [@enterUpper]>
+                                 <div class="show-up-top">
+                                    <p style="cursor: pointer" (click)="clearHistory()">
+                                       Clear Chat History
+                                    </p>
+                                    <p style="cursor: pointer" (click)="blockUser('block')" *ngIf="checkUserBlock == false">
+                                       Block User
+                                    </p>
+                                    <p style="cursor: pointer" (click)="blockUser('unblock')" *ngIf="checkUserBlock == true  && blockedUesrId == currentUesr?.id">
+                                       Unblock User
+                                    </p>
+                                    <p style="cursor: pointer" (click)="blockUser('block')" *ngIf="checkUserBlock == true  && blockedUesrId != currentUesr?.id">
+                                       Block User
+                                    </p>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="chat-msg" #scrollMe id="style-2" [scrollTop]="scrollMe.scrollHeight">
+                              <div *ngFor="let message of messages">
+                                 <div>
+                                 <div class="chat-msg-right" *ngIf="message.toUserId != currentUesr?.id">
+                                    <div class="sender-msg">
+                                       <div class="msg-details">
+                                          <div class="user-img">
+                                             <cus-image *ngIf="currentUesr?.profile_img; else elseImageBlock" style="cursor: pointer" [url]="currentUesr?.profile_img" [actualDimension]="currentUesr?.profile_img_dimension" [dimension]="'360x262'" [widthIns]="'.user-img'" [loaderSize]="0.5"></cus-image>
+                                             <ng-template #elseImageBlock>
+                                                <img src="assets/dashboard/maria.jpg" alt="" *ngIf="currentUesr?.gender == 1">
+                                                <img src="assets/profile/dummy-image.jpg" alt="" *ngIf="currentUesr?.gender == 2">
+                                             </ng-template>
+                                          </div>
+                                          <div class="msg-box">
+                                             <div class="chat-msg-inner" *ngIf="message.type == 'simple'" >
+                                                <p [innerHTML]= "sheet !== '' ? (message.message | utf8EmojisToImages) : message.message"></p>
+                                             </div>
+                                             <div *ngIf="message.type == 'image'" (click)="open(message)">
+                                                <!-- <img [src]="message.message" alt="" height="150" width="auto" > -->
+                                                <img [defaultImage]="defaultImage" [lazyLoad]="message.message" height="150" width="auto">
+                                             </div>
+   
+                                             <div *ngIf="message.type == 'video'" style="position: relative;"  (click)="openVideoModal(message.message)">
+   
+                                                <video width="auto" height="150" controls playsinline>
+                                                   <source [src]="message.message" type="video/mp4">
+                                                </video>
+                                                <!-- <video width="auto" height="150" disabled="true" >
+                                                   <source [src]="message.message" type="video/mp4">
+                                                </video> -->
+   
+                                                <i class="fa fa-play-circle" aria-hidden="true" style="display: inline-block;
+                                                position: absolute;
+                                                left: 50%;
+                                                top: 50%;
+                                                z-index: 9;
+                                                color: #fff;
+                                                transform: translate(-50%, -50%);"></i>
+                                             </div>
+   
+                                             <div class="chat-like-time">
+                                                <div class="like-heart"></div>
+                                                <div class="tick-time">
+                                                   <i class="fa fa-check"></i>
+                                                   <time>{{ message.created_at | amLocale:'en' | amDateFormat: 'h:mm a' }}</time>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="chat-msg-left" *ngIf="message.toUserId == currentUesr?.id">
+                                    <div class="sender-msg">
+                                       <div class="msg-details">
+                                          <div class="user-img">
+                                             <cus-image *ngIf="user.profile_photo; else elseImageBlock" style="cursor: pointer" [url]="user.profile_photo.path" [actualDimension]="user.profile_photo.path_dimension" [dimension]="'360x262'" [widthIns]="'.user-img'" [loaderSize]="0.5"></cus-image>
+                                             <ng-template #elseImageBlock>
+                                                <img src="assets/dashboard/maria.jpg" alt="" *ngIf="user.gender == 1">
+                                                <img src="assets/profile/dummy-image.jpg" alt="" *ngIf="user.gender == 2">
+                                             </ng-template>
+                                          </div>
+                                          <div class="msg-box">
+                                             <div class="chat-msg-inner" *ngIf="message.type == 'simple'">
+   
+                                                <p [innerHTML]= "sheet !== '' ? (message.message | utf8EmojisToImages) : message.message"></p>
+                                             </div>
+                                             <div *ngIf="message.type == 'image'" (click)="open(message)">
+   
+                                                <img [defaultImage]="defaultImage" [lazyLoad]="message.message" height="150" width="auto">
+                                                <!-- <img src="{{message.message}}" alt="" height="auto" width="150" > -->
+                                             </div>
+   
+                                             <div *ngIf="message.type == 'video'" style="position: relative;"  (click)="openVideoModal(message.message)">
+                                                <video width="auto" height="150" controls playsinline>
+                                                   <source [src]="message.message" type="video/mp4">
+                                                </video>
+                                                <!-- <video width="auto" height="150" disabled="true" >
+                                                   <source [src]="message.message" type="video/mp4">
+                                                </video> -->
+   
+                                                <i class="fa fa-play-circle" aria-hidden="true" style="display: inline-block;
+                                                position: absolute;
+                                                left: 50%;
+                                                top: 50%;
+                                                z-index: 9;
+                                                color: #fff;
+                                                transform: translate(-50%, -50%);"></i>
+                                             </div>
+   
+                                             <div class="chat-like-time">
+                                                <div class="tick-time">
+                                                   <i class="fa fa-check"></i>
+                                                   <time>
+                                                      {{ message.created_at | amLocale:'en' | amDateFormat: 'h:mm a' }}
+                                                   </time>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 </div>
+                              </div>
+                           </div>
+   
+   
+                           <div  class="message-thread start-chatting-banner chat-msg" *ngIf="messages.length === 0 && showDivData == true">
+                              <p class="heading">
+                                 You haven't chatted with {{user.first_name}} in a while,
+                                 <span class="sub-heading">
+                                    Say Hi.
+                                 </span>
+                              </p>
+                           </div>
+                           <div class="error-display" *ngIf="showError == true">{{errorUpload}}</div>
+                           <div *ngIf="showEmoji" class="show-gif-emoji-top">
+                              <div class="show-up-gif-top">
+                                 <mat-tab-group>
+                                    <mat-tab label="EMOJI">
+                                       <emoji-mart (emojiClick)="addEmoji($event)" [set]="'apple'" [isNative]="false"></emoji-mart>
+                                    </mat-tab>
+                                    <mat-tab label="GIF">
+                                       <div class="giphy-search">
+                                          <form (ngSubmit)="searchGiphy()">
+                                             <div class="search-box">
+                                                <input type="text" name="search" placeholder="Search for a GIF" [(ngModel)]="giphySearchTerm">
+                                             </div>
+                                          </form>
+                                          <ul class="search-results">
+                                            <li class="gif-result" *ngFor="let result of giphyResults">
+                                             <img src="{{ result.images.downsized_large.url }}" (click)="sendGif(result.title, result.images.original.url)">
+                                            </li>
+                                          </ul>
+                                       </div>
+                                    </mat-tab>
+                                 </mat-tab-group>
+                              </div>
+                           </div>
+                           <div class="show-input">
+                              <div class="user-chat-input" *ngIf='user !== null'>
+                                 <div class="chat-typing">
+                                    <i class="fa fa-smile"></i>
+                                    <form [formGroup]="messageForm" novalidate>
+                                       <input type="text" class="message form-control" placeholder="Type and hit Enter" (keyup)="sendMessage($event, '')" formControlName="message" [attr.disabled]="checkUserBlock == true && blockedUesrId == currentUesr?.id || currentUesr?.plan_type == 1 || currentUesr?.plan_type == '' ? true:null"/>
+                                    </form>
+   
+                                    <div class="smile-face" *ngIf="checkUserBlock">
+                                       <img src="assets/chat/smile.png">
+                                    </div>
+   
+                                    <div class="smile-face" (click)="currentUesr?.plan_type == 1 || currentUesr?.plan_type == '' ?  show_popup('chat') : showEmoji = !showEmoji"  *ngIf="!checkUserBlock">
+                                       <img src="assets/chat/smile.png">
+                                    </div>
+   
+                                    <div class="input-icon">
+                                       <input type="file" #files id="files" class="hidden" (change)="fileProgress($event)"  [attr.disabled]="checkUserBlock == true && blockedUesrId == currentUesr?.id ? true:null"/>
+   
+   
+                                       <img src="assets/chat/gallery-gradient.png" alt="" class="fa fa-camera" [class.disabled]="checkUserBlock == true && blockedUesrId == currentUesr?.id ? true:null"  (click)="currentUesr?.plan_type == 1 || currentUesr?.plan_type == '' ?  show_popup('chat') : opnGallary()"  *ngIf="!checkUserBlock">
+   
+                                       <img src="assets/chat/gallery-gradient.png" alt="" class="fa fa-camera" [class.disabled]="checkUserBlock == true && blockedUesrId == currentUesr?.id ? true:null"    *ngIf="checkUserBlock">
+   
+   
+                                       <label class="upload" for="files" title="Upload new photo"  [class.disabled]="checkUserBlock == true && blockedUesrId == currentUesr?.id ? true:null" *ngIf="currentUesr?.plan_type > 1">
+                                          <img src="assets/chat/sparkchat.png" alt="">
+                                       </label>
+   
+   
+                                       <label class="upload" title="Upload new photo"  [class.disabled]="checkUserBlock == true && blockedUesrId == currentUesr?.id ? true:null" *ngIf="currentUesr?.plan_type == 1 || currentUesr?.plan_type == ''" (click)="show_popup('chat')">
+                                          <img src="assets/chat/sparkchat.png" alt="">
+                                       </label>
+                                    </div>
+                                    <i class="fa fa-telegram" aria-hidden="true"  (click)="sendMessage($event, 'click')" *ngIf="messageForm.value.message"></i>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </ng-container>
+               </ng-container>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

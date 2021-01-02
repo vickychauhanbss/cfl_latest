@@ -1,0 +1,455 @@
+
+<div class="banner">
+    <div id="container">
+        <video _ngcontent-coverr-redesign-c19="" allowfullscreen="false" [muted]="'muted'" preload="auto" autoplay="autoplay" playsinline loop src="{{ bucketUrl+''+homeData?.home_banner?.image_link }}" class="ng-star-inserted" width="100%" height="50%" id="homeVideo"></video>
+        <div class="content">
+            <div class="banner-img" *ngIf="homeData">
+                <h1>
+                    {{homeData.home_banner.title}}
+                </h1>
+                <p>
+                    {{homeData.home_banner.subtitle}}
+                </p>
+                <ul>
+                    <li><a class="start-btn" (click)="openStartNowModal()">
+                        Start Now
+                    </a></li>
+                    <li (click)="videoModal(homeData.home_banner.video_link)">
+                        <a class="watch-btn">
+                            <i class="fa fa-play-circle" aria-hidden="true"></i>
+                            Watch Video
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="quote-section" [ngStyle]="{'background' : 'url(assets/home-img/qoute.jpg)'}" *ngIf="homeData">
+    <div class="container">
+        <div class="quote-txt">
+            <i class="fa fa-quote-left" aria-hidden="true"></i>
+            <h5>
+                {{homeData.top_quote.title}}
+            </h5>
+            <strong>
+                {{homeData.top_quote.reference}}
+            </strong>
+        </div>
+    </div>
+</div>
+<div class="chance-to-love">
+    <div class="container">
+        <h4 *ngIf="homeData">
+            {{homeData.chance_to_love.title}}
+        </h4>
+        <div class="row">
+            <div class=" col-xs-12 col-sm-6 " *ngIf="homeData">
+                <ul>
+                    <li>
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>
+                        {{homeData.chance_to_love.text1}}
+                    </li>
+                    <li>
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>
+                        {{homeData.chance_to_love.text2}}
+                    </li>
+                </ul>
+            </div>
+            <div class=" col-xs-12 col-sm-6 " *ngIf="homeData">
+                <ul>
+                    <li>
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>
+                        {{homeData.chance_to_love.text3}}
+                    </li>
+                    <li>
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>
+                        {{homeData.chance_to_love.text4}}
+                    </li>
+                </ul>
+             </div>
+        </div>
+        <p *ngIf="homeData">
+            <strong>
+            {{homeData.chance_to_love.subtitle}}
+            </strong>
+        </p>
+        <div class="popup-btn">
+            <a class="start-btn" (click)="openStartNowModal()">
+               Start Now
+            </a>
+        </div>
+    </div>
+</div>
+<div class="video-section" [ngStyle]="{'background' : 'url(assets/home-img/bg-final1.png)'}">
+    <div class="video" *ngIf="homeData"></div>
+    <div class="video-txt">
+        <div class="container" *ngIf="homeData">
+            <p>
+                {{homeData.home_video.title}}
+            </p>
+            <ul class="text-center-video">
+                <li (click)="videoModal(homeData.home_video.video_link)">
+                    <a class="watch-btn-txt">
+                       <!--  <i class="fa fa-play-circle" aria-hidden="true"></i> -->
+                        <p>Watch Video</p>
+                        <img src="assets/home-img/video-icon.png" alt="">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="inspiration-section">
+    <div class="container">
+        <div class="inspiration-txt" *ngIf="homeData">
+            <i class="fa fa-quote-left" aria-hidden="true"></i>
+            <p>
+                {{homeData.inspiration.title}}
+                <span>
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                </span>
+            </p>
+        </div>
+        <div class="recomended" *ngIf="homeData">
+             <div class="left-img">
+                    <img [src]="imageUrl + homeData.inspiration.image_link" alt="">
+             </div>
+             <div class="right-cont">
+                <p>
+                    <strong>
+                        {{homeData.inspiration.reference}}
+                    </strong>
+                    recommends
+                    <img src="assets/home-img/recomandation.png" alt="">
+                    <span>
+                        Crazy Filipina Love
+                    </span>
+                </p>
+             </div>
+        </div>
+    </div>
+</div>
+<div class="its-your-time">
+    <div class="container">
+        <h2 *ngIf="homeData">
+            {{homeData.its_your_time.title}}
+        </h2>
+        <div class="row" *ngIf="homeData">
+            <div class="col-xs-12 col-sm-4">
+                <div class="sect-img">
+                    <img [src]="imageUrl + homeData.its_your_time.logo_link[0]" alt="">
+                </div>
+                <h3>
+                    {{homeData.its_your_time.subtitle[0]}}
+                </h3>
+                <p>
+                    {{homeData.its_your_time.description[0]}}
+                </p>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <div class="sect-img">
+                    <img [src]="imageUrl + homeData.its_your_time.logo_link[1]" alt="">
+                </div>
+                <h3>
+                    {{homeData.its_your_time.subtitle[1]}}
+                </h3>
+                <p>
+                    {{homeData.its_your_time.description[1]}}
+                </p>
+
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <div class="sect-img">
+                    <img [src]="imageUrl + homeData.its_your_time.logo_link[2]" alt="">
+                </div>
+                <h3>
+                    {{homeData.its_your_time.subtitle[2]}}
+                </h3>
+                <p>
+                    {{homeData.its_your_time.description[2]}}
+                </p>
+
+            </div>
+        </div>
+        <div class="popup-btn">
+            <a class="start-btn" (click)="openStartNowModal()">
+                Start Now
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="different-love" id="community" [ngStyle]="{'background' : 'url(assets/home-img/0FY_51971.JPG)'}" [ngClass]="charLimit === 200 ? 'first-class' : 'second-class'">
+    <div class="container">
+        <h2 *ngIf="homeData">
+            {{homeData.how_its_different.title}}
+        </h2>
+        <p *ngIf="homeData">
+            {{homeData.how_its_different.subtitle}}
+        </p>
+        <div class="love-listing col-md-12">
+            <ul>
+                <li class="count">
+                    01
+                </li>
+            </ul>
+            <ul *ngIf="homeData">
+                <li class="title">
+                    {{homeData.how_its_different.heading[0]}}
+                </li>
+                <li class="content">
+                    <!-- blog.description.length > 120)  ? (blog.description.slice(0,130) | striphtml) + '...' : blog.description | striphtml -->
+                    <span  @fade [innerHTML]="(homeData.how_its_different.text[0].length > 200)  ? (homeData.how_its_different.text[0].slice(0, 220)) + '...' : homeData.how_its_different.text[0]" *ngIf="charLimit <= 200">
+                    </span>
+
+                    <!-- <span  @fade [innerHTML]="homeData.how_its_different.text[0].slice(0, 220) | safeHtmlDetail" *ngIf="charLimit == 100">
+                    </span> -->
+
+                    <span @fade [innerHTML]="homeData.how_its_different.text[0].slice(0, 1000) | safeHtmlDetail"  *ngIf="charLimit > 200"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="love-listing col-md-12">
+            <ul>
+                <li class="count">
+                    02
+                </li>
+            </ul>
+            <ul *ngIf="homeData">
+                <li class="title">
+                    {{homeData.how_its_different.heading[1]}}
+                </li>
+                <li class="content">
+
+                    <span  @fade [innerHTML]="(homeData.how_its_different.text[1].length > 200)  ? (homeData.how_its_different.text[1].slice(0, 220)) + '...' : homeData.how_its_different.text[1]" *ngIf="charLimit <= 200">
+                    </span>
+
+                    <!-- <span  @fade [innerHTML]="homeData.how_its_different.text[1].slice(0, 220) | safeHtmlDetail" *ngIf="charLimit == 100">
+                    </span> -->
+
+                    <span @fade [innerHTML]="homeData.how_its_different.text[1].slice(0, 1000) | safeHtmlDetail"  *ngIf="charLimit > 200"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="love-listing col-md-12">
+            <ul>
+                <li class="count">
+                    03
+                </li>
+            </ul>
+            <ul *ngIf="homeData">
+                <li class="title">
+                    {{homeData.how_its_different.heading[2]}}
+                </li>
+                <li class="content">
+
+                    <span  @fade [innerHTML]="(homeData.how_its_different.text[2].length > 200)  ? (homeData.how_its_different.text[2].slice(0, 220)) + '...' : homeData.how_its_different.text[2]" *ngIf="charLimit <= 200">
+                    </span>
+
+
+                   <!-- <span  @fade [innerHTML]="homeData.how_its_different.text[2].slice(0, 220) | safeHtmlDetail" *ngIf="charLimit == 100">
+                    </span> -->
+
+                    <span @fade [innerHTML]="homeData.how_its_different.text[2].slice(0, 1000) | safeHtmlDetail"  *ngIf="charLimit > 200"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="continue-reading" (click)="showDiv()">
+            <a *ngIf="charLimit == 200">
+                Read More >>
+            </a>
+            <a *ngIf="charLimit > 200">
+                Read Less >>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="testimonials-section">
+    <div class="container">
+        <h2>
+            See What People Have To Say
+        </h2>
+        <owl-carousel [options]="carouselOptions" [items]="homeData.testimonial" [carouselClasses]="['owl-theme', 'row', 'sliding']" *ngIf="homeData">
+            <div class="item" *ngFor="let image of homeData.testimonial;let i= index">
+                <div class="row testmonials">
+                    <div class="col-xs-12 col-sm-2 testimonial-img">
+                        <cus-image style="cursor: pointer" [url]="image.user_image" [actualDimension]="image.user_image_dimension" [dimension]="'360x262'" [widthIns]="'.testimonial-img'" [loaderSize]="0.5">
+                        </cus-image>
+                    </div>
+                    <div class="col-xs-12 col-sm-10 tesimomial-txt">
+                        <p>
+                            {{image.text}}
+                        </p>
+                        <strong>
+                            {{image.user}}
+                        </strong>
+                    </div>
+                </div>
+            </div>
+        </owl-carousel>
+    </div>
+</div>
+<div class="logo-section">
+    <div class="container">
+        <h2>
+            Featured On
+        </h2>
+        <div class="row" *ngIf="homeData">
+            <div class="col-xs-12 col-sm-4" *ngFor="let image of homeData.featured.image">
+                <img [src]="imageUrl + image" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="social-section">
+    <div class="container">
+        <div class="row" *ngIf="homeData">
+            <h4></h4>
+            <div class="col-xs-12 col-sm-4 center">
+                <div *ngIf="homeData" class="heding-new">
+                    {{homeData.social_media_images.data[0].title}}
+                </div>
+
+                <div class="content-section">
+                    <i class="fa fa-facebook" aria-hidden="true" (click)="goToLink(homeData.social_media_links.facebook_page)"></i>
+                    <h2 *ngIf="homeData.social_media_images.data">
+                        <a href="{{homeData.social_media_links.facebook_page}}" target="_blank" title="Facebook">
+                            {{ homeData.social_media_images.data[0].description }}
+                        </a>
+                    </h2>
+                </div>
+                <div class="img-section" id="socialMediaImage"> 
+                    <cus-image style="cursor: pointer" [url]="homeData.social_media_images.data[0].image" [actualDimension]="homeData.social_media_images.data[0].video_link" [dimension]="'360x262'" [widthIns]="'#socialMediaImage'" [loaderSize]="0.5" (click)="goToLink(homeData.social_media_links.facebook_page)">
+                    </cus-image>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 center video-center" >
+                <div *ngIf="homeData" class="heding-new">
+                    {{homeData.social_media_images.data[1].title}}
+                </div>
+                <div class="content-section">
+                    <i class="fa fa-youtube" aria-hidden="true" (click)="goToLink(homeData.social_media_links.youtube_channel)"></i>
+                    <h2 *ngIf="homeData.social_media_images.data">
+                        <a href="{{homeData.social_media_links.youtube_channel}}" target="_blank" title="Youtube">
+                            {{homeData.social_media_images.data[1].description}}
+
+                        </a>
+                    </h2>
+                </div>
+                <div class="img-section">
+                    <cus-image style="cursor: pointer" [url]="homeData.social_media_images.data[1].image" [actualDimension]="homeData.social_media_images.data[1].video_link" [dimension]="'360x262'" [widthIns]="'#socialMediaImage'" [loaderSize]="0.5" (click)="goToLink(homeData.social_media_links.youtube_channel)">
+                    </cus-image>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 center">
+                <div *ngIf="homeData" class="heding-new">
+                    {{homeData.social_media_images.data[2].title}}
+                </div>
+                <div class="content-section">
+                    <i class="fa fa-instagram" aria-hidden="true" (click)="goToLink(homeData.social_media_links.instagram_handle)"></i>
+
+                    <h2 *ngIf="homeData.social_media_images.data">
+                        <a href="{{homeData.social_media_links.instagram_handle}}" target="_blank" title="Youtube">
+                            {{homeData.social_media_images.data[2].description}}
+
+                        </a>
+                    </h2>
+                </div>
+                <div class="img-section">
+                    <cus-image style="cursor: pointer" [url]="homeData.social_media_images.data[2].image" [actualDimension]="homeData.social_media_images.data[2].video_link" [dimension]="'360x262'" [widthIns]="'#socialMediaImage'" [loaderSize]="0.5" (click)="goToLink(homeData.social_media_links.instagram_handle)">
+                    </cus-image>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="post-section" id="about" #scrollToMe>
+    <div class="container">
+        <h2 class="main-hed" *ngIf="homeData">
+            {{homeData.user_blog.title}}
+        </h2>
+        <div class="row" *ngIf="homeData">
+            <div class="col-xs-12 col-sm-4 post-txt" *ngFor="let blog of homeData.user_blog.data" id="myImageSection">
+                <cus-image [url]="blog.image" [actualDimension]="blog.thumbnail" [dimension]="'360x262'" [widthIns]="'#myImageSection'" [loaderSize]="0.5">
+                </cus-image>
+                <h2>
+                    {{blog.page_title}}
+                </h2>
+                <p>
+                    {{(blog.description.length > 120)  ? (blog.description.slice(0,130) | striphtml) + '...' : blog.description | striphtml}}
+                    <!-- {{blog.description | striphtml | slice:0:145}} -->
+                </p>
+                <a (click)="goToDetailPage(blog)">
+                    Learn More
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-section" [ngStyle]="{'background' : 'url(assets/home-img/bootom-banner1.jpg)'}" *ngIf="homeData">
+    <div class="container">
+        <div class="form-txt">
+            <h2>
+                {{homeData.download_guide.title}}
+            </h2>
+            <p>
+                {{homeData.download_guide.description}}
+            </p>
+            <img src="assets/home-img/katra-finl.jpg" alt="">
+            <div class="kartra_optin_containerb6d767d2f8ed5d21a44b0e5886680cb9" style="text-align: center;"></div>
+
+
+            <!-- <button class="sub" matInput type="button" value="Download Now-Free" (ngSubmit)="onSubmit()">
+                {{homeData.download_guide.text1}}
+            </button> -->
+
+            <!-- <form class="input-feild"  [formGroup]="downloadGuideForm" #formDirective="ngForm"  (ngSubmit)="onSubmit(formDirective)">
+                <div class="form-group">
+                    <input matInput type="text"  formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" placeholder="Name">
+
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div *ngIf="f.name.errors.required">
+                            Please enter name
+                        </div>
+                        <div *ngIf="f.name.errors.pattern">
+                            Only alphabets are allowed or make sure the input is between 24 characters long
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input matInput type="email" name="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" placeholder="Email">
+
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">
+                            Please enter the e-mail address
+                        </div>
+
+                        <div *ngIf="f.email.errors?.pattern">
+                            Invalid e-mail address
+                        </div>
+                    </div>
+                </div>
+            </form> -->
+        </div>
+    </div>
+</div>
+<div class="call-to-action" *ngIf="homeData">
+    <div class="container">
+        <h2>
+            {{homeData.bottom_quote.title}}
+        </h2>
+        <p>
+            {{homeData.bottom_quote.subtitle}}
+        </p>
+        <div class="start-button">
+            <a (click)="openStartNowModal()">
+                Start Now
+            </a>
+        </div>
+    </div>
+</div>

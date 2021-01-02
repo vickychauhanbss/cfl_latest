@@ -1,0 +1,1319 @@
+<div class="dashboard">
+	<div class="container" id="outer-cont">
+		<div class="banner-country row" *ngIf="showCountryBanner == true">
+			<div class="col-xs-12 col-sm-3">
+				<img class="map-img" (click)="mobileActivePage=''" [src]="countryData.image_path" alt=""
+					*ngIf="countryData.image_path != ''">
+				<h2>
+					{{countryData.name}}
+				</h2>
+				<h3>
+					{{countryData.heading}}
+				</h3>
+			</div>
+			<div class="col-xs-12 col-sm-6">
+				<p>
+					{{countryData.short_description}}
+				</p>
+				<a class="learn-more-country" (click)="goToCountryDetailPage()"
+					*ngIf="countryData.short_description != ''">
+					Learn More
+					<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-3" (click)="videoModal(countryData.video_path)">
+				<div class="video-ban">
+					<div class="video-overlay">
+						<h4>
+							Know More About The Region
+						</h4>
+						<div class="video-icon-banner">
+							<img src="assets/profile/play1.png" alt="">
+							<span>
+								Watch Video
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" id="my-warpper">
+			<div class="col-xs-12 col-sm-3 left-sidebar" id="left-id" #fixedLeftBar>
+				<div class="inner-section sticky-inner">
+					<div class="big-top" *ngIf="showCountryBanner == false">
+						<div class="big-adminer" *ngIf="biggestAdmirer[0]">
+							<div class="admier-img">
+								<cus-image *ngIf="biggestAdmirer[0] && biggestAdmirer[0]?.profile_photo"
+									[ngClass]="userData.plan_type == 1 || biggestAdmirer.length == 0 ? 'blur-image' : '' "
+									style="cursor: pointer" [url]="biggestAdmirer[0]?.profile_photo.path"
+									[actualDimension]="biggestAdmirer[0]?.profile_photo.path_dimension"
+									[dimension]="'360x262'" [widthIns]="'.admier-img'" [loaderSize]="0.5"></cus-image>
+
+								<img src="assets/dashboard/maria.jpg" alt=""
+									*ngIf="biggestAdmirer[0] && biggestAdmirer[0].profile_photo == ''"
+									[ngClass]="userData.plan_type == 1 || biggestAdmirer.length == 0 ? 'blur-image' : '' ">
+							</div>
+							<div class="quick"
+								(click)="userData.plan_type > 1 ? openQuickView(0, biggestAdmirer[0], 'biggestadmirer') : show_popup('biggest_admir')">
+								<a>
+									Quick View
+								</a>
+							</div>
+
+							<div class="title-sec"
+								(click)="userData.plan_type == 1 || userData.plan_type == '' ?  show_popup('biggest_admir') : ''">
+								<span>
+									Biggest Admirer
+								</span>
+								<span class="heart">
+									<i class="fa fa-heart" aria-hidden="true"></i>
+								</span>
+							</div>
+							<div class="bottom-info admire-details" *ngIf="biggestAdmirer[0]">
+								<div class="name-info"
+									(click)="userData.plan_type == 1 || userData.plan_type == '' ?  show_popup('biggest_admir') : ''">
+									<span class="name-client" *ngIf="biggestAdmirer[0]"
+										[ngClass]="userData.plan_type == 1 || biggestAdmirer.length == 0 ? 'blur-image' : '' ">
+										{{biggestAdmirer[0].first_name}}
+									</span>
+
+									<span class="online"
+										*ngIf="biggestAdmirer[0] && biggestAdmirer[0].is_online == '1' ">
+										<i class="fa fa-circle" aria-hidden="true"></i>
+									</span>
+
+									<span class="offline"
+										*ngIf="biggestAdmirer[0] && biggestAdmirer[0].is_online == '0'">
+										<i class="fa fa-circle" aria-hidden="true"></i>
+									</span>
+								</div>
+								<div class="chat-info">
+									<ul>
+										<li
+											(click)="userData.plan_type == 1 || userData.plan_type ==  '' ?  show_popup('chat') : goToChatPage(biggestAdmirer[0])">
+											<i class="fa fa-comments" aria-hidden="true"></i>
+										</li>
+										<li
+											(click)="userData.plan_type == 1 || userData.plan_type ==  '' ?  show_popup('chat') : openVideoGreeting(biggestAdmirer[0])">
+											<i class="fa fa-video-camera" aria-hidden="true"></i>
+										</li>
+
+										<ng-container [ngSwitch]="biggestAdmirer[0].interest_user_id?.interest">
+											<li *ngSwitchDefault class="star-chat"
+												(click)="userData.plan_type > 1 ? showInterestOptions(biggestAdmirer[0]) : show_popup('biggest_admir') ">
+												<img src="assets/dashboard/star-grey.png" alt="" id="check-open">
+											</li>
+
+											<li class="star-chat" *ngSwitchCase="'1'"
+												(click)="userData.plan_type > 1 ? showInterestOptions(biggestAdmirer[0]) : show_popup('biggest_admir') ">
+												<img src="assets/dashboard/center-stage-star.png" alt=""
+													id="check-open">
+											</li>
+
+											<li class="star-chat" *ngSwitchCase="'2'"
+												(click)="userData.plan_type > 1 ? showInterestOptions(biggestAdmirer[0]) : show_popup('biggest_admir') ">
+												<img src="assets/dashboard/center-stage-star.png" alt=""
+													id="check-open">
+												<img src="assets/dashboard/center-stage-star.png" alt=""
+													id="check-open">
+											</li>
+
+											<li class="star-chat" *ngSwitchCase="'3'"
+												(click)="userData.plan_type > 1 ? showInterestOptions(biggestAdmirer[0]) : show_popup('biggest_admir') ">
+												<img src="assets/dashboard/center-stage-star.png" alt=""
+													id="check-open">
+												<img src="assets/dashboard/center-stage-star.png" alt=""
+													id="check-open">
+												<img src="assets/dashboard/center-stage-star.png" alt=""
+													id="check-open">
+											</li>
+										</ng-container>
+									</ul>
+								</div>
+								<div [ngClass]="showAdmir === 1 ? 'show-intrest' : 'hide-intrest' " id="show-admir">
+									<mat-radio-group class="radio-select" id="check-radio" [(ngModel)]="trueAdmir">
+										<mat-radio-button #button class="radio-sect-dash"
+											*ngFor="let inerest of interestOptions" [value]="inerest.id"
+											(click)="updateAdmireInterest(button.value);$event.stopPropagation();">
+											<img [src]="inerest.image" alt="">
+											{{inerest.name}}
+										</mat-radio-button>
+									</mat-radio-group>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="big-adminer desk" *ngIf="!biggestAdmirer[0]">
+							<div class="admier-img">
+								<img src="assets/dashboard/biggest_boy.jpg" alt=""
+									[ngClass]="biggestAdmirer.length == 0 ? 'blur-image' : '' "
+									*ngIf="userData.interested_in == 1">
+
+								<img src="assets/dashboard/biggest_girl.jpg" alt=""
+									[ngClass]="biggestAdmirer.length == 0 ? 'blur-image' : '' "
+									*ngIf="userData.interested_in == 2">
+							</div>
+							<div class="quick">
+								<a>
+									Quick View
+								</a>
+							</div>
+
+							<div class="title-sec">
+								<span>
+									Biggest Admirer
+								</span>
+								<span class="heart">
+									<i class="fa fa-heart" aria-hidden="true"></i>
+								</span>
+							</div>
+							<div class="bottom-info">
+								<div class="name-info">
+									<span [ngClass]="biggestAdmirer.length == 0 ? 'blur-image' : '' ">
+										Angelica Howell
+									</span>
+									<span class="offline">
+										<i class="fa fa-circle" aria-hidden="true"></i>
+									</span>
+								</div>
+								<div class="chat-info">
+									<ul>
+										<li>
+											<i class="fa fa-comments" aria-hidden="true"></i>
+										</li>
+										<li>
+											<i class="fa fa-video-camera" aria-hidden="true"></i>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="admire-txt">
+							<p *ngIf="biggestAdmirer.length == 0 && showCountryBanner == false" class="p-first">
+								Searching..... Everyone has one!
+							</p>
+							<p *ngIf="userData.plan_type == 1 && biggestAdmirer.length > 0 && showCountryBanner == false && userData.gender == 2"
+								class="p-second">
+								Upgrade now.... He's waiting!
+							</p>
+
+							<p *ngIf="userData.plan_type == 1 && biggestAdmirer.length > 0 && showCountryBanner == false && userData.gender == 1"
+								class="p-second">
+								Upgrade now.... She's waiting!
+							</p>
+						</div>
+					</div>
+
+					<!--================ For Mobile ======= ============ -->
+					<div class="mobile">
+						<!--================ admire-new ======= ============ -->
+						<div class="big-adminer" *ngIf="!biggestAdmirer[0] && showCountryBanner == false">
+
+							<div class="admier-img">
+								<img src="assets/dashboard/biggest_boy.jpg" alt=""
+									[ngClass]="biggestAdmirer.length == 0 ? 'blur-image' : '' "
+									*ngIf="userData.interested_in == 1">
+
+								<img src="assets/dashboard/biggest_girl.jpg" alt=""
+									[ngClass]="biggestAdmirer.length == 0 ? 'blur-image' : '' "
+									*ngIf="userData.interested_in == 2">
+							</div>
+
+							<div class="mobile-right-sect">
+								<div class="title-sec">
+									<span>
+										Biggest Admirer
+									</span>
+									<span class="heart">
+										<i class="fa fa-heart" aria-hidden="true"></i>
+									</span>
+								</div>
+								<div class="bottom-info">
+									<div class="name-info">
+										<span class="client-name"
+											[ngClass]="biggestAdmirer.length == 0 ? 'blur-image' : '' ">
+											Angelica Howell
+										</span>
+										<span class="offline cir">
+											<i class="fa fa-circle" aria-hidden="true"></i>
+										</span>
+									</div>
+									<div class="chat-info">
+										<ul>
+											<li>
+												<i class="fa fa-comments" aria-hidden="true"></i>
+											</li>
+											<li>
+												<i class="fa fa-video-camera" aria-hidden="true"></i>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--================ admire-new ======= ============ -->
+
+						<div class="big-adminer" *ngIf="showCountryBanner == false && biggestAdmirer[0]">
+							<div class="admier-img">
+								<cus-image *ngIf="biggestAdmirer[0] && biggestAdmirer[0]?.profile_photo; else elseBlock"
+									[ngClass]="userData.plan_type == 1 || biggestAdmirer.length == 0 ? 'blur-image' : '' "
+									style="cursor: pointer" [url]="biggestAdmirer[0]?.profile_photo.path"
+									[actualDimension]="biggestAdmirer[0]?.profile_photo.path_dimension"
+									[dimension]="'360x262'" [widthIns]="'.admier-img'" [loaderSize]="0.5"></cus-image>
+								<ng-template #elseBlock>
+									<img src="assets/dashboard/maria.jpg" alt=""
+										[ngClass]="userData.plan_type == 1 ? 'blur-image' : '' ">
+								</ng-template>
+
+							</div>
+
+							<div class="mobile-right-sect">
+								<div class="title-sec"
+									(click)="userData.plan_type == 1 || userData.plan_type == '' ?  show_popup('biggest_admir') : ''">
+									<span>
+										Biggest Admirer
+									</span>
+									<span class="heart">
+										<i class="fa fa-heart" aria-hidden="true"></i>
+									</span>
+								</div>
+								<div class="name-info"
+									(click)="userData.plan_type == 1 || userData.plan_type == '' ?  show_popup('biggest_admir') : ''">
+									<span *ngIf="biggestAdmirer[0]"
+										[ngClass]="userData.plan_type == 1 || userData.plan_type == '' ? 'blur-image' : '' ">
+										{{biggestAdmirer[0].first_name}}
+									</span>
+
+									<span class="online"
+										*ngIf="biggestAdmirer[0] && biggestAdmirer[0].is_online == '1' ">
+										<i class="fa fa-circle" aria-hidden="true"></i>
+									</span>
+
+									<span class="offline"
+										*ngIf="biggestAdmirer[0] && biggestAdmirer[0].is_online == '0'">
+										<i class="fa fa-circle" aria-hidden="true"></i>
+									</span>
+								</div>
+								<div class="bottom-info">
+									<div class="chat-info">
+										<ul>
+											<li
+												(click)="userData.plan_type == 1 || userData.plan_type ==  '' ?  show_popup('chat') : goToChatPage(biggestAdmirer[0])">
+												<i class="fa fa-comments" aria-hidden="true"></i>
+											</li>
+											<li
+												(click)="userData.plan_type == 1 || userData.plan_type ==  '' ?  show_popup('chat') : openVideoGreeting(biggestAdmirer[0])">
+												<i class="fa fa-video-camera" aria-hidden="true"></i>
+											</li>
+
+											<ng-container [ngSwitch]="biggestAdmirer[0].interest_user_id?.interest">
+												<li *ngSwitchDefault class="star-chat"
+													(click)="userData.plan_type > 1 ? showInterestOptions(biggestAdmirer[0]) : show_popup('biggest_admir') ">
+													<img src="assets/dashboard/star-grey.png" alt="" id="check-open">
+												</li>
+
+												<li class="star-chat" *ngSwitchCase="'1'"
+													(click)="userData.plan_type > 1 ? showInterestOptions(biggestAdmirer[0]) : show_popup('biggest_admir') ">
+													<img src="assets/dashboard/center-stage-star.png" alt=""
+														id="check-open">
+												</li>
+
+												<li class="star-chat" *ngSwitchCase="'2'"
+													(click)="userData.plan_type > 1 ? showInterestOptions(biggestAdmirer[0]) : show_popup('biggest_admir') ">
+													<img src="assets/dashboard/center-stage-star.png" alt=""
+														id="check-open">
+													<img src="assets/dashboard/center-stage-star.png" alt=""
+														id="check-open">
+												</li>
+
+												<li class="star-chat" *ngSwitchCase="'3'"
+													(click)="userData.plan_type > 1 ? showInterestOptions(biggestAdmirer[0]) : show_popup('biggest_admir') ">
+													<img src="assets/dashboard/center-stage-star.png" alt=""
+														id="check-open">
+													<img src="assets/dashboard/center-stage-star.png" alt=""
+														id="check-open">
+													<img src="assets/dashboard/center-stage-star.png" alt=""
+														id="check-open">
+												</li>
+											</ng-container>
+										</ul>
+									</div>
+									<div [ngClass]="showAdmir === 1 ? 'show-intrest' : 'hide-intrest' " id="show-admir">
+
+										<mat-radio-group class="radio-select" id="check-radio" [(ngModel)]="trueAdmir">
+											<mat-radio-button #button class="radio-sect-dash"
+												*ngFor="let inerest of interestOptions" [value]="inerest.id"
+												(click)="updateAdmireInterest(button.value);$event.stopPropagation();">
+												<img [src]="inerest.image" alt="">
+												{{inerest.name}}
+											</mat-radio-button>
+										</mat-radio-group>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--================ End  Mobile ======= ============ -->
+					<!-- <div class="state-phi hide-mobile"> -->
+
+					<div [ngClass]="showCountryBanner === false ? 'state-phi hide-mobile' : 'state-phi new-st hide-mobile'"
+						[bgImage]="stateBanner?.path" [actualDimension]="stateBanner?.path_dimension"
+						*ngIf="stateBanner">
+						<div class="inner-cit">
+							<h2>
+								{{stateBanner.banner_text}}
+							</h2>
+							<div class="btn-view">
+								<button (click)="goToPhilipinePage()">
+									{{stateBanner.button_text}}
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div>
+
+
+
+						<div class="dateing hide-mobile" id="foo">
+							<div class="icon-right-title">
+								<h2>
+									My Dating Interest
+								</h2>
+								<span *ngIf="filters.interest_id" title="Refresh filter"
+									(click)="filters.interest_id = null;reFetch();">
+									<i class="fa fa-repeat" aria-hidden="true"></i>
+								</span>
+							</div>
+
+							<mat-radio-group class="radio-select" [(ngModel)]="filters.interest_id">
+								<mat-radio-button class="radio-sect-dash" value="1"
+									(change)="filters.interest_id = $event.value;reFetch();">
+									<img src="assets/dashboard/maybe1.png" alt="">
+									Maybe
+								</mat-radio-button>
+								<mat-radio-button class="radio-sect-dash" value="2"
+									(change)="filters.interest_id = $event.value;reFetch();">
+									<img src="assets/dashboard/probably1.png" alt="">
+									Probably
+								</mat-radio-button>
+								<mat-radio-button class="radio-sect-dash" value="3"
+									(change)="filters.interest_id = $event.value;reFetch();">
+									<img src="assets/dashboard/absolutely.png" alt="">
+									Absolutely
+								</mat-radio-button>
+							</mat-radio-group>
+						</div>
+
+						<div class="apply-filter hide-mobile">
+							<div class="icon-right-title">
+								<h2>
+									Apply Filter
+								</h2>
+								<span
+									*ngIf="filters.filter.new_to_me || filters.filter.complete_profile || filters.filter.common_values || filters.filter.most_engagement || filters.filter.recent_active"
+									title="Refresh filters.filter"
+									(click)="filters.filter.new_to_me =false;filters.filter.complete_profile =false;filters.filter.common_values =false;filters.filter.most_engagement =false;filters.filter.recent_active =false;reFetch();">
+									<i class="fa fa-repeat" aria-hidden="true"></i>
+								</span>
+							</div>
+							<div class="checkboxes">
+								<mat-checkbox class="check_cstm" [(ngModel)]="filters.filter.new_to_me"
+									(change)="reFetch()">
+									New to Me!
+								</mat-checkbox>
+								<mat-checkbox class="check_cstm" [(ngModel)]="filters.filter.complete_profile"
+									(change)="reFetch()">
+									Complete Profile
+								</mat-checkbox>
+								<mat-checkbox class="check_cstm" [(ngModel)]="filters.filter.common_values"
+									(change)="reFetch()">
+									Common Values
+								</mat-checkbox>
+								<mat-checkbox class="check_cstm" [(ngModel)]="filters.filter.most_engagement"
+									(change)="reFetch()">
+									Most Engagement
+								</mat-checkbox>
+								<mat-checkbox class="check_cstm" [(ngModel)]="filters.filter.recent_active"
+									(change)="reFetch()">
+									Recently Active!
+								</mat-checkbox>
+							</div>
+						</div>
+
+						<div
+							[ngClass]="showCountryBanner === false ? 'explore hide-mobile' : 'explore-new hide-mobile'">
+							<div class="explore-state hide-mobile user-search">
+								<div class="icon-right-title">
+									<h2>
+										Get Specific
+									</h2>
+									<span *ngIf="filters.user_name" (click)="filters.user_name = ''; reFetch();"
+										title="Refresh filter">
+										<i class="fa fa-repeat" aria-hidden="true"></i>
+									</span>
+								</div>
+								<p>
+									<span>
+										<i class="fa fa-user" aria-hidden="true"></i>
+									</span>
+									<strong>
+										Find by User Name
+									</strong>
+								</p>
+								<mat-form-field class="state-prov">
+									<input matInput class="form-control fil-input" [(ngModel)]="filters.user_name"
+										(input)="keyUp.next($event)">
+								</mat-form-field>
+							</div>
+
+							<div class="explore-state">
+								<div class="icon-right-title">
+									<h2>
+										Explore
+									</h2>
+									<span *ngIf="filters.country" title="Refresh filter"
+										(click)="filters.country='';filters.state='';showCountryBanner= false;reFetch();">
+										<i class="fa fa-repeat" aria-hidden="true"></i>
+									</span>
+								</div>
+								<p>
+									<span>
+										<i class="fa fa-globe" aria-hidden="true"></i>
+									</span>
+									<strong>
+										Search any Country / State
+									</strong>
+								</p>
+								<mat-form-field class="state-prov">
+									<select matNativeControl class="state" (change)="chooseCountry($event)"
+										[(ngModel)]="filters.country">
+										<option value="">
+											------ Choose country ------
+										</option>
+										<option *ngFor="let country of countiesArray; let i = index;"
+											[ngValue]="country.id">
+											{{country.name}}
+										</option>
+									</select>
+								</mat-form-field>
+
+
+								<mat-form-field class="state-prov" *ngIf="statesArray.length > 0">
+									<select matNativeControl class="state" (change)="chooseState($event)"
+										[(ngModel)]="filters.state">
+										<option value="">
+											------ Choose state ------
+										</option>
+										<option *ngFor="let state of statesArray; let i = index;" [ngValue]="state.id">
+											{{state.name}}
+										</option>
+									</select>
+								</mat-form-field>
+
+								<div class="go-btn">
+									<button class="visit" matInput type="submit" value=""
+										(click)="showCountryBanner= false;reFetch()"
+										[disabled]="!filters.country || !filters.state">
+										SEARCH
+									</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 mid-cont">
+				<!-- <h2 class="main-head" *ngIf="showCountryBanner == false">Center Stage</h2> -->
+				<div class="stage-title">
+					<h2 *ngIf="showCountryBanner == false">
+						Center Stage!
+					</h2>
+					<button *ngIf="showCountryBanner == false && userData.plan_type <= 2" title="Apply for center stage"
+						(click)="apply_for_center_stage()" class="center-stage-button">
+						Apply Now
+					</button>
+				</div>
+
+				<div class="row shadow-bottom" *ngIf="showCountryBanner == false && centerStage.length > 0">
+					<owl-carousel style="width: 100%;" [options]="carouselOptions" [items]="centerStage"
+						[carouselClasses]="['owl-theme', 'sliding']">
+						<div class="item-carousel" *ngFor="let stage of centerStage;let i = index">
+							<div class="inner-wrap">
+								<div class="user-img" (click)="goToDetailPage(stage, stage.id)">
+									<cus-image *ngIf="stage.profile_photo; else elseImageBlock" style="cursor: pointer"
+										[url]="stage.profile_photo.path"
+										[actualDimension]="stage.profile_photo.path_dimension" [dimension]="'360x262'"
+										[widthIns]="'.user-img'" [loaderSize]="0.5"></cus-image>
+									<ng-template #elseImageBlock>
+										<img src="assets/dashboard/maria.jpg" alt="" *ngIf="stage.gender == 1">
+										<img src="assets/profile/dummy-image.jpg" alt="" *ngIf="stage.gender == 2">
+									</ng-template>
+								</div>
+								<div class="quick" (click)="openQuickView(i, stage, 'centerStage')">
+									<a>
+										Quick View
+									</a>
+									<span class="ribben"> <img src="assets/dashboard/center-stage-ribbon.png"
+											alt=""></span>
+								</div>
+								<div class="user-info">
+									<div class="username-info centre-online">
+										<span class="client-name" (click)="goToDetailPage(stage, stage.id)"
+											title="{{ stage.first_name }}">
+											{{stage.first_name}}
+										</span>
+										<span class="online" *ngIf="stage.is_online == '1'">
+											<i class="fa fa-circle" aria-hidden="true"></i>
+										</span>
+										<span class="offline" *ngIf="stage.is_online == '0'">
+											<i class="fa fa-circle" aria-hidden="true"></i>
+										</span>
+									</div>
+									<div class="chat-info">
+										<ul>
+											<li
+												(click)="userData.plan_type == 1 || userData.plan_type ==  '' ?  show_popup('chat') : goToChatPage(stage)">
+												<i class="fa fa-comments" aria-hidden="true"></i>
+											</li>
+
+											<li
+												(click)="userData.plan_type == 1 || userData.plan_type ==  '' ?  show_popup('chat') : openVideoGreeting(stage)">
+												<i class="fa fa-video-camera" aria-hidden="true"></i>
+											</li>
+
+											<ng-container [ngSwitch]="stage.interest_user_id?.interest">
+												<li *ngSwitchDefault class="star-chat"
+													(click)="showCenterDiv(i, stage)">
+													<img src="assets/dashboard/star-grey.png" alt="" id="check-open">
+												</li>
+
+												<li class="star-chat" *ngSwitchCase="'1'"
+													(click)="showCenterDiv(i, stage)">
+													<img src="assets/dashboard/center-stage-star.png" alt=""
+														id="check-open">
+												</li>
+
+												<li class="star-chat" *ngSwitchCase="'2'"
+													(click)="showCenterDiv(i, stage)">
+													<img src="assets/dashboard/center-stage-star.png" alt=""
+														id="check-open">
+													<img src="assets/dashboard/center-stage-star.png" alt=""
+														id="check-open">
+												</li>
+
+												<li class="star-chat" *ngSwitchCase="'3'"
+													(click)="showCenterDiv(i, stage)">
+													<img src="assets/dashboard/center-stage-star.png" alt=""
+														id="check-open">
+													<img src="assets/dashboard/center-stage-star.png" alt=""
+														id="check-open">
+													<img src="assets/dashboard/center-stage-star.png" alt=""
+														id="check-open">
+												</li>
+											</ng-container>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div [ngClass]="indexCenter === i ? 'show-intrest' : 'hide-intrest' " id="flyout-example">
+								<mat-radio-group class="radio-select" id="check-radio">
+									<mat-radio-button #button class="radio-sect-dash"
+										*ngFor="let inerest of interestOptions" [value]="inerest.id"
+										(click)="updateCenterInterest(i,button.value);$event.stopPropagation();">
+										<img [src]="inerest.image" alt="">
+										{{inerest.name}}
+									</mat-radio-button>
+								</mat-radio-group>
+							</div>
+						</div>
+					</owl-carousel>
+				</div>
+				<div *ngIf="centerStage.length == 0 && showNotFound == true" class="row no-data-found-center-stage">
+					<div class="col-md-12" style="display: flex;
+					justify-content: center;">
+						<img src="assets/dashboard/no-data.png" alt="" style="width: 150px;">
+						<div style="display: flex;
+						flex-flow: column;
+						justify-content: center;">
+							<h1>No Center Stage Profiles Found!</h1>
+							<p>Please refine your preferences Criteria.</p>
+						</div>
+					</div>
+				</div>
+
+				<div id="mobile-scl-filter">
+					<div class="view-more" *ngIf="showCountryBanner == false && centerStage.length > 0">
+						<a (click)="goToCenterStage()">
+							<span class="view">
+								View Center Stage
+							</span>
+							<span class="next-icon">
+								<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+							</span>
+						</a>
+					</div>
+				</div>
+				<hr *ngIf="showCountryBanner == false" />
+				<div class="mobile-filter sticky">
+					<div class="filter-sect">
+						<span class="user-das is_online" [class.active-filter]="mobileActivePage=='is_online'"
+							(click)="filters.tab='is_online';reFetch();mobileActivePage='is_online'">
+							<img src="assets/dashboard/user-male.png" alt="">
+							<i _ngcontent-srg-c4="" aria-hidden="true" class="fa fa-circle online-icon"></i>
+						</span>
+						<span class="its_mutual" [class.active-filter]="mobileActivePage=='its_mutual'"
+							(click)="userData.plan_type == 1 ||  userData.plan_type == '' ?  show_popup('its_mutual') : filters.tab='its_mutual';reFetch();mobileActivePage='its_mutual'">
+							<img src="assets/dashboard/heart-icon.png" alt="" class="first-img">
+						</span>
+						<span class="all_admirers" [class.active-filter]="mobileActivePage=='all_admirers'"
+							(click)="filters.tab='all_admirers';reFetch();mobileActivePage='all_admirers'">
+							<img src="assets/dashboard/lovers.png" alt="" class="third-img">
+						</span>
+						<span class="more_preferences" (click)="goToSetMorePreferencesPage()">
+							<img src="assets/dashboard/filter1.png" alt="" class="forth-img">
+						</span>
+						<span class="last-filter" [class.active-filter]="mobileActivePage=='last_filter'"
+							(click)="showFilterOnMobile();mobileActivePage='last_filter'">
+							<img src="assets/dashboard/menu.png" alt="">
+						</span>
+					</div>
+				</div>
+				<div class="content-filter">
+					<!-- filter -->
+					<div></div>
+					<div class="filter-left-sidebar" *ngIf="displayddl">
+						<div class="state-phi" [bgImage]="stateBanner?.path"
+							[actualDimension]="stateBanner?.path_dimension" *ngIf="stateBanner">
+							<div class="inner-cit">
+								<h2>
+									{{stateBanner.banner_text}}
+								</h2>
+								<div class="btn-view">
+									<button (click)="goToPhilipinePage()">
+										{{stateBanner.button_text}}
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="dateing" id="foo">
+							<div class="icon-right-title">
+								<h2>
+									My Dating Interest
+								</h2>
+								<span *ngIf="filters.interest_id" title="Refresh filter"
+									(click)="filters.interest_id = null;reFetch();">
+									<i class="fa fa-repeat" aria-hidden="true"></i>
+								</span>
+							</div>
+
+							<mat-radio-group class="radio-select" [(ngModel)]="filters.interest_id">
+								<mat-radio-button class="radio-sect-dash" value="1"
+									(change)="filters.interest_id = $event.value;reFetch();">
+									<img src="assets/dashboard/maybe1.png" alt="">
+									Maybe
+								</mat-radio-button>
+								<mat-radio-button class="radio-sect-dash" value="2"
+									(change)="filters.interest_id = $event.value;reFetch();">
+									<img src="assets/dashboard/probably1.png" alt="">
+									Probably
+								</mat-radio-button>
+								<mat-radio-button class="radio-sect-dash" value="3"
+									(change)="filters.interest_id = $event.value;reFetch();">
+									<img src="assets/dashboard/absolutely.png" alt="">
+									Absolutely
+								</mat-radio-button>
+							</mat-radio-group>
+						</div>
+
+						<div class="apply-filter">
+							<div class="icon-right-title">
+								<h2>
+									Apply Filter
+								</h2>
+								<span
+									*ngIf="filters.filter.new_to_me || filters.filter.complete_profile || filters.filter.common_values || filters.filter.most_engagement || filters.filter.recent_active"
+									title="Refresh filters.filter"
+									(click)="filters.filter.new_to_me =false;filters.filter.complete_profile =false;filters.filter.common_values =false;filters.filter.most_engagement =false;filters.filter.recent_active =false;reFetch();">
+									<i class="fa fa-repeat" aria-hidden="true"></i>
+								</span>
+							</div>
+							<div class="checkboxes">
+								<mat-checkbox class="check_cstm" [(ngModel)]="filters.filter.new_to_me"
+									(change)="reFetch()">
+									New to Me!
+								</mat-checkbox>
+								<mat-checkbox class="check_cstm" [(ngModel)]="filters.filter.complete_profile"
+									(change)="reFetch()">
+									Complete Profile
+								</mat-checkbox>
+								<mat-checkbox class="check_cstm" [(ngModel)]="filters.filter.common_values"
+									(change)="reFetch()">
+									Common Values
+								</mat-checkbox>
+								<mat-checkbox class="check_cstm" [(ngModel)]="filters.filter.most_engagement"
+									(change)="reFetch()">
+									Most Engagement
+								</mat-checkbox>
+								<mat-checkbox class="check_cstm" [(ngModel)]="filters.filter.recent_active"
+									(change)="reFetch()">
+									Recently Active!
+								</mat-checkbox>
+							</div>
+						</div>
+						<div class="explore">
+							<div class="explore-state user-search">
+								<div class="icon-right-title">
+									<h2>
+										Get Specific
+									</h2>
+									<span *ngIf="filters.user_name" (click)="filters.user_name=''; reFetch();"
+										title="Refresh filter">
+										<i class="fa fa-repeat" aria-hidden="true"></i>
+									</span>
+								</div>
+								<p>
+									<span>
+										<i class="fa fa-user" aria-hidden="true"></i>
+									</span>
+									<strong>
+										Find by User Name
+									</strong>
+								</p>
+								<mat-form-field class="state-prov">
+									<input matInput class="form-control fil-input" [(ngModel)]="filters.user_name"
+										(input)="keyUp.next($event)">
+								</mat-form-field>
+							</div>
+
+							<div class="explore-state">
+								<div class="icon-right-title">
+									<h2>
+										Explore
+									</h2>
+
+									<span *ngIf="selected_country" title="Refresh filter"
+										(click)="filters.country='';filters.state='';showCountryBanner= false;reFetch();">
+										<i class="fa fa-repeat" aria-hidden="true"></i>
+									</span>
+								</div>
+
+								<i class="fa fa-sync"></i>
+								<p>
+									<span>
+										<i class="fa fa-globe" aria-hidden="true"></i>
+									</span>
+									<strong>
+										Visit Their Country / State
+									</strong>
+								</p>
+								<mat-form-field class="state-prov">
+									<select matNativeControl class="state" (change)="chooseCountry($event)"
+										[(ngModel)]="filters.country">
+										<option value="">
+											------ Choose country ------
+										</option>
+										<option *ngFor="let country of countiesArray; let i = index;"
+											[ngValue]="country.id">
+											{{country.name}}
+										</option>
+									</select>
+								</mat-form-field>
+
+								<mat-form-field class="state-prov" *ngIf="statesArray.length > 0">
+									<select matNativeControl class="state" (change)="chooseState($event)"
+										[(ngModel)]="filters.state">
+										<option value="">
+											------ Choose state ------
+										</option>
+										<option *ngFor="let state of statesArray; let i = index;" [ngValue]="state.id">
+											{{state.name}}
+										</option>
+									</select>
+								</mat-form-field>
+								<div class="go-btn">
+									<button class="visit" matInput type="submit" value=""
+										(click)="showCountryBanner= false;reFetch();"
+										[disabled]="!filters.country || !filters.state">
+										Search
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- End Filter -->
+					<p class="filter-name" id="mobile-user-list">
+						{{selectedFilterName}}
+					</p>
+					<div class="set-more-btn">
+						<div class="togal-per">
+							<ui-switch (change)="toggleFilter($event, 'more_preferences')" [(ngModel)]="toggle">
+							</ui-switch>
+							<a>Apply Preferences</a>
+						</div>
+					</div>
+					<div>
+						<div class="row row-mat second-sect profiles-main" *ngIf="userProfiles.length > 0">
+							<div class="col-xs-12 col-sm-4" style="padding-right: 5px;padding-left: 5px;"
+								*ngFor="let item of userProfiles; let i = index" id="{{item.id}}">
+								<div class="inner-wrap"
+									[ngClass]="userData.plan_type == 1 && i > 5  && filterName == 'all_admirers' ? 'blur-user' : '' ">
+									<div class="user-img"
+										(click)="userData.plan_type == 1 && i > 5  && filterName == 'all_admirers' ?   show_popup('admir') : goToDetailPage(item, item.id)">
+										<div class="user-img" (click)="goToDetailPage(item, item.id)">
+											<cus-image *ngIf="item.profile_photo; else elseImageBlock"
+												style="cursor: pointer" [url]="item.profile_photo.path"
+												[actualDimension]="item.profile_photo.path_dimension"
+												[dimension]="'360x262'" [widthIns]="'.user-img'" [loaderSize]="0.5">
+											</cus-image>
+											<ng-template #elseImageBlock>
+												<img src="assets/dashboard/maria.jpg" alt="" *ngIf="item.gender == 1">
+												<img src="assets/profile/dummy-image.jpg" alt=""
+													*ngIf="item.gender == 2">
+											</ng-template>
+										</div>
+									</div>
+									<div class="quick"
+										(click)="userData.plan_type == 1 && i > 5  && filterName == 'all_admirers' ? show_popup('admir') : openQuickView(i, item, 'simpleUsers')">
+										<a>
+											Quick View
+										</a>
+										<span class="ribben"><img src="assets/dashboard/center-stage-ribbon.png"
+												*ngIf="item.center_stage_badge == 'valid'" /></span>
+									</div>
+									<div class="user-info">
+										<div class="username-info">
+											<span title="{{ item.first_name }}" class="client-name"
+												(click)="userData.plan_type == 1 && i > 5  && filterName == 'all_admirers' ? show_popup('admir') : goToDetailPage(item, item.id)">
+												{{item.first_name}}
+
+											</span>
+											<span class="online" *ngIf="item.is_online == '1'">
+												<i class="fa fa-circle" aria-hidden="true"></i>
+											</span>
+											<span class="offline" *ngIf="item.is_online == '0'">
+												<i class="fa fa-circle" aria-hidden="true"></i>
+											</span>
+										</div>
+										<div class="chat-info" id="check-inst">
+											<ul>
+												<li
+													(click)="userData.plan_type == 1 && i > 5  && filterName == 'all_admirers' ?   show_popup('admir') : userData.plan_type == 1 || userData.plan_type ==  '' ?  show_popup('chat') : goToChatPage(item)">
+													<i class="fa fa-comments" aria-hidden="true"></i>
+												</li>
+
+												<li
+													(click)="userData.plan_type == 1 && i > 5  && filterName == 'all_admirers' ?   show_popup('admir') : userData.plan_type == 1 || userData.plan_type ==  '' ?  show_popup('chat') : openVideoGreeting(item)">
+													<i class="fa fa-video-camera" aria-hidden="true"></i>
+												</li>
+
+												<ng-container [ngSwitch]="item.interest_user_id?.interest">
+													<li *ngSwitchDefault class="star-chat" (click)="showDiv(i, item)">
+														<img src="assets/dashboard/star-grey.png" alt=""
+															id="check-open">
+													</li>
+
+													<li class="star-chat" *ngSwitchCase="'1'"
+														(click)="showDiv(i, item)">
+														<img src="assets/dashboard/center-stage-star.png" alt=""
+															id="check-open">
+													</li>
+
+													<li class="star-chat" *ngSwitchCase="'2'"
+														(click)="showDiv(i, item)">
+														<img src="assets/dashboard/center-stage-star.png" alt=""
+															id="check-open">
+														<img src="assets/dashboard/center-stage-star.png" alt=""
+															id="check-open">
+													</li>
+
+													<li class="star-chat" *ngSwitchCase="'3'"
+														(click)="showDiv(i, item)">
+														<img src="assets/dashboard/center-stage-star.png" alt=""
+															id="check-open">
+														<img src="assets/dashboard/center-stage-star.png" alt=""
+															id="check-open">
+														<img src="assets/dashboard/center-stage-star.png" alt=""
+															id="check-open">
+													</li>
+												</ng-container>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div [ngClass]="index === i ? 'show-intrest' : 'hide-intrest' " id="flyout-example">
+
+									<mat-radio-group class="radio-select" id="check-radio" [(ngModel)]="item.interest">
+										<mat-radio-button #button class="radio-sect-dash"
+											*ngFor="let inerest of interestOptions" [value]="inerest.id"
+											(click)="updateDivInterest(i,button.value);$event.stopPropagation();">
+											<img [src]="inerest.image" alt="">
+											{{inerest.name}}
+										</mat-radio-button>
+									</mat-radio-group>
+								</div>
+							</div>
+						</div>
+						<div *ngIf="loadingMore" style="width: 100%; text-align: center;">
+							<div class="lds-ellipsis">
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="row row-mat second-sect no-data-found profiles-main" *ngIf="noDataFound">
+						<img src="assets/dashboard/no-data.png" alt="" style="width: 50%;
+						margin: auto;">
+						<h1> No Profiles Found!</h1>
+						<p>Please refine your search Criteria.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-3 right-sidebar hide-mobile" id="right-id" #fixedRightBar>
+				<div class="inner-section sticky-inner">
+					<div class="like-sect">
+						<ul>
+							<li>
+								<span>
+									<i class="fa fa-star" aria-hidden="true"></i>
+								</span>
+								<span *ngIf="admirers" (click)="goToNotificationPage()">
+									{{admirers}} New Admirer
+								</span>
+								<span *ngIf="!admirers">
+									No New Admirer
+								</span>
+							</li>
+							<li>
+								<span>
+									<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+								</span>
+								<span *ngIf="newLikes" (click)="goToNotificationPage()">
+									{{newLikes}} New Likes
+								</span>
+								<span *ngIf="!newLikes">
+									No New Likes
+								</span>
+							</li>
+						</ul>
+					</div>
+
+
+					<div class="story-section">
+						<h5 class="story">
+							New Stories
+						</h5>
+						<owl-carousel style="width: 100%;" [options]="carouselOptionsStory" [items]="uesrStories"
+							[carouselClasses]="['owl-theme', 'sliding']" *ngIf="uesrStories.length > 0">
+							<div class="item-carousel" *ngFor="let stories of uesrStories;let i = index"
+								(click)="videoStories(stories, i)">
+								<div class="user-img-story">
+									<cus-image *ngIf="stories.user_info.profile_photo; else elsePath;"
+										style="cursor: pointer" [url]="stories.user_info.profile_photo?.path"
+										[actualDimension]="stories.user_info.profile_photo?.path_dimension"
+										[dimension]="'360x262'" [widthIns]="'.user-img-story'" [loaderSize]="0.5">
+									</cus-image>
+									<ng-template #elsePath>
+										<img src="assets/dashboard/maria.jpg" alt="">
+									</ng-template>
+								</div>
+								<p class="story-user">
+									{{stories.user_info.first_name+' '+stories.user_info.last_name}}
+								</p>
+							</div>
+						</owl-carousel>
+
+						<div *ngIf="uesrStories.length == 0 && showStory == true" class="no-data">
+							No user story yet
+						</div>
+					</div>
+
+					<div class="video-sidebar" (click)="videoModal(bannerVideo.video_path)"
+						[style.background]="'url(' + bannerVideo.image_path + ')'" *ngIf="bannerVideo">
+						<div class="video-sect-side">
+							<h2 *ngIf="bannerVideo">
+								{{bannerVideo.top_text}}
+							</h2>
+							<div class="video-side-icon">
+								<img src="assets/dashboard/play-btn.png" alt="">
+								<span *ngIf="bannerVideo">
+									{{bannerVideo.center_text}}
+								</span>
+							</div>
+							<h4 class="only-txt" *ngIf="bannerVideo">
+								{{bannerVideo.bottom_text}}
+							</h4>
+						</div>
+					</div>
+					<div class="all-message">
+						<h2>
+							Message Center
+						</h2>
+						<div class="message-sect-top">
+							<ul>
+								<!-- <li>
+                             <a>
+                                New
+                              </a>
+                          </li> -->
+								<li *ngIf="unread">
+									<i class="fa fa-comments" aria-hidden="true"></i>
+									<span class="value-item" *ngIf="unread.length > 0">
+										{{unread.length}}
+									</span>
+								</li>
+								<li *ngIf="unreadVideo">
+									<i class="fa fa-video-camera" aria-hidden="true"></i>
+									<span class="value-item" *ngIf="unreadVideo.length > 0">
+										{{unreadVideo.length}}
+									</span>
+								</li>
+								<!-- <li>
+                              <a>
+                                 Saved
+                              </a>
+                          </li> -->
+							</ul>
+						</div>
+						<div class="chat-box" *ngFor="let list of chatListUsers | slice:0:5"
+							(click)="userData.plan_type == 1 || userData.plan_type ==  '' ? show_popup('chat')  :selectedUser(list)">
+							<div *ngIf="userId != list.id">
+								<div class="chat-img">
+
+									<img [defaultImage]="defaultImage" [lazyLoad]="list.path" *ngIf="list.path">
+									<!-- <img [src]="list.path" *ngIf="list.path"> -->
+									<img src="assets/profile/user-new.png" alt="" *ngIf="!list.path">
+								</div>
+								<div class="chat-txt">
+									<p
+										[ngClass]="userData.plan_type == 1 || userData.plan_type ==  ''? 'blur-text-chat' : '' ">
+										<span class="ttl-cht"
+											[ngClass]="userData.plan_type == 1 || userData.plan_type ==  ''? 'blur-user' : '' ">
+											{{list.first_name}}
+											<span class="unread-count" *ngIf="list.unread > 0">{{list.unread}}</span>
+										</span>
+										<span class="last-msg"
+											[ngClass]="userData.plan_type == 1 || userData.plan_type ==  ''? 'blur-user' : '' ">
+											<p [innerHTML]="sheet !== '' ? (list.message | utf8EmojisToImages) : list.message"
+												*ngIf="list.type == 'simple'"></p>
+											<i class="fa fa-camera" *ngIf="list.type == 'image'"></i>
+											<i class="fa fa-video-camera" aria-hidden="true"
+												*ngIf="list.type == 'video'"></i>
+										</span>
+									</p>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+
+						<div class="view-all" *ngIf="chatListUsers.length > 5" (click)="goToChatPageViewAll()">View All
+						</div>
+						<div *ngIf="chatListUsers.length == 0 && displayMessage == true" class="no-message">
+							<p>No Messasges yet</p>
+						</div>
+					</div>
+					<div class="upgrade" [bgImage]="dashboardBanner?.path"
+						[actualDimension]="dashboardBanner?.path_dimension" *ngIf="dashboardBanner">
+						<div class="grade-back">
+							<!-- <h2>Upgrade <br/>NOW <br/>For<br/> More <br/>Benefits</h2> -->
+							<h2 *ngIf="dashboardBanner">
+								{{dashboardBanner.banner_text}}
+							</h2>
+							<a class="upgarde-btn" (click)="openLink(dashboardBanner.redirect_link)"
+								*ngIf="dashboardBanner">
+								{{dashboardBanner.button_text}}
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="icon-bell" (click)="ShowRight()">
+				<img src="assets/dashboard/bell-icons.png">
+			</div>
+			<div class="bell" [ngStyle]="{display:displayRight}">
+				<div class="col-xs-12 col-sm-3 right-sidebar">
+					<div class="like-sect">
+						<ul>
+							<li>
+								<span>
+									<i class="fa fa-star" aria-hidden="true"></i>
+								</span>
+								<span *ngIf="admirers" (click)="goToNotificationPage()">
+									{{admirers}} New Admirer
+								</span>
+								<span *ngIf="!admirers">
+									No New Admirer
+								</span>
+							</li>
+							<li>
+								<span>
+									<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+								</span>
+								<span *ngIf="newLikes" (click)="goToNotificationPage()">
+									{{newLikes}} New Likes
+								</span>
+								<span *ngIf="!newLikes">
+									No New Likes
+								</span>
+							</li>
+						</ul>
+					</div>
+
+					<div class="story-section">
+						<h5 class="story">
+							New Stories
+						</h5>
+						<owl-carousel style="width: 100%;" [options]="carouselOptionsStory" [items]="uesrStories"
+							[carouselClasses]="['owl-theme', 'sliding']" *ngIf="uesrStories.length > 0">
+							<div class="item-carousel" *ngFor="let stories of uesrStories;let i = index"
+								(click)="videoStories(stories, i)">
+								<div class="user-img-story">
+									<cus-image *ngIf="stories.user_info.profile_photo; else elsePath;"
+										style="cursor: pointer" [url]="stories.user_info.profile_photo?.path"
+										[actualDimension]="stories.user_info.profile_photo?.path_dimension"
+										[dimension]="'360x262'" [widthIns]="'.user-img-story'" [loaderSize]="0.5">
+									</cus-image>
+									<ng-template #elsePath>
+										<img src="assets/dashboard/maria.jpg" alt="">
+									</ng-template>
+								</div>
+								<p class="story-user">
+									{{stories.user_info.first_name+' '+stories.user_info.last_name}}
+								</p>
+							</div>
+						</owl-carousel>
+
+						<div *ngIf="uesrStories.length == 0 && showStory == true" class="no-data">
+							No user story yet
+						</div>
+					</div>
+
+
+					<div class="video-sidebar" (click)="videoModal(bannerVideo.video_path)"
+						[style.background]="'url(' + bannerVideo.image_path + ')'" *ngIf="bannerVideo">
+						<div class="video-sect-side">
+							<h2 *ngIf="bannerVideo">
+								{{bannerVideo.top_text}}
+							</h2>
+							<div class="video-side-icon">
+								<img src="assets/dashboard/play-btn.png" alt="">
+								<span *ngIf="bannerVideo">
+									{{bannerVideo.center_text}}
+								</span>
+							</div>
+							<h4 class="only-txt" *ngIf="bannerVideo">
+								{{bannerVideo.bottom_text}}
+							</h4>
+						</div>
+					</div>
+					<div class="all-message">
+						<h2>
+							Message Center
+						</h2>
+						<div class="message-sect-top">
+							<ul>
+								<!-- <li>
+                                 <a>
+                                    New
+                                 </a>
+                             </li> -->
+								<li *ngIf="unread">
+									<i class="fa fa-comments" aria-hidden="true"></i>
+									<span class="value-item" *ngIf="unread.length > 0">
+										{{unread.length}}
+									</span>
+								</li>
+								<li *ngIf="unreadVideo">
+									<i class="fa fa-video-camera" aria-hidden="true"></i>
+									<span class="value-item" *ngIf="unreadVideo.length > 0">
+										{{unreadVideo.length}}
+									</span>
+								</li>
+								<!-- <li>
+                                 <a>
+                                    Saved
+                                 </a>
+                             </li> -->
+							</ul>
+						</div>
+						<div class="chat-box" *ngFor="let list of chatListUsers | slice:0:5"
+							(click)="userData.plan_type == 1 || userData.plan_type ==  '' ? show_popup('chat')  :selectedUser(list)">
+							<div *ngIf="userId != list.id">
+								<div class="chat-img">
+
+									<img [defaultImage]="defaultImage" [lazyLoad]="list.path" *ngIf="list.path">
+
+									<!-- <img [src]="list.path" *ngIf="list.path"> -->
+									<img src="assets/profile/user-new.png" alt="" *ngIf="!list.path">
+								</div>
+								<div class="chat-txt">
+									<p class="ttl-cht"
+										[ngClass]="userData.plan_type == 1 || userData.plan_type ==  ''? 'blur-text-chat' : '' ">
+										<span
+											[ngClass]="userData.plan_type == 1 || userData.plan_type ==  ''? 'blur-user' : '' ">
+											{{list.first_name}}
+											<p class="unread-count" *ngIf="list.unread > 0">{{list.unread}}</p>
+										</span>
+										<span class="last-msg"
+											[ngClass]="userData.plan_type == 1 || userData.plan_type ==  ''? 'blur-user' : '' ">
+
+											<p [innerHTML]="sheet !== '' ? (list.message | utf8EmojisToImages) : list.message"
+												*ngIf="list.type == 'simple'"></p>
+											<i class="fa fa-camera" *ngIf="list.type == 'image'"></i>
+											<i class="fa fa-video-camera" aria-hidden="true"
+												*ngIf="list.type == 'video'"></i>
+										</span>
+									</p>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+
+						<div class="view-all" *ngIf="chatListUsers.length > 5" (click)="goToChatPageViewAll()">View All
+						</div>
+						<div *ngIf="chatListUsers.length == 0 && displayMessage == true" class="no-message">
+							<p>No Messasges yet</p>
+						</div>
+					</div>
+					<div class="upgrade" [bgImage]="dashboardBanner?.path"
+						[actualDimension]="dashboardBanner?.path_dimension" *ngIf="dashboardBanner">
+						<div class="grade-back">
+							<!-- <h2>Upgrade <br/>NOW <br/>For<br/> More <br/>Benefits</h2> -->
+							<h2 *ngIf="dashboardBanner">
+								{{dashboardBanner.banner_text}}
+							</h2>
+							<a class="upgarde-btn" (click)="openLink(dashboardBanner)" *ngIf="dashboardBanner">
+								{{dashboardBanner.button_text}}
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="viewProfilePage" style="position: fixed;
+overflow: scroll;
+top: -25px;
+left: 0;
+right: 0;
+bottom: 0;
+z-index: 999;
+background: white;">
+	{{ viewProfilePage }}
+	<app-userprofile [selectedUser]="viewProfilePage" (back)="closedPage($event)"></app-userprofile>
+</div>

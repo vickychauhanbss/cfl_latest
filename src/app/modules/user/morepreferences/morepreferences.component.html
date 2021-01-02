@@ -1,0 +1,326 @@
+
+<div class="morepreferences">
+   <div class="container">
+      <!-- <div class="txt">
+           <div class="togal-per">
+             <ui-switch></ui-switch>
+             <a href="#">Apply Preferences</a>
+            </div>
+      </div> -->
+      <div class="row">
+         <div class="col-xs-6 col-sm-6 left-religios">
+            <div class="height">
+               <h4>
+                  Age and Height
+               </h4>
+               <mat-form-field class="born-date month">
+                  <select matNativeControl required class="age" (change)="changeAge($event.target.value , 'from')">
+                     <option *ngFor="let age of fromAgeArray; let index = index;" [value]="age" [attr.selected]="fromValue == age ? true : null">
+                        {{age}}
+                     </option>
+                  </select>
+               </mat-form-field>
+               <span>
+                  To
+               </span>
+               <mat-form-field class="born-date month" >
+                  <select matNativeControl required class="age" (change)="changeAge($event.target.value, 'to')">
+                     <option *ngFor="let age of ToAgeArray; let index = index;" [value]="age" [attr.selected]="toValue == age ? true : null">
+                        {{age}}
+                     </option>
+                  </select>
+               </mat-form-field>
+            </div>
+            <div class="your-height" *ngIf="morePreferencesData.length > 0">
+               <div class="height-top">
+                  <label>
+                     Your Height:
+                  </label>
+                  {{morePreferencesData[1].height}}
+               </div>
+               <div class="shorter">
+                  <form>
+                     <label>
+                        Do you want your partner to be taller or shorter than you ?
+                     </label>
+                     <mat-radio-group  class="radio-select">
+                        <mat-radio-button class="radio-sect-more" *ngFor="let shorter of shorterArray" [value]="shorter.label" (change)="changeHeight($event.value, morePreferencesData[1].preference_value)" [checked]="shorter.label == morePreferencesData[1].choosed_option">
+                           {{shorter.label}}
+                        </mat-radio-button>
+                     </mat-radio-group>
+                  </form>
+               </div>
+
+               <div class="custom-slider">
+                  <label>
+                     How important is it that your partners height is close to your own
+                  </label>
+                  <ng5-slider [(value)]="morePreferencesData[1].preference_value" [options]="options" (valueChange)="changeHeight('', $event)"></ng5-slider>
+                  <div class="text-sld">
+                     <span class="left-sld">
+                        Not Important
+                     </span>
+                     <span class="right-sld">
+                        Very Important
+                     </span>
+                  </div>
+                  <span class="somewhat-imp">
+                     SomeWhat Important
+                  </span>
+               </div>
+            </div>
+            <div class="smoke-drink" *ngIf="morePreferencesData.length > 0">
+               <h4>
+                  Smoking and Drinking habits
+               </h4>
+               <mat-form-field class="smoke">
+                  <label>
+                     Please specify which smoking habits you would accept from your partner:
+                  </label>
+
+                  <select matNativeControl required class="smk" (change)="filterChanged($event.target.value , morePreferencesData[2])">
+                     <option selected>
+                        No preference
+                     </option>
+                     <option *ngFor="let smoke of morePreferencesData[2].options; let index = index;" [value]="smoke.option_id"  [attr.selected]="morePreferencesData[2].choosed_option == smoke.option_id ? true : null">
+                        {{smoke.option}}
+                     </option>
+                  </select>
+               </mat-form-field>
+               <mat-form-field class="smoke">
+                  <label>
+                     Please indicate the drinking habits you would accept from your partner:
+                  </label>
+                  <select matNativeControl required class="smk" (change)="filterChanged($event.target.value , morePreferencesData[3])">
+                     <option selected>
+                        No preference
+                     </option>
+                     <option *ngFor="let drink of morePreferencesData[3].options; let index = index;" [value]="drink.option_id" [attr.selected]="morePreferencesData[3].choosed_option == drink.option_id ? true : null">
+                        {{drink.option}}
+                     </option>
+                  </select>
+               </mat-form-field>
+            </div>
+            <div class="children" *ngIf="morePreferencesData.length > 0">
+               <h4>
+                  Desire to have children
+               </h4>
+
+               <mat-form-field class="smoke">
+                  <label>
+                     Would you accept a partner with children under the age of 18?
+                  </label>
+                  <select matNativeControl required class="smk" (change)="filterChanged($event.target.value , morePreferencesData[5])">
+                     <option selected>
+                        No preference
+                     </option>
+                     <option *ngFor="let child1 of morePreferencesData[5].options; let index = index;" [value]="child1.option_id" [attr.selected]="morePreferencesData[5].choosed_option == child1.option_id ? true : null">
+                        {{child1.option}}
+                     </option>
+                  </select>
+               </mat-form-field>
+
+               <mat-form-field class="smoke">
+                  <label>
+                     Would you like to have children for the first time?
+                  </label>
+                  <select matNativeControl required class="smk" (change)="filterChanged($event.target.value , morePreferencesData[8])">
+                     <option selected>
+                        No preference
+                     </option>
+                     <option *ngFor="let child2 of morePreferencesData[8].options; let index = index;" [value]="child2.option_id" [attr.selected]="morePreferencesData[8].choosed_option == child2.option_id ? true : null">
+                        {{child2.option}}
+                     </option>
+                  </select>
+               </mat-form-field>
+
+               <mat-form-field class="smoke">
+                  <label>
+                     Do you have kids?
+                  </label>
+                  <select matNativeControl required class="smk" (change)="filterChanged($event.target.value , morePreferencesData[4])">
+                     <option selected>
+                        Rather not tell
+                     </option>
+                     <option *ngFor="let child3 of morePreferencesData[4].options; let index = index;" [value]="child3.option_id" [attr.selected]="morePreferencesData[4].choosed_option == child3.option_id ? true : null">
+                        {{child3.option}}
+                     </option>
+                  </select>
+               </mat-form-field>
+
+               <mat-form-field class="smoke">
+                  <label>
+                     How many Kids do you have?
+                  </label>
+                  <select matNativeControl required class="smk" (change)="filterChanged($event.target.value , morePreferencesData[6])">
+                     <option selected>
+                        No preference
+                     </option>
+                     <option *ngFor="let child3 of morePreferencesData[6].options; let index = index;" [value]="child3.option_id" [attr.selected]="morePreferencesData[6].choosed_option == child3.option_id ? true : null">
+                        {{child3.option}}
+                     </option>
+                  </select>
+               </mat-form-field>
+
+               <mat-form-field class="smoke">
+                  <label>
+                     Do They Live With You?
+                  </label>
+                  <select matNativeControl required class="smk" (change)="filterChanged($event.target.value , morePreferencesData[7])">
+                     <option selected>
+                        No preference
+                     </option>
+                     <option *ngFor="let child3 of morePreferencesData[7].options; let index = index;" [value]="child3.option_id" [attr.selected]="morePreferencesData[7].choosed_option == child3.option_id ? true : null">
+                        {{child3.option}}
+                     </option>
+                  </select>
+               </mat-form-field>
+
+               <mat-form-field class="smoke">
+                  <label>
+                     Do you want more kids?
+                  </label>
+                  <select matNativeControl required class="smk" (change)="filterChanged($event.target.value , morePreferencesData[8])">
+                     <option selected>
+                        No preference
+                     </option>
+                     <option *ngFor="let child3 of morePreferencesData[8].options; let index = index;" [value]="child3.option_id" [attr.selected]="morePreferencesData[8].choosed_option == child3.option_id ? true : null">
+                        {{child3.option}}
+                     </option>
+                  </select>
+               </mat-form-field>
+            </div>
+            <div class="willing" *ngIf="morePreferencesData.length > 0">
+               <h4>
+                  Willing to Relocate
+               </h4>
+               <mat-radio-group class="radio-select" [(ngModel)]="willingRelocate">
+                  <mat-radio-button *ngFor="let relocate of morePreferencesData[17].options" [value]="relocate.option_id" (change)="filterChanged($event.value , morePreferencesData[17])" [checked]="relocate.option_id == morePreferencesData[17].choosed_option">
+                     {{relocate.option}}
+                  </mat-radio-button>
+               </mat-radio-group>
+            </div>
+         </div>
+
+         <div class="col-xs-6 col-sm-6 right-religios" *ngIf="morePreferencesData.length > 0">
+            <div class="religions">
+               <h4>
+                  Ethnicity
+               </h4>
+               <div class="checkboxes">
+                  <label>
+                     Which ethnic groups should your partner suggestions belong to?
+                  </label>
+
+                  <mat-checkbox *ngFor="let ethnicity of morePreferencesData[10].options"  [value]="ethnicity.option_id" (change)="ethnicityFxn($event, morePreferencesData[10])" [checked]="ethnicity.checked">
+                     {{ethnicity.option}}
+                  </mat-checkbox>
+               </div>
+               <div class="checkboxes  rel-section">
+                  <h5>
+                     Religion
+                  </h5>
+                  <label>
+                     Which religion should your partner suggestions belong to?
+                  </label>
+                  <form>
+                     <mat-radio-group  class="religos" >
+                        <mat-checkbox *ngFor="let religion of morePreferencesData[11].options" [value]="religion.option_id" (change)="religionFxn($event, morePreferencesData[11])" [checked]="religion.checked">
+                           {{religion.option}}
+                        </mat-checkbox>
+                     </mat-radio-group>
+                  </form>
+               </div>
+               <div class="language">
+                  <h4>
+                     Language
+                  </h4>
+                  <mat-form-field class="smoke">
+                     <label>
+                        Please specify your preferred daily spoken language.
+                     </label>
+
+                     <select matNativeControl required class="smk" (change)="filterChanged($event.target.value , morePreferencesData[12])">
+                        <option selected>
+                           No preference
+                        </option>
+                        <option *ngFor="let language of morePreferencesData[12].options; let index = index;" [value]="language.option_id" [attr.selected]="morePreferencesData[12].choosed_option == language.option_id ? true : null">
+                           {{language.option}}
+                        </option>
+                     </select>
+                  </mat-form-field>
+                  <div class="lang-radio">
+                     <label>
+                        If your partner speaks your language as a 2nd language. Speaking ability preference
+                     </label>
+                     <mat-radio-group  class="religos" [(ngModel)]="secondLangage">
+                        <mat-radio-button *ngFor="let speaksYour of morePreferencesData[13].options" [value]="speaksYour.option_id" (change)="filterChanged($event.value , morePreferencesData[13])">
+                           {{speaksYour.option}}
+                        </mat-radio-button>
+                     </mat-radio-group>
+                  </div>
+
+                  <div class="sec-lang">
+                     <mat-form-field class="smoke">
+                        <label>
+                           Would you accept a partner that is currently learning your language?
+                        </label>
+
+                        <select matNativeControl required class="smk" (change)="filterChanged($event.target.value , morePreferencesData[14])">
+                           <option selected>
+                              No preference
+                           </option>
+                           <option *ngFor="let language of morePreferencesData[14].options; let index = index;" [value]="language.option_id" [attr.selected]="morePreferencesData[14].choosed_option == language.option_id ? true : null">
+                              {{language.option}}
+                           </option>
+                        </select>
+                     </mat-form-field>
+                  </div>
+
+                  <div class="sec-lang">
+                     <h4>
+                        Education
+                     </h4>
+                     <mat-form-field class="smoke">
+                        <label>
+                           What is your level of education?
+                        </label>
+                        <select matNativeControl required class="smk" (change)="filterChanged($event.target.value , morePreferencesData[15])">
+                           <option selected>
+                              No preference
+                           </option>
+                           <option *ngFor="let education of morePreferencesData[15].options; let index = index;" [value]="education.option_id" [attr.selected]="morePreferencesData[15].choosed_option == education.option_id ? true : null">
+                              {{education.option}}
+                           </option>
+                        </select>
+                     </mat-form-field>
+
+                     <mat-form-field class="smoke">
+                        <label>
+                           Would you like to further your education?
+                        </label>
+
+                        <select matNativeControl required class="smk" (change)="filterChanged($event.target.value , morePreferencesData[16])">
+                           <option selected>
+                              No preference
+                           </option>
+                           <option *ngFor="let education of morePreferencesData[16].options; let index = index;" [value]="education.option_id" [attr.selected]="morePreferencesData[16].choosed_option == education.option_id ? true : null">
+                              {{education.option}}
+                           </option>
+                        </select>
+                     </mat-form-field>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="btn-right">
+            <p (click)="resetFilters()" title="Reset preferences" *ngIf="checkFilter == '1'">
+               Reset preferences
+            </p>
+            <button (click)="applyFilterFxn()" [disabled]="!isChange">
+               Apply
+            </button>
+         </div>
+      </div>
+   </div>
+</div>

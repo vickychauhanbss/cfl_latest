@@ -1,0 +1,47 @@
+<div mat-dialog-content>
+    <ngx-spinner></ngx-spinner>
+        <div class="modal-dialog" role="document">
+            <div></div>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="login-popup">
+                        <div class="overlay"></div>
+                        <span class="cross" (click)="dismissModal()">
+                            <i class="fa fa-times" aria-hidden="true" ></i>
+                        </span>
+                        <div class="container">
+                            <form class="popup-feild" [formGroup]="retakeFrom" (ngSubmit)="onSubmit()">
+                                <div class="inner-form">
+                                    <h2>Warning</h2>
+                                    <p>
+                                        If you choose to RETAKE the onboarding process, all your value belief data will be lost, and you will be redirected to the onboarding section. You will have to reanswer all the 200 questions and will not be able to access the dashboard or profile unless you redo the onboarding process.
+                                    </p>
+
+                                    <p>
+                                        If you agree to the above-mentioned terms, please state your reason to retake the onboarding process and allow the admin to review your application.
+                                    </p>
+
+                                    <div class="form-group input-txt">
+                                        <!-- <label>Reason :</label> -->
+                                        <input matInput type="text" formControlName="reason" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.reason.errors }" placeholder="Enter retake reason">
+
+                                        <div *ngIf="submitted && f.reason.errors" class="invalid-feedback retek">
+                                            <div *ngIf="f.reason.errors.required">
+                                                Please enter retake reason
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <button class="retake" matInput type="submit" >
+                                                Retake
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

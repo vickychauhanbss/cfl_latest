@@ -1,0 +1,1199 @@
+<div class="banner" [ngStyle]="{'background' : 'url('+showCoverImage.path+')'}">
+   <ngx-spinner></ngx-spinner>
+   <div class="container">
+      <div class="row">
+         <div class="col-xs-12 col-sm-3 "></div>
+         <div class="col-xs-12 col-sm-9 ">
+            <div class="baner-icons">
+               <!-- <div class="status-ban">Single and Searching</div> -->
+               <div class="title-user hide-mobile" *ngIf="userProfileData">
+                  <h2>
+                     {{userProfileData.userData.first_name}}
+                  </h2>
+               </div>
+               <div class="user-icon">
+                  <ul>
+                     <li title="Edit cover image" (click)="openCoverModal()">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                     </li>
+                     <li class="view-profile" (click)="openCoverModal()" title="Update Banner">
+                        Update Banner
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="profile-comp" *ngIf="profile_completness">
+   {{profile_completness.field_name}}
+   <a class="ach-tag" (click)="changeTabs(profile_completness.text)">
+      {{profile_completness.link}}
+   </a>
+</div>
+
+<div class="main-section">
+   <div class="container">
+      <div class="row">
+         <div class="col-xs-12 col-sm-3 left-side-user">
+            <div class="top-user">
+               <div class="user-image-profile">
+                  <!-- <img src="assets/profile/user-new.png" alt="" *ngIf="!showProfileImage"> -->
+                  <img src="assets/profile/user-new.png" alt="" *ngIf="!showProfileImage && currentUser.gender == 1">
+                  <img src="assets/profile/dummy-image.jpg" alt="" *ngIf="!showProfileImage && currentUser.gender == 2">
+                  <img [src]="showProfileImage" alt="" *ngIf="showProfileImage">
+                  <input type="file" id="filesa" class="hidden" (change)="changeProfileImage($event)"/>
+
+                  <label class="edit-icon" for="filesa">
+                     <i class="fa fa-pencil-square-o" aria-hidden="true" title="Upload new photo"></i>
+                  </label>
+
+                  <label class="remove-icon prop" *ngIf="showProfileImage">
+                     <i class="fa fa-trash" aria-hidden="true" title="Delete photo" (click)="deletePofileImage('Profile image')"></i>
+                  </label>
+               </div>
+               <div class="title-user show-mobile" *ngIf="userProfileData">
+                  <h2>
+                     {{userProfileData.userData.first_name}}
+                  </h2>
+               </div>
+               <div class="clearfix"></div>
+               <div class="location" *ngIf="userProfileData">
+                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  <h3>
+                     Location
+                  </h3>
+                  <p>
+                     {{userProfileData.address}}
+                  </p>
+               </div>
+               <div class="age" *ngIf="userProfileData">
+                  <img src="assets/profile/age.png" alt="" *ngIf="currentUser.gender == 2">
+                  <img src="assets/profile/men-icon.png" alt="" *ngIf="currentUser.gender == 1">
+                  <h3>
+                     Age
+                  </h3>
+                  <p>
+                     {{userProfileData.age}}
+                  </p>
+               </div>
+               <div class="height" *ngIf="userProfileData">
+                  <img src="assets/profile/height.png" alt="">
+                  <h3>
+                     Height
+                  </h3>
+                  <p>
+                     {{userProfileData.height}}
+                  </p>
+               </div>
+               <div class="photos-video" *ngIf="userProfileData">
+                  <i class="fa fa-picture-o" aria-hidden="true"></i>
+                  <h3>
+                     Photos/Videos
+                  </h3>
+                  <p>
+                     {{totalCount}}
+                  </p>
+                  <a class="more-video" data-toggle="pill" href="#photo" (click)="viewVideoPhoto()">
+                     View Photos/Videos
+                  </a>
+               </div>
+            </div>
+            <div class="status-sect">
+               <h5>
+                  Status / Headline
+               </h5>
+               <mat-form-field *ngIf="userStatus">
+                  <mat-select [(ngModel)]="selectedValue" (selectionChange)="changeStatus($event.value)">
+                     <mat-option *ngFor = "let status of userStatus"
+                        [value] = "status.id">
+                        {{status.name}}
+                     </mat-option>
+                  </mat-select>
+               </mat-form-field>
+            </div>
+            <div class="video-sidebar" [style.background]="'url(' + coverBanner.image_path + ')'"  *ngIf="coverBanner" (click)="openVideoModal(coverBanner.video_path)">
+               <div class="video-sect-side">
+                  <h2>
+                     {{coverBanner.top_text}}
+                  </h2>
+                  <div class="video-side-icon">
+                     <img src="assets/dashboard/play-btn.png" alt="">
+                     <span *ngIf="coverBanner">{{coverBanner.center_text}}</span>
+                  </div>
+                  <h4 class="only-txt">
+                      {{coverBanner.bottom_text}}
+                  </h4>
+               </div>
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-9 main-user-status">
+            <ul class="nav nav-pills" (click)="removeInterestFrom()">
+               <li class="active" id="profile-Id" (click)="activeTabs('profile')">
+                  <a data-toggle="pill" href="#home">
+                  <img class="black" src="assets/profile/profile.png" alt="">
+                  <img class="white" src="assets/profile/profile-white.png" alt="">
+                  <span class="hide-mobile">
+                     Profile
+                  </span>
+               </a>
+               </li>
+               <li id="photoId" (click)="activeTabs('gallary')">
+                  <a data-toggle="pill" href="#photo">
+                     <img class="black" src="assets/profile/gallery.png" alt="">
+                     <img class="white" src="assets/profile/gallery-white.png" alt="">
+                     <span class="hide-mobile">
+                        Gallery
+                     </span>
+                  </a>
+               </li>
+               <li id="beliefs-Id" (click)="activeTabs('beliefs')">
+                  <a data-toggle="pill" href="#valuesbeliefs" (click)="changeActiveTabs('overview')">
+                  <img class="black" src="assets/profile/values.png" alt="">
+                  <img class="white" src="assets/profile/values-white.png" alt="">
+                  <span class="hide-mobile">
+                     Values/Beliefs
+                  </span>
+               </a>
+               </li>
+               <li id="interest-id">
+                  <a data-toggle="pill" href="#interests" (click)="activeTabs('interest')">
+                     <img class="black" src="assets/profile/interests.png" alt="">
+                     <img class="white" src="assets/profile/interests-white.png" alt="">
+                     <span class="hide-mobile">
+                        Interests
+                     </span>
+                  </a>
+               </li>
+
+               <li id="upload-proof">
+                  <a data-toggle="pill" href="#uploadproof" (click)="activeTabs('uploadproof')">
+                     <img class="black" src="assets/profile/electronics-black.png" alt="">
+                     <img class="white" src="assets/profile/electronics-white.png" alt="">
+                     <span class="hide-mobile">
+                        ID/Cross Verify
+                     </span>
+                  </a>
+               </li>
+            </ul>
+            <div class="tab-content">
+               <div id="home" class="tab-pane fade in active">
+                  <div class="view-pro"><button class="exit-profile" (click)="goToProfile('profile')" title="View Profile">
+                     View Profile
+                  </button>
+               </div>
+                  <h3 style="text-transform:capitalize" *ngIf="userProfileData">
+                     {{userProfileData.userData.first_name}}’s Personal Description
+                  </h3>
+                  <div class="row inner-user-data-profile">
+                     <div class="col-xs-12 col-sm-6">
+                        <div class="user-data">
+                           <span>
+                              <img src="assets/profile/religion.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Religion:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[9],'')" *ngIf="generalAnswers[9]">
+                              <option  *ngFor="let item of generalAnswers[9].options; let index = index;" [value]="item.option_id"  [attr.selected]="generalAnswers[9].choosed_id == item.option_id ? true : null">
+                                 {{item.option}}
+                              </option>
+                           </select>
+                        </div>
+
+                        <div class="user-data">
+                           <span>
+                              <img src="assets/profile/drink.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Drink:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[1], '')" *ngIf="generalAnswers[1]">
+                              <option  *ngFor="let item of generalAnswers[1].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[1].choosed_id == item.option_id ? true : null">
+                                 {{item.option}}
+                              </option>
+                           </select>
+                        </div>
+
+                        <div class="user-data">
+                           <span>
+                              <img src="assets/profile/education.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Education:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[14], '')" *ngIf="generalAnswers[14]">
+                              <option  *ngFor="let item of generalAnswers[14].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[14].choosed_id == item.option_id ? true : null">
+                                 {{item.option}}
+                              </option>
+                           </select>
+                        </div>
+
+                        <div class="user-data">
+                           <span>
+                              <img src="assets/profile/language.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Native Language:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[10], 'selectedOptionId')" *ngIf="generalAnswers[10]">
+
+                              <optgroup *ngFor="let item of generalAnswers[10].options; let index = index;">
+                                 <option [value]="item.option_id" [attr.selected]="generalAnswers[10].choosed_id == item.option_id ? true : null" [disabled]="item.option === hidefluency">{{item.option}}</option>
+
+                                 <option *ngIf="index == 1" disabled>-----------------------------------------------------------</option>
+                              </optgroup>
+
+                                 <!-- <option *ngFor="let item of generalAnswers[10].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[10].choosed_id == item.option_id ? true : null" [disabled]="item.option === hidefluency">
+                                    {{item.option}}
+                                 </option> -->
+                           </select>
+                        </div>
+
+
+                        <div class="user-data" *ngIf="showMore">
+                           <span>
+                              <img src="assets/profile/language.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Second Language:
+                           </span>
+
+                           <select (change)="filterChanged($event.target.value , generalAnswers[11], 'hidefluency')" *ngIf="generalAnswers[11]">
+
+                              <optgroup *ngFor="let item of generalAnswers[11].options; let index = index;">
+                                 <option [value]="item.option_id" [attr.selected]="generalAnswers[11].choosed_id == item.option_id ? true : null" [disabled]="item.option === hidefluency">{{item.option}}</option>
+
+                                 <option *ngIf="index == 2" disabled class="opt-view">-----------------------------------------------------------</option>
+                              </optgroup>
+                              <!-- <option  *ngFor="let item of generalAnswers[11].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[11].choosed_id == item.option_id ? true : null" [disabled]="item.option === selectedOptionId">
+                                 {{item.option}}
+                              </option> -->
+                           </select>
+                        </div>
+
+                        <div class="user-data" *ngIf="generalAnswers[11] && generalAnswers[11].choosed_option != 'No second language spoken' && showMore">
+                           <span>
+                              <img src="assets/profile/language.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Second Language Fluncy:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[12],'')" *ngIf="generalAnswers[12]">
+                              <option  *ngFor="let item of generalAnswers[12].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[12].choosed_id == item.option_id ? true : null">
+                                 {{item.option}}
+                              </option>
+                           </select>
+                        </div>
+
+                        <div class="user-data" *ngIf="showMore">
+                           <span>
+                              <img src="assets/profile/language.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Expect your partner to learn your Native language:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[13],'')" *ngIf="generalAnswers[13]">
+                              <option  *ngFor="let item of generalAnswers[13].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[13].choosed_id == item.option_id ? true : null">
+                                 {{item.option}}
+                              </option>
+                           </select>
+                        </div>
+
+                        <div class="user-data" *ngIf="showMore">
+                           <span>
+                              <img src="assets/profile/education.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Further your education:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[15],'')" *ngIf="generalAnswers[15]">
+                              <option  *ngFor="let item of generalAnswers[15].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[15].choosed_id == item.option_id ? true : null">
+                                 {{item.option}}
+                              </option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-xs-12 col-sm-6">
+                        <div class="user-data">
+                           <span>
+                              <img src="assets/profile/ethinicity.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Ethnicity:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[8],'')" *ngIf="generalAnswers[8]">
+                              <option  *ngFor="let item of generalAnswers[8].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[8].choosed_id == item.option_id ? true : null">
+                                 {{item.option}}
+                              </option>
+                           </select>
+                        </div>
+
+                        <div class="user-data">
+                           <span>
+                              <img src="assets/profile/smoke.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Smoke:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[0],'')" *ngIf="generalAnswers[0]">
+                              <option  *ngFor="let item of generalAnswers[0].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[0].choosed_id == item.option_id ? true : null">
+                                 {{item.option}}
+                              </option>
+                           </select>
+                        </div>
+
+                        <div class="user-data">
+                           <span>
+                              <img src="assets/profile/relocation.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Relocation:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[16],'')" *ngIf="generalAnswers[16]">
+                              <option  *ngFor="let item of generalAnswers[16].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[16].choosed_id == item.option_id ? true : null">
+                                 {{item.option}}
+                              </option>
+                           </select>
+                        </div>
+
+                        <div class="user-data">
+                           <span>
+                              <img src="assets/profile/children.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Has kids:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[2],'')" *ngIf="generalAnswers[2]">
+                              <option  *ngFor="let item of generalAnswers[2].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[2].choosed_id == item.option_id ? true : null">
+                                 {{item.option}}
+                              </option>
+                           </select>
+                        </div>
+
+                        <div class="user-data" *ngIf="generalAnswers[2] && generalAnswers[2].choosed_option == 'Yes' && showMore">
+                           <span>
+                              <img src="assets/profile/children.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              kids under 18:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[3],'')" *ngIf="generalAnswers[3]">
+                              <option  *ngFor="let item of generalAnswers[3].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[3].choosed_id == item.option_id ? true : null">
+                                 {{item.option}}
+                              </option>
+                           </select>
+                        </div>
+
+                        <div class="user-data" *ngIf="generalAnswers[2] && generalAnswers[2].choosed_option == 'Yes' && showMore">
+                           <span>
+                              <img src="assets/profile/children.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Number of kids:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[4],'')" *ngIf="generalAnswers[4]">
+                              <option  *ngFor="let item of generalAnswers[4].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[4].choosed_id == item.option_id ? true : null">
+                                 {{item.option}}
+                              </option>
+                           </select>
+                        </div>
+
+                        <div class="user-data" *ngIf="generalAnswers[2] && generalAnswers[2].choosed_option == 'Yes' && showMore">
+                           <span>
+                              <img src="assets/profile/children.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Live with kids:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[5],'')" *ngIf="generalAnswers[5]">
+                              <option  *ngFor="let item of generalAnswers[5].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[5].choosed_id == item.option_id ? true : null">
+                                 {{item.option}}
+                              </option>
+                           </select>
+                        </div>
+
+                        <div class="user-data" *ngIf="generalAnswers[2] && generalAnswers[2].choosed_option == 'Yes' && showMore">
+                           <span>
+                              <img src="assets/profile/children.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Want more kids:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[6],'')" *ngIf="generalAnswers[6]">
+                              <option  *ngFor="let item of generalAnswers[6].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[6].choosed_id == item.option_id ? true : null">
+                                 {{item.option}}
+                              </option>
+                           </select>
+                        </div>
+
+                        <div class="user-data" *ngIf="generalAnswers[2] && generalAnswers[2].choosed_option == 'No' && showMore">
+                           <span>
+                              <img src="assets/profile/children.png" alt="">
+                           </span>
+                           <span class="data-info">
+                              Have Children Someday:
+                           </span>
+                           <select (change)="filterChanged($event.target.value , generalAnswers[7],'')" *ngIf="generalAnswers[7]">
+                              <option  *ngFor="let item of generalAnswers[7].options; let index = index;" [value]="item.option_id" [attr.selected]="generalAnswers[7].choosed_id == item.option_id ? true : null">
+                                 {{item.option}}
+                              </option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="load-more see-other-info">
+                        <button (click)="showMoreQuestion()" *ngIf="!showMore">
+                           See More
+                           <i _ngcontent-imp-c4="" aria-hidden="true" class="fa fa-angle-double-right"></i>
+                        </button>
+                        <button (click)="showMoreQuestion()" *ngIf="showMore">
+                           See Less
+                           <i _ngcontent-imp-c4="" aria-hidden="true" class="fa fa-angle-double-right"></i>
+                        </button>
+                     </div>
+                     <button class="update-profile" (click)="updateGeneralQuestions()">
+                        Update
+                     </button>
+                  </div>
+                  <div class="bottom-section-user editpage" id="random-things">
+                     <h2>
+                        Random Things About Me
+                     </h2>
+                     <h6>
+                        Answering these questions shows potential matches different sides of your personality. Just remember, be interesting. The more you answer, the more likes you can get to boost your profile.
+                     </h6><br/>
+                     <p>
+                        ( *You can answer as many as you want, but for improved profile completeness a minimum of 4 answered is required )
+                     </p>
+
+                     <div *ngIf="aboutMeData.length == 0" class="not-found">
+                        Hey, you have completed this section for now!<br>
+                        For new questions, please check back soon!
+                     </div>
+
+                     <!-- <div class="row"> -->
+                     <form [formGroup]="formGroup">
+                        <mat-horizontal-stepper  class="custom-step" formArrayName="bookingForm" #stepper>
+                           <mat-step *ngFor="let item of formData(); let i = index;let last = last;" [formGroupName]="i">
+                              <div class="areabox">
+                                 <div class="txt-images">
+                                    <img src="assets/profile/hr.png" alt="">
+                                 </div>
+
+                                 <div class="text-edit">
+                                    <h3 class="question-txt">
+                                       {{item.value.question}}
+                                    </h3>
+                                    <textarea formControlName="answer" (input)="onChangeText($event)"></textarea>
+                                    <div class="button-add">
+                                       <span class="add-btn" (click)="updateRandomThings(item, i)" *ngIf="showSaveButton == true" >
+                                          <a>
+                                             Add Now
+                                          </a>
+                                       </span>
+
+                                       <!-- <span class="delete-about-me" *ngIf="item.value.answer && item.value.is_visible == '1'">
+                                          <i class="fa fa-trash-o delete-icon" aria-hidden="true" (click)="deleteAboutMe(item.value, i)"></i>
+                                       </span> -->
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="buttons">
+                                 <ul>
+                                    <button mat-button  type="button" *ngIf="i  > 0" (click)="goToPrev()">
+                                       Back To Previous Question!
+                                    </button>
+                                    <button mat-button  type="button" (click)="goToNext()" *ngIf="!last">
+                                       Give Me Another Question!
+                                    </button>
+                                 </ul>
+                              </div>
+                           </mat-step>
+                        </mat-horizontal-stepper>
+                     </form>
+
+
+                     <div class="row" *ngIf="exsitingAnswer.length > 0">
+                        <div class="col-xs-12 col-sm-6" *ngFor="let exists of exsitingAnswer; let i = index;">
+                           <div class="txt-images">
+                              <img src="assets/profile/hr.png" alt="">
+                           </div>
+                           <h3>
+                             {{exists.question}}
+                           </h3>
+                           <p>
+                              <textarea [(ngModel)]="exists.answer"></textarea>
+                           </p>
+
+                           <span class="delete-about-me">
+                              <i class="fa fa-trash-o delete-icon" aria-hidden="true" (click)="deleteAboutMe(exists, i)"></i>
+                           </span>
+                        </div>
+                     </div>
+
+                     <button class="update-profile" (click)="updateAnswer()" *ngIf="exsitingAnswer.length > 0">
+                        Update
+                     </button>
+                  </div>
+               </div>
+
+               <div id="photo" class="tab-pane fade">
+                  <div class="photo-sect">
+                     <div class="view-pro ft">
+                        <button class="exit-profile" (click)="goToProfile('gallary')" title="View Profile">
+                           View Profile
+                        </button>
+                  </div>
+                  <div class="clearfix"></div>
+                     <h3>
+                        Photos
+                     </h3>
+                     <div class="upload-section">
+                        <input type="file" #files id="files" class="hidden" (change)="uploadGalleryImage($event)"/>
+
+                        <label class="upload" title="Upload new photo" *ngIf="previewUrl.length == 4 && (currentUser.plan_type == '' ||  currentUser.plan_type == 1)" (click)="openValidationPopup('image')">
+                           Upload Photo
+                        </label>
+
+                        <label class="upload" for="files" title="Upload new photo" *ngIf="previewUrl.length < 4 && (currentUser.plan_type == '' ||  currentUser.plan_type == 1)">
+                           Upload Photo
+                        </label>
+
+                        <label class="upload" for="files" title="Upload new photo" *ngIf=" previewUrl.length < 8 && currentUser.plan_type > 1 ">
+                           Upload Photo
+                        </label>
+
+                        <label class="upload" title="Upload new photo" *ngIf="previewUrl.length == 8 && (currentUser.plan_type != '' ||  currentUser.plan_type != 1)" (click)="openValidationPopup('image_total')">
+                           Upload Photo
+                        </label>
+
+                        <!-- <label class="upload" for="files" title="Upload new photo" *ngIf="previewUrl.length < 4 && (currentUser.plan_type == '' ||  currentUser.plan_type == 1)">
+                           Upload Photo
+                        </label>
+
+                        <label class="upload" title="Upload new photo" *ngIf="previewUrl.length == 4 && (currentUser.plan_type == '' ||  currentUser.plan_type == 1)" (click)="openValidationPopup('image')">
+                           Upload Photo
+                        </label> -->
+                     </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <ul>
+                     <li *ngFor="let image of previewUrl | slice:0:8; let i = index">
+                        <img [defaultImage]="defaultImage" [lazyLoad]="image.path" width="100" (click)="open(i)">
+                        <!-- <img [src]="image.path" alt="" width="100" (click)="open(i)"> -->
+                        <div class="pend-approv" *ngIf="image.is_valid == '0'">
+                           <a>
+                              PENDING APPROVAL
+                           </a>
+                        </div>
+                        <span>
+                        <i class="fa fa-trash-o delete-icon" title="Remove image" aria-hidden="true" (click)="deleteImage(i, image, 'image')"></i>
+                        </span>
+                     </li>
+                     <li *ngIf="previewUrl.length == 0">
+                        No image Yet.
+                     </li>
+                  </ul>
+
+                  <div class="photo-sect">
+                     <h3>
+                        Video Greeting
+                     </h3>
+                     <div class="upload-section">
+                        <input type="file" #filesv id="filesv" class="hidden" (change)="uploadGreetingAndStory($event, 'video')"/>
+                        <label class="upload" for="filesv" title="Upload new photo" *ngIf="showVideo.length == 0">
+                           Upload Greeting
+                        </label>
+
+                        <button  class="disable-story" type="button" [disabled]="showVideo.length > 0" *ngIf="showVideo.length > 0">
+                           Upload Greeting
+                        </button>
+                     </div>
+                  </div>
+                  <ul class="vid-sect">
+                     <li *ngFor="let Video of showVideo; let i=index">
+                        <video width="200" height="200" controls disabled="true" (click)="openVideoModal(Video.path)">
+                           <source [src]="Video.path" type="video/mp4">
+                        </video>
+                        <div class="pend-approv" *ngIf="Video.is_valid == '0'">
+                           <a>
+                              PENDING APPROVAL
+                           </a>
+                        </div>
+                        <span>
+                           <i class="fa fa-trash-o" aria-hidden="true" (click)="deleteImage(i, Video, 'video')"></i>
+                        </span>
+                     </li>
+
+                     <li *ngIf="showVideo.length == 0">
+                        No video greeting Yet.
+                     </li>
+                  </ul>
+
+                  <div class="photo-sect">
+                     <h3>
+                        Story
+                     </h3>
+                     <div class="upload-section">
+                        <input type="file" #filesg id="filesg" class="hidden" (change)="uploadGreetingAndStory($event,'story')"/>
+                        <label class="upload" for="filesg" title="Upload new photo" *ngIf="showStory.length == 0 && currentUser.plan_type != '' &&  currentUser.plan_type != 1 ">
+                           Upload Story
+                        </label>
+
+
+                        <label class="upload" title="Upload new photo" *ngIf="showStory.length == 0 && (currentUser.plan_type == '' ||  currentUser.plan_type == 1)"  (click)="openValidationPopup('story')">
+                           Upload Story
+                        </label>
+
+                        <button  class="disable-story" type="button" [disabled]="showStory.length > 0" *ngIf="showStory.length > 0">
+                           Upload Story
+                        </button>
+
+                     </div>
+                  </div>
+                  <ul>
+                     <li *ngFor="let Video of showStory; let i=index">
+                        <video width="200" height="200"   controls disabled="true">
+                        <source [src]="Video.path" type="video/mp4">
+                        </video>
+                        <div class="pend-approv" *ngIf="Video.is_valid == '0'">
+                           <a>
+                              PENDING APPROVAL
+                           </a>
+                        </div>
+                        <span>
+                           <i class="fa fa-trash-o" aria-hidden="true" (click)="deleteImage(i, Video, 'story')"></i>
+                        </span>
+                     </li>
+
+                     <li *ngIf="showStory.length == 0">
+                        No story Yet.
+                     </li>
+                  </ul>
+               </div>
+               <div id="valuesbeliefs" class="tab-pane fade slider-editprofile" >
+                  <div class="value-retake">
+                     <h3 class="first">
+                        Values/Beliefs
+                     </h3>
+                     <!-- <h3 (click)="openRetakeModal()" class="second" title="Retake onboarding" style="color:#fff">
+                        Retake
+                     </h3> -->
+                  </div>
+
+
+                  <ul class="nav nav-pills value-tabs">
+                     <li class="con" id="conn">
+                        <a data-toggle="pill" href="#connection">
+                           <span class="tab-image1">
+                              <img src="assets/profile/connection.png" alt="">
+                           </span>
+                           <span class="tab-txt-btn1">
+                              Connection
+                           </span>
+                        </a>
+                     </li>
+                     <li class="leis" id="leisu">
+                        <a data-toggle="pill" href="#leisure">
+                           <span class="tab-image2">
+                              <img src="assets/profile/leisure.png" alt="">
+                           </span>
+                           <span class="tab-txt-btn2">
+                              Leisure
+                           </span>
+                        </a>
+                     </li>
+
+                     <li class="grow" id="growt">
+                        <a data-toggle="pill" href="#growth">
+                           <span class="tab-image4">
+                           <img src="assets/profile/growth.png" alt=""></span>
+                           <span class="tab-txt-btn4">
+                              growth
+                           </span>
+                        </a>
+                     </li>
+                     <li class="prosp" id="prosps">
+                        <a data-toggle="pill" href="#prosperity">
+                           <span class="tab-image3">
+                              <img src="assets/profile/prosperity.png" alt=""></span>
+                              <span class="tab-txt-btn3">
+                                 Prosperity
+                              </span>
+                        </a>
+                     </li>
+                     <li class="sprit" id="spritl">
+                        <a data-toggle="pill" href="#spirituality">
+                           <span class="tab-image5">
+                              <img src="assets/profile/spirituality.png" alt="">
+                           </span>
+                           <span class="tab-txt-btn5">
+                              Spirituality
+                           </span>
+                        </a>
+                     </li>
+                  </ul>
+                  <div class="tab-content" [ngStyle]="{'background' : 'url(assets/profile/dotted-bg.png)'}" *ngIf="userProfileData">
+                     <div class="overview tab-pane active fade in" id="overview1">
+                        <h3>
+                           Overview
+                        </h3>
+                        <div class="connection">
+                           <h2>
+                              {{connectionArray.name}}
+                           </h2>
+                           <p>
+                              {{connectionArray.title}}
+                           </p>
+                           <div class="range-slider">
+                              <ng5-slider [(value)]="connectionArray.id" [options]="options" [ngStyle]="{'background' : 'url(assets/profile/heart1.png)'}"></ng5-slider>
+                           </div>
+                        </div>
+                        <div class="connection">
+                           <h2>
+                              {{leisureArray.name}}
+                           </h2>
+                           <p>
+                              {{leisureArray.title}}
+                           </p>
+                           <div class="range-slider leisue-sld">
+                              <ng5-slider [(value)]="leisureArray.id" [options]="options"></ng5-slider>
+                           </div>
+                        </div>
+
+                        <div class="connection">
+                           <h2>
+                              {{growthArray.name}}
+                           </h2>
+                           <p>
+                              {{growthArray.title}}
+                           </p>
+                           <div class="range-slider growth-sld">
+                              <ng5-slider [(value)]="growthArray.id" [options]="options"></ng5-slider>
+                           </div>
+                        </div>
+
+                        <div class="connection">
+                           <h2>
+                              {{prosperityArray.name}}
+                           </h2>
+                           <p>
+                              {{prosperityArray.title}}
+                           </p>
+                           <div class="range-slider pro-sld">
+                              <ng5-slider [(value)]="prosperityArray.id" [options]="options" ></ng5-slider>
+                           </div>
+                        </div>
+
+                        <div class="connection">
+                           <h2>
+                              {{spiritualityArray.name}}
+                           </h2>
+                           <p>
+                              {{spiritualityArray.title}}
+                           </p>
+                           <div class="range-slider spirit-sld">
+                              <ng5-slider [(value)]="spiritualityArray.id" [options]="options"></ng5-slider>
+                           </div>
+                        </div>
+                        <div class="learn-more" (click)="show()" *ngIf="learnMore == false">
+                           <span>
+                              More Detail
+                              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                           </span>
+                        </div>
+                        <div class="lear-txt-hide" *ngIf="learnMore">
+                           <div class="row">
+                              <div class="col-xs-12 col-sm-6">
+                                 <div class="conetcion-less">
+                                    <div class="txt-images">
+                                       <img src="assets/profile/connection-white.png" alt="">
+                                    </div>
+                                    <h3>
+                                       {{connectionArray.name}}
+                                    </h3>
+                                    <p>
+                                       {{connectionArray.description | accountHtml}}
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="col-xs-12 col-sm-6">
+                                 <div class="conetcion-less leisu">
+                                    <div class="txt-images">
+                                       <img src="assets/profile/leisure-white.png" alt="">
+                                    </div>
+                                    <h3>
+                                       {{leisureArray.name}}
+                                    </h3>
+                                    <p>
+                                       {{leisureArray.description | accountHtml}}
+                                    </p>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-xs-12 col-sm-6">
+                                 <div class="conetcion-less grow">
+                                    <div class="txt-images">
+                                       <img src="assets/profile/growth-white.png" alt="">
+                                    </div>
+                                    <h3>
+                                       {{growthArray.name}}
+                                    </h3>
+                                    <p>
+                                       {{growthArray.description | accountHtml}}
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="col-xs-12 col-sm-6">
+                                 <div class="conetcion-less pro">
+                                    <div class="txt-images">
+                                       <img src="assets/profile/prosperity-white.png" alt="">
+                                    </div>
+                                    <h3>
+                                       {{prosperityArray.name}}
+                                    </h3>
+                                    <p>
+                                       {{prosperityArray.description | accountHtml}}
+                                    </p>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-xs-12 col-sm-6">
+                                 <div class="conetcion-less spir">
+                                    <div class="txt-images">
+                                       <img src="assets/profile/spirituality-white.png" alt="">
+                                    </div>
+                                    <h3>
+                                       {{spiritualityArray.name}}
+                                    </h3>
+                                    <p>
+                                       {{spiritualityArray.description | accountHtml}}
+                                    </p>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="learn-more lessmore" (click)="hide()" *ngIf="learnMore == true">
+                           <span>
+                              See Less
+                              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                           </span>
+                        </div>
+                        </div>
+                     </div>
+                     <div id="connection" class="tab-pane fade in text-increse" >
+                        <div class="next-prev">
+                           <ul>
+                              <li class="prev-left" (click)="changeActiveTabs('overview')"></li>
+                              <li class="next-right"  data-toggle="pill" href="#leisure" (click)="changeActiveTabs('leisure')">
+                                 <span>
+                                    Next
+                                 </span>
+                                 <span>
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                 </span>
+                              </li>
+                           </ul>
+                        </div>
+                        <div class="connection">
+                           <h2>
+                              {{connectionArray.name}}
+                           </h2>
+                           <p>
+                              {{connectionArray.title}}
+                           </p>
+                           <div class="range-slider">
+                              <ng5-slider [(value)]="connectionArray.id" [options]="options"></ng5-slider>
+                           </div>
+                        </div>
+                        <div class="pera-tab">
+                           <p>
+                              {{connectionArray.cat_description | accountHtml}}
+                           </p>
+                        </div>
+                     </div>
+                     <div id="leisure" class="tab-pane fade in text-increse">
+                        <div class="next-prev">
+                           <ul>
+                              <li class="prev-left" data-toggle="pill" href="#connection" (click)="changeActiveTabs('connection')">
+                                 <span>
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                 </span>
+                                 <span>
+                                    Previous
+                                 </span>
+                              </li>
+                              <li class="next-right"  data-toggle="pill" href="#growth" (click)="changeActiveTabs('growth')">
+                                 <span>
+                                    Next
+                                 </span>
+                                 <span>
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                 </span>
+                              </li>
+                           </ul>
+                        </div>
+                        <div class="connection">
+                           <h2>
+                              {{leisureArray.name}}
+                           </h2>
+                           <p>
+                              {{leisureArray.title}}
+                           </p>
+                           <div class="range-slider leisue-sld">
+                              <ng5-slider [(value)]="leisureArray.id" [options]="options"></ng5-slider>
+                           </div>
+                        </div>
+                        <div class="pera-tab">
+                           <p>
+                              {{leisureArray.cat_description | accountHtml}}
+                           </p>
+                        </div>
+                     </div>
+                     <div id="growth" class="tab-pane fade in text-increse">
+                        <div class="next-prev">
+                           <ul>
+                              <li class="prev-left" data-toggle="pill" href="#leisure" (click)="changeActiveTabs('leisure')">
+                                 <span>
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                 </span>
+                                 <span>
+                                    Previous
+                                 </span>
+                              </li>
+                              <li class="next-right" data-toggle="pill" href="#prosperity" (click)="changeActiveTabs('prosperity')">
+                                 <span>
+                                    Next
+                                 </span>
+                                 <span>
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                 </span>
+                              </li>
+                           </ul>
+                        </div>
+                        <div class="connection">
+                           <h2>
+                              {{growthArray.name}}
+                           </h2>
+                           <p>
+                              {{growthArray.title}}
+                           </p>
+                           <div class="range-slider growth-sld">
+                              <ng5-slider [(value)]="growthArray.id" [options]="options"></ng5-slider>
+                           </div>
+                        </div>
+                        <div class="pera-tab">
+                           <p>
+                              {{growthArray.cat_description | accountHtml}}
+                           </p>
+                        </div>
+                     </div>
+                     <div id="prosperity" class="tab-pane fade in text-increse">
+                        <div class="next-prev">
+                           <ul>
+                              <li class="prev-left"  data-toggle="pill" href="#growth" (click)="changeActiveTabs('growth')">
+                                 <span>
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                 </span>
+                                 <span>
+                                    Previous
+                                 </span>
+                              </li>
+                              <li class="next-right"  data-toggle="pill" href="#spirituality" (click)="changeActiveTabs('spirituality')">
+                                 <span>
+                                    Next
+                                 </span>
+                                 <span>
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                 </span>
+                              </li>
+                           </ul>
+                        </div>
+                        <div class="connection">
+                           <h2>
+                              {{prosperityArray.name}}
+                           </h2>
+                           <p>
+                              {{prosperityArray.title}}
+                           </p>
+                           <div class="range-slider pro-sld">
+                              <ng5-slider [(value)]="prosperityArray.id" [options]="options"></ng5-slider>
+                           </div>
+                        </div>
+                        <div class="pera-tab">
+                           <p>
+                              {{prosperityArray.cat_description | accountHtml}}
+                           </p>
+                        </div>
+                     </div>
+
+                     <div id="spirituality" class="tab-pane fade in text-increse">
+                        <div class="next-prev">
+                           <ul>
+                              <li class="prev-left" data-toggle="pill" href="#prosperity" (click)="changeActiveTabs('prosperity')">
+                                 <span>
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                 </span>
+                                 <span>
+                                    Previous
+                                 </span>
+                              </li>
+                           </ul>
+                        </div>
+                        <div class="connection">
+                           <h2>
+                              {{spiritualityArray.name}}
+                           </h2>
+                           <p>
+                              {{spiritualityArray.title}}
+                           </p>
+                           <div class="range-slider spirit-sld">
+                              <ng5-slider [(value)]="spiritualityArray.id" [options]="options"></ng5-slider>
+                           </div>
+                        </div>
+                        <div class="pera-tab">
+                           <p>
+                              {{spiritualityArray.cat_description | accountHtml}}
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div id="interests" class="tab-pane fade interests">
+                  <div class="add-intersts">
+                     <div class="view-pro"><button class="exit-profile" (click)="goToProfile('interest')" title="View Profile">
+                        View Profile
+                     </button>
+                  </div>
+                        <h3>
+                           Interests
+                        </h3>
+                        <a  [ngClass]="{'adisabled': showDiv}" (click)="chooseInterestIcon(-1)" title="Add new interest" style="cursor: pointer;">
+                        Add new
+                     </a>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="row">
+                     <div class="col-xs-12 col-sm-6" *ngIf="showDiv == true">
+                        <form class="start-feild" [formGroup]="interestForm" (ngSubmit)="onSubmit()">
+                           <span>
+                                 <i class="fa fa-plus" *ngIf="!hobbies"></i>
+                                 <P class="choose-icon" *ngIf="!hobbies">
+                                 Choose Icon
+                              </P>
+                              <img src="{{hobbies}}" alt="" *ngIf="hobbies">
+                           </span>
+
+                           <h4>
+                              {{interestForm.value.interest_name}}
+                           </h4>
+
+                           <div class="text-edit">
+                              <p style="margin-top: 20px;margin-bottom: 0px">
+                                 {{interest_text}}
+                              </p>
+
+                              <textarea style="margin-bottom: 10px;" type="text"  placeholder="Description" formControlName="interest_text" [ngClass]="{ 'is-invalid': submitted && f.interest_text.errors }" class="form-control"  maxlength="300"></textarea>
+
+                              <div *ngIf="submitted && f.interest_text.errors" class="invalid-feedback">
+                                 <div *ngIf="f.interest_text.errors.required">
+                                    Please enter the interest description
+                                 </div>
+                              </div>
+                              <button class="save-txt" type="submit">
+                                 Save
+                              </button>
+                           </div>
+                        </form>
+                     </div>
+
+                     <div class="col-xs-12 col-sm-6" *ngFor="let item of userInterest; let i = index">
+                        <div class="delete-interest" (click)="removeInterest(item , i, 'interest')">
+                           <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </div>
+                        <span>
+                           <img src="{{item.logo_link}}" alt="" *ngIf="item.logo_link">
+                           </span>
+
+                           <h4>
+                           {{item.interest_name}}
+                        </h4>
+
+                        <div class="text-edit">
+                              <p style="margin-top: 20px;margin-bottom: 0px">
+                              {{item.interest_text}}
+                           </p>
+                              <textarea [(ngModel)]='item.text' maxlength="300"></textarea>
+                              <button class="save-txt" (click)="updateExistingInterest(item)" [disabled]='disbaleButton == false'>
+                                 update
+                           </button>
+                           </div>
+                     </div>
+                  </div>
+                  <p *ngIf="userInterest.length == 0 && showDiv == false && hideLoader == true">
+                     No interest added yet.
+                  </p>
+               </div>
+
+               <div id="uploadproof" class="tab-pane fade">
+                  <div class="clearfix"></div>
+                  <div class="row">
+                     <div class="col-xs-12 col-sm-6">
+                        <mat-form-field class="select-width">
+                           <mat-select (selectionChange)="selectProofOption($event.value)" [(ngModel)]="selectedProofId">
+                              <mat-option
+                                 [value] = "0" disabled="true">
+                                 Select Option
+                              </mat-option>
+                              <mat-option *ngFor = "let type of id_masters"
+                                 [value] = "type.id">
+                                 {{type.name}}
+                              </mat-option>
+                           </mat-select>
+                        </mat-form-field>
+
+                        <div *ngIf="selectedImage && selectedProofId == 0 && proofId" class="invalid-feedback">
+                           <div style="font-size: 16px">
+                              Please select type of proof
+                           </div>
+                        </div>
+
+                        <div>
+                           <label for="file" class="id-proof">
+                              Choose File
+                           </label>
+
+                           <input type="file" id="file" (change)="handleFileInput($event)" style="display:none;">
+                           <label for="files" *ngIf="!selectedImage"> No File Chosen </label>
+                           <div *ngIf="imageCheck && imagePath == ''" class="invalid-feedback">
+                              <div style="font-size: 16px">
+                                 Please upload proof image
+                              </div>
+                           </div>
+                        </div>
+                        <img src="{{selectedImage}}" class="upload-image" *ngIf="selectedImage" />
+
+
+                        <mat-form-field class="select-width">
+                           <mat-label>
+                              Social media link (Instagram/Facebook/Twitter)
+                           </mat-label>
+                           <input matInput [(ngModel)]="facebook" >
+                        </mat-form-field>
+                        <div class="text-edit-proof">
+                           <button class="save-txt" type="button" [disabled]="selectedProofId == 0 && facebook == '' && selectedImage == undefined" (click)="uploadIdProof()">
+                              Update
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

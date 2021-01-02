@@ -1,0 +1,96 @@
+<div class="complete-profile">
+    <div class="container">
+        <div class="overlay"></div>
+        <form class="download">
+            <!-- <h2>
+               {{showNextPopup == false ? 'Welcome!' :'HOW TO USE YOUR DASHBOARD?'}}
+            </h2> -->
+            <span class="cross" (click) ="dismissModal()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </span>
+            <div class="inner-form">
+                <h3 class="thnk-txt">
+                    {{scoreNumber <= 29 ?  'Insight: Absence of Trust' : scoreNumber <=54  ?  'Insight: Trust Undetermined' : scoreNumber <=79 ? 'Insight: Building Trust' : scoreNumber <=94 ? 'Insight: High Trust': 'Insight: Trust Assured'}}
+                </h3>
+
+                <P>{{scoreNumber <= 29 ?  'This person’s online dating behavior should not be trusted. Only give the benefit of the doubt if this person’s score quickly rises.' : scoreNumber <=54  ?  'This person’s online dating behavior has some inconsistency, but you may want to give them the benefit of the doubt.' : scoreNumber <=79 ? 'This person’s online dating behavior is off to a good start and it’s likely you’ll see their score continue to rise. ' : scoreNumber <=94 ? 'This person’s online dating behavior has proven to be very good and they should be viewed as a highly trusted person.': 'This person’s online dating behavior has earned them the Trust Assured badge.'}} </P>
+
+
+                <h3 class="thnk-txt">What does this mean?</h3>
+
+                <div *ngIf="scoreNumber > 0 && scoreNumber <= 29">
+                    <p>This person needs to be all in, or get all out. There is no halfway.</p>
+                    <p>Our proprietary algorithmic trust scoring system analyzes against 45 unique trust factors daily. To earn a score between 0-29, this person has demonstrated a consistent pattern of certain behaviors on this site, satisfying  only 1, up to 12 of these 45 trust factors.</p>
+                    <p>This person has done nothing to earn trust, but could have done plenty to lose it. Proceed with extreme caution. Trust is earned on this site, not automatically given. Everyone starts with a trust score of zero, and their behaviors, from the moment they sign up, are what build their score up. Yes, it is possible that they are a brand-new member, but it is unlikely, as a majority of new members with good intentions would have a higher score almost immediately after sign-up.</p>
+                </div>
+                <div *ngIf="scoreNumber > 29 && scoreNumber <= 54">
+                    <p>Our proprietary algorithmic trust scoring system analyzes against 45 unique trust factors daily. To earn a score between 30-54, this person has demonstrated a consistent pattern of certain behaviors on this site, satisfying at least 12, up to 26 of these 45 trust factors so far.</p>
+                    <p>You can give this person the benefit of the doubt with caution. Trust is earned on this site, not automatically given. Everyone starts with a trust score of zero and their behaviors, from the moment they sign up, are what build their score up. So, the probable cause for a score to be within this range, is if the person is a brand-new member and has limited time on this site. This is understandable.</p>
+                </div>
+                <div *ngIf="scoreNumber > 54 && scoreNumber <= 79">
+                    <p>Our proprietary algorithmic trust scoring system analyzes against 45 unique trust factors daily. To earn a score between 55-79, this person has demonstrated a consistent pattern of certain behaviors on this site, satisfying at least 27, up to 37 of these 45 trust factors so far.</p>
+                    <p>The saying, “trust has to start somewhere”, is appropriate for this person. Trust is earned on this site, not automatically given. It’s especially important to keep this in mind for a person possessing a trust score in this range. Everyone starts with a trust score of zero and their behaviors from the moment they sign up are what build their score up. So, as you can see this person has come a long way and appears to be building trust effectively, making them a perfect choice to get to know and take things slow.</p>
+                </div>
+                <div *ngIf="scoreNumber > 79 && scoreNumber <= 94">
+                    <p>Our proprietary algorithmic trust scoring system analyzes against 45 unique trust factors daily. To earn a score between 80-94, this person has had to demonstrate a consistent pattern of certain behaviors on this site, satisfying at least 38 of these 45 trust factors.</p>
+                    <p>Nobody is perfect, but a score this high means they are getting close. So close, that you might see them earn the Trust Assured badge soon. Trust is earned on this site, not automatically given. In order for this person to have a trust score in this range, their actions would need to be consistent with building trust. So, if trust is important to you, connecting with this person might be a good idea.</p>
+                </div>
+                <div *ngIf="scoreNumber > 94">
+                    <p>Our proprietary algorithmic trust scoring system analyzes against 45 unique trust factors daily. To earn a score between 95-100, this person has had to demonstrate a consistent pattern of certain behaviors on this site, satisfying at least 43 of these 45 trust factors.</p>
+                    <p>Give this person the extra consideration they deserve, as a score this high doesn’t happen by accident. We believe trusts is earned, not automatically given. This person has earned it.</p>
+                </div>
+                <h3 class="thnk-txt">Why is this important?</h3>
+
+                <P>{{scoreNumber <= 29 ?  'It does not matter if their score is closer to 0 or 29, if they have been on this site for more than 24 hours, there is a high confidence level that this person’s behavior is consistent with scammers or ungenuine people. Proceed with extreme caution.' : scoreNumber <=54  ?  'If you decide to make a connection with this person, it does not matter if their score is closer to 30 or 54, you want to see a jump to the Trust Building range of 55-79 in the near future. It’s important to see this person’s score trend upward, the longer they are on the site. If over time their score does not rise, it’s a red flag and you should proceed with caution.' : scoreNumber <=79 ? 'All signs point in the right direction of building trust. If you decide to make a connection with this person, just take notice as to where there score falls. Is it closer to 55 or 79? If it’s currently closer to 55 and they are active on the site, you should see their score rise fairly quickly.  If it’s closer to 79 then this person is trending in the right direction. If over time their score drops, it’s not a huge red flag with a score in this range, everybody is human. However, any drop in this person’s score should bounce back in the right direction rather quickly.' : scoreNumber <=94 ? 'It’s simple, all signs point in the right direction of high trust. If you connect with them it should be smooth sailing with little to worry about. The only thing we recommend is to look for any sudden changes to there score as you’re getting to know them. If your having meaningful communication with this person regularly on the site, their score should stay in the high trust range or go up, not go down.': 'It’s simple, this person has a perfect or near perfect Trust Score. When you pursue a relationship with them, this person should continue to do things in ways that consistently increase your trust, not raise question of it, giving you little doubt. If relationships can’t exist without trust, why would you pass up the opportunity to connect with this person?'}} </P>
+
+                <h3 class="thnk-txt">How does it work?</h3>
+
+                <div *ngIf="scoreNumber == 0 && scoreNumber <= 29">
+                    <p>It is NOT the presence or absence of any particular trust factor that is important. It’s the person’s historical patterns that are important.  A lack of one certain factor does not mean an absolute lack of a certain character trait. It is a combination and accumulation of multiple factors over any given time.</p>
+                    <p>The more factors satisfied, the higher the Trust Score, and a greater likelihood of genuine intentions.</p>
+                    <p>The lower the number of factors satisfied, the lower the Trust Score, and a greater likelihood of intentions that are not genuine. AKA Red Flags.</p>
+                </div>
+                <div *ngIf="scoreNumber > 29 && scoreNumber <= 54">
+                    <p>It is NOT the presence or absence of any particular trust factor that is important. It’s the person’s historical patterns that are important.  A lack of one certain factor does not mean an absolute lack of a certain character trait. It is a combination and accumulation of multiple factors over any given time.</p>
+                    <p>The more factors satisfied, the higher the Trust Score, and a greater likelihood of genuine intentions.</p>
+
+                    <p>The lower the number of factors satisfied, the lower the Trust Score, and a greater likelihood of intentions that are not genuine. AKA Red Flags.</p>
+                </div>
+                <div *ngIf="scoreNumber > 54 && scoreNumber <= 79">
+                    <p>It is NOT the presence or absence of any particular trust factor that is important. It’s the person’s historical patterns that are important.  A lack of one certain factor does not mean an absolute lack of a certain character trait. It is a combination and accumulation of multiple factors over any given time.</p>
+                    <p>The more factors satisfied, the higher the Trust Score, and a greater likelihood of genuine intentions.</p>
+                    <p>The lower the number of factors satisfied, the lower the Trust Score, and a greater likelihood of intentions that are not genuine. AKA Red Flags.</p>
+                </div>
+                <div *ngIf="scoreNumber > 79 && scoreNumber <= 94">
+                    <p>Our proprietary algorithmic trust scoring system analyzes against 45 unique trust factors daily. To earn a score between 80-94, this person has had to demonstrate a consistent pattern of certain behaviors on this site, satisfying at least 38 of these 45 trust factors.</p>
+                    <p>Nobody is perfect, but a score this high means they are getting close. So close, that you might see them earn the Trust Assured badge soon. Trust is earned on this site, not automatically given. In order for this person to have a trust score in this range, their actions would need to be consistent with building trust. So, if trust is important to you, connecting with this person might be a good idea.</p>
+                </div>
+                <div *ngIf="scoreNumber > 94">
+                    <p>It is NOT the presence or absence of any particular trust factor that is important. It’s the person’s historical patterns that are important.  A lack of one certain factor does not mean an absolute lack of a certain character trait. It is a combination and accumulation of multiple factors over any given time.</p>
+                    <p>The more factors satisfied, the higher the Trust Score, and a greater likelihood of genuine intentions.</p>
+                    <p>The lower the number of factors satisfied, the lower the Trust Score, and a greater likelihood of intentions that are not genuine. AKA Red Flags.</p>
+                </div>
+                <div class="repeatedly" *ngIf="scoreNumber == 0 && scoreNumber <= 29">
+                    <h3 class="thnk-txt">Whoever is careless with trust in small matters cannot be trusted with important matters.  -Albert Einstein</h3>
+                </div>
+                <div class="repeatedly" *ngIf="scoreNumber > 29 && scoreNumber <= 54">
+                    <h3 class="thnk-txt">“You may be deceived if you trust too much, but you will live in torment unless you trust enough.”  – Frank Crane</h3>
+                </div>
+                <div class="repeatedly" *ngIf="scoreNumber > 54 && scoreNumber <= 79">
+                    <h3 class="thnk-txt">“Trust has to be earned, and should come only after the passage of time.”– Arthur Ashe</h3>
+                </div>
+                <div class="repeatedly" *ngIf="scoreNumber > 79 && scoreNumber <= 94">
+                    <h3 class="thnk-txt">“Consistency is the true foundation of trust.”– Roy T. Bennett</h3>
+                </div>
+
+                <div class="repeatedly" *ngIf="scoreNumber > 94">
+                    <h3 class="thnk-txt">“We become what we repeatedly do” —</h3> <p>Stephen Covey</p>
+                </div>
+
+
+                <P>{{scoreNumber <= 29 ?  '* Disclaimer – Trust score does not guarantee a person’s good or bad intentions. It is a tool that gives insight and recommendations you can use in making better human decisions that can help avoid online dating romance scams or ungenuine people.' : scoreNumber <=54  ?  '* Disclaimer – Trust score does not guarantee a person’s good or bad intentions. It is a tool that gives insight and recommendations you can use in making better human decisions that can help avoid online dating romance scams or ungenuine people.' : scoreNumber <=79 ? '* Disclaimer – Trust score does not guarantee a person’s good or bad intentions. It is a tool that gives insight and recommendations you can use in making better human decisions that can help avoid online dating romance scams or ungenuine people.' : scoreNumber <=94 ? '* Disclaimer – Trust score does not guarantee a person’s good or bad intentions. It is a tool that gives insight and recommendations you can use in making better human decisions that can help avoid online dating romance scams or ungenuine people.': '* Disclaimer – Trust score does not guarantee a person’s good or bad intentions. It is a tool that gives insight and recommendations you can use in making better human decisions that can help avoid online dating romance scams or ungenuine people.'}} </P>
+
+            </div>
+        </form>
+    </div>
+</div>

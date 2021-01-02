@@ -1,0 +1,17 @@
+<div class="container">
+   <div class="inner-container term-page detail-post">
+      <h1 *ngIf="blogData">
+         {{blogData[0].title}}
+      </h1>
+      <div class="row" *ngFor="let blog of blogData">
+         <div id="elementWidthIns" class="page-text-term col-md-12">
+            <cus-image [url]="blog.image" [actualDimension]="blog.thumbnail" [dimension]="'1080x810'" [loaderSize]="1" [widthIns]="'#elementWidthIns'">
+            </cus-image>
+         </div>
+         <div class="page-text-term col-md-12 post-cnt">
+            <p [innerHTML]="blog.description | safeHtmlDetail">
+            </p>
+         </div>
+      </div>
+   </div>
+</div>

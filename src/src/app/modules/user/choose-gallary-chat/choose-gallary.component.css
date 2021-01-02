@@ -1,0 +1,156 @@
+ /* Model css end */
+ span.cross {
+    position: absolute;
+    right: -5px;
+    top: -8px;
+    background: #fff;
+    border-radius: 100%;
+    padding: 0px 6px;
+    color: #9a3cbc;
+    border: 1px solid;
+}
+
+.modal-body {
+    /* position: relative; */
+    padding: 0px !important;
+}
+
+.modal-content {
+    border: 2px solid #fff;
+}
+
+.modal-dialog .container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+ul.pop-txt {
+    padding: 0;
+    text-align: center;
+}
+
+::ng-deep .controls .progress {
+    height: 0px !important;
+}
+
+::ng-deep .controls .menu {
+    display: block !important;
+}
+
+::ng-deep .controls .menu .right {
+    display: none !important;
+    /* justify-content: flex-end; */
+}
+
+::ng-deep .playtime {
+    font-size: 11px !important;
+}
+
+mat-video {
+    width: 150px !important;
+    height: 150px !important;
+}
+::ng-deep .update-image mat-radio-button.radio-sect-more {
+    margin-left: 20px;
+}
+ /*=========================== Modal Css ==================*/
+ ul.update-image {
+    padding: 0;
+    margin: 0;
+    max-height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+}   
+.update-image li {
+    display: flex;
+    padding: 10px;
+    cursor: pointer;
+    margin: 1px 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-fonts {
+  text-align: center;
+    color: #ca21a4;
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.go-btn button.visit {
+    color: #fff;
+    font-weight: 700;
+    background: linear-gradient(to right,#e51197 ,#9d3aba );
+    border-radius: 50px;
+    padding: 7px 0;
+    margin: 0px 0px 15px;
+    max-width: 102px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    border: medium none;
+}
+
+.visit[disabled] {
+    cursor: not-allowed !important;
+    opacity: .65;
+}
+.go-btn {
+    text-align: center;
+}
+::ng-deep .update-image .mat-radio-outer-circle {
+    box-sizing: border-box;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    top: -65px;
+    transition: border-color ease 280ms;
+    width: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 50%;
+}
+::ng-deep .update-image .mat-radio-inner-circle {
+    border-radius: 50%;
+    box-sizing: border-box;
+    height: 20px;
+    left: 2px;
+    position: absolute;
+    top: -65px;
+    transition: transform ease 280ms,background-color ease 280ms;
+    width: 20px;
+    transform: scale(.001);
+}
+::ng-deep .update-image .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #e11399;
+    background: #d71a9f !important;
+}
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 700px !important;
+        margin: 0;
+    }
+
+}
+@media(max-width:1024px){
+    .input-txt {
+        margin-top: 5px;
+ 
+    }
+    .input-txt input {
+        margin-bottom: 10px;
+    }
+    button.login{
+        margin: 14px auto 0;
+    }
+}
+
+/* @media (min-width: 768px){
+    .modal-dialog {
+        width: 450px !important;
+        margin: 30px auto;
+    }
+} */

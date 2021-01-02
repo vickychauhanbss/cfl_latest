@@ -1,0 +1,1457 @@
+<div class="banner" [bgImage]="showCoverImage?.path"
+[actualDimension]="showCoverImage?.path_dimension" [defaultBanner]="'assets/profile/banner.png'">
+	<div class="container" [class.userprofile]="check_Id != userId">
+		<div class="row">
+			<div class="col-xs-4 col-sm-3">
+				<div class="back-icon" (click)="(inChild)?back.emit('closed'):backToDashboard()" *ngIf="check_Id != userId">
+					<i class="fa fa-arrow-left"></i>
+				</div>
+			</div>
+			<div class="col-xs-8 col-sm-9">
+				<div class="baner-icons">
+					<div class="pull-left user_status_info">
+						<div class="status-ban" *ngIf="userStatus">{{userStatus.name}}</div>
+						<div class="title-user hide-mobile">
+							<h2 *ngIf="userProfileData">
+								{{userProfileData.userData.first_name}}
+								<img src="assets/profile/center-stage.png" alt=""
+									*ngIf="userProfileData.center_stage_badge == 'valid'" />
+							</h2>
+						</div>
+					</div>
+					<div class="user-icon">
+						<div class="trust-score hide-mobile"
+							*ngIf="gaugeValue > 0 && check_Id != userId">
+							<img src="assets/profile/trust_score_new.png" alt=""
+								*ngIf="[1,2,3].indexOf(userData.plan_type) < 0; else elseScore"
+								(click)="show_popup('trust_score')" />
+
+							<ng-template #elseScore>
+								<ngx-gauge [type]="gaugeType" [value]="gaugeValue" [label]="gaugeLabel"
+									[thresholds]="thresholdConfig" (click)="openTrustScorePopup(gaugeValue)"></ngx-gauge>
+							</ng-template>
+						</div>
+
+						<ul *ngIf="check_Id != userId">
+							
+							<li *ngIf="check_Id != userId && showCoverImage.liked == '1'" title="Dislike banner">
+								<i class="fa fa-thumbs-up like-section" (click)="like_unlike_user('0', showCoverImage.type, showCoverImage.id)"></i>
+							</li>
+
+							<li *ngIf="check_Id != userId && showCoverImage.liked == '0'" title="Like banner"
+								(click)="like_unlike_user('1', showCoverImage.type, showCoverImage.id)">
+								<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+							</li>
+
+							<li *ngIf="check_Id != userId" class="icon-pointer"
+								(click)="userData.plan_type == 1 || userData.plan_type ==  '' ?  show_popup('chat') : goToChatPage()">
+								<i class="fa fa-comments" aria-hidden="true"></i>
+							</li>
+
+
+							<li *ngIf="check_Id != userId"
+								(click)="userData.plan_type == 1 || userData.plan_type ==  '' ?  show_popup('chat') : openVideoGreeting()"
+								class="icon-pointer">
+								<i class="fa fa-video-camera" aria-hidden="true"></i>
+							</li>
+
+							<li class="star-none" *ngIf="check_Id != userId && trueClient == ''"
+								(click)="openInterestOptions()" title="Interest">
+								<i class="fa fa-star" aria-hidden="true"></i>
+							</li>
+
+							<li class="star-chat" *ngIf="check_Id != userId && trueClient == '1'"
+								(click)="openInterestOptions()" title="Interest">
+								<i class="fa fa-star" aria-hidden="true"></i>
+							</li>
+
+							<li class="star-chat" *ngIf="check_Id != userId && trueClient == '2'"
+								(click)="openInterestOptions()" title="Interest">
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+							</li>
+
+							<li class="star-chat" *ngIf="check_Id != userId && trueClient == '3'"
+								(click)="openInterestOptions()" title="Interest">
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+							</li>
+
+							<div [ngClass]="showHideInterest === true ? 'show-intrest' : 'hide-intrest' ">
+								<mat-radio-group class="radio-select" id="check-radio" [(ngModel)]="trueClient">
+									<mat-radio-button #button class="radio-sect-dash"
+										*ngFor="let inerest of interestOptions" [value]="inerest.id"
+										(click)="update_Interest($event, button)">
+										<img [src]="inerest.image" alt="">
+										{{inerest.name}}
+									</mat-radio-button>
+								</mat-radio-group>
+							</div>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="main-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-3 left-side-user">
+				<div class="top-user">
+					<div class="user-image-profile user-image-profile-desktop hide-mobile">
+
+						<img src="assets/profile/user-new.png" alt="" *ngIf="!showProfileImage && userGender == 1">
+
+						<img src="assets/profile/dummy-image.jpg" alt="" *ngIf="!showProfileImage && userGender == 2">
+						<!-- <img src="assets/profile/user-new.png" alt="" *ngIf="!showProfileImage"> -->
+						<!-- <img [src]="showProfileImage" alt="" *ngIf="showProfileImage"> -->
+
+						<cus-image *ngIf="showProfileImage" style="cursor: pointer" [url]="showProfileImage"
+							[actualDimension]="showProfileImageDimension" [dimension]="'360x262'"
+							[widthIns]="'.user-image-profile-desktop'" [loaderSize]="0.5"></cus-image>
+					</div>
+
+					<div class="right-sect show-mobile">
+						<div class="user-image-profile user-image-profile-mobile">
+							<img src="assets/profile/user-new.png" alt="" *ngIf="!showProfileImage && userGender == 1">
+
+							<img src="assets/profile/dummy-image.jpg" alt=""
+								*ngIf="!showProfileImage && userGender == 2">
+
+							<cus-image *ngIf="showProfileImage" style="cursor: pointer" [url]="showProfileImage"
+								[actualDimension]="showProfileImageDimension" [dimension]="'360x262'"
+								[widthIns]="'.user-image-profile-mobile'" [loaderSize]="0.5"></cus-image>
+
+						</div>
+						<div class="user-right-sect">
+							<div class="title-user">
+								<h2 *ngIf="userProfileData">
+									{{userProfileData.userData.first_name}}
+								</h2>
+							</div>
+							<div class="like-thumb" *ngIf="check_Id != userId">
+								<i class="fa fa-thumbs-up" (click)="like_unlike_user('1', 'profile_like', '')"
+									*ngIf="likedData == '' && showProfileImage"></i>
+
+								<i class="fa fa-thumbs-up like-section"
+									(click)="like_unlike_user('0', 'profile_like', '')"
+									*ngIf="showProfileImage && likedData && likedData.profile_like == '1'"></i>
+
+								<i class="fa fa-thumbs-up" (click)="like_unlike_user('1', 'profile_like','')"
+									*ngIf="showProfileImage && likedData && likedData.profile_like == '0'"
+									title="Like profile picture"></i>
+							</div>
+						</div>
+						<div class="trust-score"
+							*ngIf="gaugeValue > 0 && (userData.plan_type == 1 && otherUser == true) || (userData.plan_type == 2 && otherUser == true) || userData.plan_type == 3">
+
+							<img src="assets/profile/trust_score_new.png" alt=""
+								*ngIf="userData.plan_type == 1 || userData.plan_type ==  ''"
+								(click)="show_popup('trust_score')" />
+
+							<ngx-gauge [type]="gaugeType" [value]="gaugeValue" [label]="gaugeLabel"
+								[thresholds]="thresholdConfig" (click)="openTrustScorePopup(gaugeValue)"
+								*ngIf="userData.plan_type == 2 || userData.plan_type ==  3"></ngx-gauge>
+						</div>
+					</div>
+					
+					<div class="like-thumb hide-mobile">
+						<i *ngIf="!showProfileImage; else elseBlockLike"class="fa fa-thumbs-up disabled_info"></i>
+						<ng-template #elseBlockLike>
+							<ng-container *ngIf="check_Id  != userId">
+								<i class="fa fa-thumbs-up" (click)="like_unlike_user('1', 'profile_like', '')"
+								*ngIf="likedData == '' && showProfileImage"></i>
+	
+								<i class="fa fa-thumbs-up like-section" (click)="like_unlike_user('0', 'profile_like', '')"
+									*ngIf="showProfileImage && likedData && likedData.profile_like == '1'"></i>
+		
+								<i class="fa fa-thumbs-up" (click)="like_unlike_user('1', 'profile_like', '')"
+									*ngIf="showProfileImage && likedData && likedData.profile_like == '0'"></i>
+							</ng-container>
+						</ng-template>
+					</div>
+					
+					<!--- BACK UP --->
+					<!--<div class="like-thumb hide-mobile" *ngIf="check_Id != userId">
+						<i class="fa fa-thumbs-up" (click)="like_unlike_user('1', 'profile_like', '')"
+							*ngIf="likedData == '' && showProfileImage"></i>
+
+						<i class="fa fa-thumbs-up like-section" (click)="like_unlike_user('0', 'profile_like', '')"
+							*ngIf="showProfileImage && likedData && likedData.profile_like == '1'"></i>
+
+						<i class="fa fa-thumbs-up" (click)="like_unlike_user('1', 'profile_like', '')"
+							*ngIf="showProfileImage && likedData && likedData.profile_like == '0'"></i>
+					</div> -->
+					<div class="location">
+						<i class="fa fa-map-marker" aria-hidden="true"></i>
+						<h3>
+							Location
+						</h3>
+						<p *ngIf="userProfileData">
+							{{userProfileData.address}}
+						</p>
+					</div>
+					<div class="age">
+						<img src="assets/profile/age.png" alt="" *ngIf="userGender == 2">
+						<img src="assets/profile/men-icon.png" alt="" *ngIf="userGender == 1">
+						<h3>
+							Age
+						</h3>
+						<p *ngIf="userProfileData">
+							{{userProfileData.age}}
+						</p>
+					</div>
+					<div class="height">
+						<img src="assets/profile/height.png" alt="">
+						<h3>
+							Height
+						</h3>
+						<p *ngIf="userProfileData">
+							{{userProfileData.height}}
+						</p>
+					</div>
+					<div class="photos-video">
+						<i class="fa fa-picture-o" aria-hidden="true"></i>
+						<h3>
+							Photos/Videos
+						</h3>
+						<p>
+							{{totalCount}}
+						</p>
+						<a class="more-video hide-mobile" data-toggle="pill" href="#photo"
+							(click)="changeClassGallery()">
+							View Photos/Videos
+						</a>
+					</div>
+				</div>
+				<div class="status-sect" *ngIf="userProfileData">
+					<h5>
+						<p class="like-inset" *ngIf="check_Id != userId">
+							<i class="fa fa-thumbs-up like-section-interest" aria-hidden="true"
+								(click)="like_unlike_user('0', 'status',userProfileData.profileStatus == null ? 3 : userProfileData.profileStatus)"
+								*ngIf="profileStatusLike == '1'"></i>
+							<i class="fa fa-thumbs-up"
+								(click)="like_unlike_user('1', 'status', userProfileData.profileStatus == null ? 3 : userProfileData.profileStatus)"
+								*ngIf="profileStatusLike == '0'"></i>
+						</p>
+						Status
+					</h5>
+					<strong *ngIf="userStatus">
+						{{userStatus.name}}
+					</strong>
+				</div>
+
+
+				<div class="fonud-new hide-mobile" *ngIf="userProfileData && otherUser == true">
+					<strong *ngIf="foundTheOne">
+						{{foundTheOne.top_text}}
+					</strong>
+
+
+					<div class="video-sidebar-found-one" [style.background]="'url(' + foundTheOne.image_path + ')'"
+						(click)="videoModal({ path : foundTheOne.video_path })" *ngIf="foundTheOne">
+						<div class="video-sect-side">
+							<div class="video-side-found-one">
+								<img src="assets/dashboard/play-btn.png" alt="">
+								<span *ngIf="foundTheOne">WATCH VIDEO</span>
+							</div>
+						</div>
+					</div>
+					<button class="found-text" (click)="foundOne()" [disabled]="found_the_one == 'yes'">Found The
+						One!</button>
+
+				</div>
+
+
+				<div class="fonud-new show-mobile" *ngIf="userProfileData && otherUser == true">
+					<strong *ngIf="foundTheOne">
+						{{foundTheOne.top_text}}
+					</strong>
+
+
+					<div class="video-sidebar-found-one" [style.background]="'url(' + foundTheOne.image_path + ')'"
+						(click)="videoModal({ path : foundTheOne.video_path })" *ngIf="foundTheOne">
+						<div class="video-sect-side">
+							<div class="video-side-found-one">
+								<img src="assets/dashboard/play-btn.png" alt="">
+								<span *ngIf="foundTheOne">WATCH VIDEO</span>
+							</div>
+						</div>
+					</div>
+					<button class="found-text" (click)="foundOne()" [disabled]="found_the_one == 'yes'">Found The
+						One!</button>
+
+				</div>
+				<div class="video-sidebar hide-mobile" [style.background]="'url(' + coverBanner.image_path + ')'"
+					(click)="videoModal({ path : coverBanner.video_path })" *ngIf="coverBanner">
+					<div class="video-sect-side">
+						<h2 *ngIf="coverBanner">
+							{{coverBanner.top_text}}
+						</h2>
+						<div class="video-side-icon">
+							<img src="assets/dashboard/play-btn.png" alt="">
+							<span *ngIf="coverBanner">{{coverBanner.center_text}}</span>
+						</div>
+						<h4 class="only-txt" *ngIf="coverBanner">
+							{{coverBanner.bottom_text}}
+						</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-9 main-user-status">
+				<ul class="nav nav-pills">
+					<li [class.active]="activeTopTab=='profile' || activeTopTab==''" class="profile-tab" (click)="activeTabs('profile')"
+						id="profile-user-Id">
+						<a>
+							<img class="black" src="assets/profile/profile.png" alt="">
+							<img class="white" src="assets/profile/profile-white.png" alt="">
+							<span class="hide-mobile">
+								Profile
+							</span>
+						</a>
+					</li>
+					<li [class.active]="activeTopTab=='gallary'" id="gallary-user-Id" (click)="activeTabs('gallary')">
+						<a>
+							<img class="black" src="assets/profile/gallery.png" alt="">
+							<img class="white" src="assets/profile/gallery-white.png" alt="">
+							<span class="hide-mobile">
+								Gallery
+							</span>
+						</a>
+					</li>
+					<li [class.active]="activeTopTab=='beliefs'" id="beliefs-user-Id" (click)="activeTabs('beliefs');valueBeliefTabs='';">
+						<a >
+							<img class="black" src="assets/profile/values.png" alt="">
+							<img class="white" src="assets/profile/values-white.png" alt=""><span class="hide-mobile">
+								Values/Beliefs
+							</span>
+						</a>
+					</li>
+					<li [class.active]="activeTopTab=='interest'" id="interest-user-Id"
+						(click)="activeTabs('interest')">
+						<a >
+							<img class="black" src="assets/profile/interests.png" alt="">
+							<img class="white" src="assets/profile/interests-white.png" alt="">
+							<span class="hide-mobile">
+								Interests
+							</span>
+						</a>
+					</li>
+
+					<div class="score-trst" *ngIf="userProfileData">
+						<img src="assets/profile/Trust-Assured-Heart.png" alt=""
+							*ngIf="userProfileData.userData.trustscorebadge == 1" class="trust-assur" />
+					</div>
+				</ul>
+				<div class="tab-content">
+					<ng-container [ngSwitch]="activeTopTab">
+						<div id="home" *ngSwitchCase="''" class="home-cont active">
+							<h3 class="ttl" style="text-transform:capitalize" *ngIf="userProfileData">
+								{{userProfileData.userData.first_name}}’s Personal Description</h3>
+							<div class="edt-btn" title="Edit Profile" *ngIf="userId === check_Id">
+								<button (click)="goToAccountPage('profile')">
+									Edit
+								</button>
+							</div>
+							<div class="clearfix"></div>
+							<div class="row inner-user-data-profile">
+								<div class="col-xs-12 col-sm-6">
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/religion.png" alt="">
+										</span>
+										<span class="data-info">
+											Religion:
+										</span>
+										<p *ngIf="generalAnswers[9]">
+											{{generalAnswers[9].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/drink.png" alt="">
+										</span>
+										<span class="data-info">
+											Drink:
+										</span>
+										<p *ngIf="generalAnswers[1]">
+											{{generalAnswers[1].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/education.png" alt="">
+										</span><span class="data-info">
+											Education:
+										</span>
+										<p *ngIf="generalAnswers[14]">
+											{{generalAnswers[14].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/language.png" alt="">
+										</span>
+										<span class="data-info">
+											Native Language:
+										</span>
+										<p *ngIf="generalAnswers[10]">
+											{{generalAnswers[10].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data" *ngIf="showMore">
+										<span>
+											<img src="assets/profile/language.png" alt="">
+										</span>
+										<span class="data-info">
+											Second Language:
+										</span>
+										<p *ngIf="generalAnswers[11]">
+											{{generalAnswers[11].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data"
+										*ngIf="generalAnswers[11] && generalAnswers[11].choosed_option != 'No second language spoken' && showMore">
+										<span>
+											<img src="assets/profile/language.png" alt="">
+										</span>
+										<span class="data-info">
+											Second Language Fluncy:
+										</span>
+										<p *ngIf="generalAnswers[12]">
+											{{generalAnswers[12].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data" *ngIf="showMore">
+										<span>
+											<img src="assets/profile/language.png" alt="">
+										</span>
+										<span class="data-info">
+											Expect your partner to learn your Native language:
+										</span>
+										<p *ngIf="generalAnswers[13]">
+											{{generalAnswers[13].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data" *ngIf="showMore">
+										<span>
+											<img src="assets/profile/education.png" alt="">
+										</span>
+										<span class="data-info">
+											Further your education:
+										</span>
+										<p *ngIf="generalAnswers[15]">
+											{{generalAnswers[15].choosed_option}}
+										</p>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6">
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/ethinicity.png" alt="">
+										</span>
+										<span class="data-info">
+											Ethnicity:
+										</span>
+										<p *ngIf="generalAnswers[8]">
+											{{generalAnswers[8].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/smoke.png" alt="">
+										</span>
+										<span class="data-info">
+											Smoke:
+										</span>
+										<p *ngIf="generalAnswers[0]">
+											{{generalAnswers[0].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/relocation.png" alt="">
+										</span>
+										<span class="data-info">
+											Relocation:
+										</span>
+										<p *ngIf="generalAnswers[16]">
+											{{generalAnswers[16].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/children.png" alt="">
+										</span>
+										<span class="data-info">
+											Has Kids:
+										</span>
+										<p *ngIf="generalAnswers[2]">
+											{{generalAnswers[2].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data"
+										*ngIf="generalAnswers[2] && generalAnswers[2].choosed_option == 'Yes' && showMore">
+										<span>
+											<img src="assets/profile/children.png" alt="">
+										</span>
+										<span class="data-info">
+											Kids under 18
+										</span>
+										<p *ngIf="generalAnswers[3]">
+											{{generalAnswers[3].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data"
+										*ngIf="generalAnswers[2] && generalAnswers[2].choosed_option == 'Yes' && showMore">
+										<span>
+											<img src="assets/profile/children.png" alt="">
+										</span>
+										<span class="data-info">
+											Number of Kids
+										</span>
+										<p *ngIf="generalAnswers[4]">
+											{{generalAnswers[4].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data"
+										*ngIf="generalAnswers[2] && generalAnswers[2].choosed_option == 'Yes' && showMore">
+										<span>
+											<img src="assets/profile/children.png" alt="">
+										</span>
+										<span class="data-info">
+											Live with kids
+										</span>
+										<p *ngIf="generalAnswers[5]">
+											{{generalAnswers[5].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data"
+										*ngIf="generalAnswers[2] && generalAnswers[2].choosed_option == 'Yes' && showMore">
+										<span>
+											<img src="assets/profile/children.png" alt="">
+										</span>
+										<span class="data-info">
+											Want More kids
+										</span>
+										<p *ngIf="generalAnswers[6]">
+											{{generalAnswers[6].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data"
+										*ngIf="generalAnswers[2] && generalAnswers[2].choosed_option == 'No' && showMore">
+										<span>
+											<img src="assets/profile/children.png" alt="">
+										</span>
+										<span class="data-info">
+											Have Children Someday
+										</span>
+										<p *ngIf="generalAnswers[7]">
+											{{generalAnswers[7].choosed_option}}
+										</p>
+									</div>
+								</div>
+								<div class="load-more see-other-info">
+									<button (click)="showMoreQuestion()" *ngIf="!showMore">
+										See More
+										<i _ngcontent-imp-c4="" aria-hidden="true" class="fa fa-angle-double-right"></i>
+									</button>
+									<button (click)="showMoreQuestion()" *ngIf="showMore">
+										See Less
+										<i _ngcontent-imp-c4="" aria-hidden="true" class="fa fa-angle-double-right"></i>
+									</button>
+								</div>
+							</div>
+							<div class="bottom-section-user">
+								<h2>
+									Random Things About Me
+								</h2>
+								<div class="row" *ngIf="aboutMeData.length > 0">
+									<div class="col-xs-12 col-sm-6" *ngFor="let data of aboutMeData; let i = index">
+										<p class="like-inset" *ngIf="check_Id != userId">
+											sd
+											<i class="fa fa-thumbs-up like-section-interest" aria-hidden="true"
+												*ngIf="data.liked == '1'"
+												(click)="like_unlike_user('0', 'about', data.id)"></i>
+											<i class="fa fa-thumbs-up" *ngIf="data.liked == '0'"
+												(click)="like_unlike_user('1', 'about', data.id)"></i>
+										</p>
+										<div class="txt-images">
+											<img src="assets/profile/hr.png" alt="">
+										</div>
+										<h3>
+											{{data.question}}
+										</h3>
+										<p>
+											{{data.answer}}
+										</p>
+									</div>
+								</div>
+								<div *ngIf="aboutMeData.length == 0 && userProfileData">
+									<p *ngIf="otherUser == false">
+										No random things added yet.
+									</p>
+									<p class="blank-txt" *ngIf="otherUser == true">
+										Sorry, {{userProfileData.userData.first_name}} has not had a chance to complete this
+										section yet, check back soon!
+										<br>
+									</p>
+								</div>
+	
+								<mat-checkbox (change)="showOptions($event)" [(ngModel)]="checked"
+									*ngIf="userProfileData && otherUser == true && aboutMeData.length  < 4">Notify me when -
+									{{userProfileData.userData.first_name}} - completes more of their profile
+								</mat-checkbox>
+							</div>
+						</div>
+						<div id="home" *ngSwitchCase="'profile'" class="home-cont active">
+							<h3 class="ttl" style="text-transform:capitalize" *ngIf="userProfileData">
+								{{userProfileData.userData.first_name}}’s Personal Description</h3>
+							<div class="edt-btn" title="Edit Profile" *ngIf="otherUser == false">
+								<button (click)="goToAccountPage('profile')">
+									Edit
+								</button>
+							</div>
+							<div class="clearfix"></div>
+							<div class="row inner-user-data-profile">
+								<div class="col-xs-12 col-sm-6">
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/religion.png" alt="">
+										</span>
+										<span class="data-info">
+											Religion:
+										</span>
+										<p *ngIf="generalAnswers[9]">
+											{{generalAnswers[9].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/drink.png" alt="">
+										</span>
+										<span class="data-info">
+											Drink:
+										</span>
+										<p *ngIf="generalAnswers[1]">
+											{{generalAnswers[1].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/education.png" alt="">
+										</span><span class="data-info">
+											Education:
+										</span>
+										<p *ngIf="generalAnswers[14]">
+											{{generalAnswers[14].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/language.png" alt="">
+										</span>
+										<span class="data-info">
+											Native Language:
+										</span>
+										<p *ngIf="generalAnswers[10]">
+											{{generalAnswers[10].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data" *ngIf="showMore">
+										<span>
+											<img src="assets/profile/language.png" alt="">
+										</span>
+										<span class="data-info">
+											Second Language:
+										</span>
+										<p *ngIf="generalAnswers[11]">
+											{{generalAnswers[11].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data"
+										*ngIf="generalAnswers[11] && generalAnswers[11].choosed_option != 'No second language spoken' && showMore">
+										<span>
+											<img src="assets/profile/language.png" alt="">
+										</span>
+										<span class="data-info">
+											Second Language Fluncy:
+										</span>
+										<p *ngIf="generalAnswers[12]">
+											{{generalAnswers[12].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data" *ngIf="showMore">
+										<span>
+											<img src="assets/profile/language.png" alt="">
+										</span>
+										<span class="data-info">
+											Expect your partner to learn your Native language:
+										</span>
+										<p *ngIf="generalAnswers[13]">
+											{{generalAnswers[13].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data" *ngIf="showMore">
+										<span>
+											<img src="assets/profile/education.png" alt="">
+										</span>
+										<span class="data-info">
+											Further your education:
+										</span>
+										<p *ngIf="generalAnswers[15]">
+											{{generalAnswers[15].choosed_option}}
+										</p>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6">
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/ethinicity.png" alt="">
+										</span>
+										<span class="data-info">
+											Ethnicity:
+										</span>
+										<p *ngIf="generalAnswers[8]">
+											{{generalAnswers[8].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/smoke.png" alt="">
+										</span>
+										<span class="data-info">
+											Smoke:
+										</span>
+										<p *ngIf="generalAnswers[0]">
+											{{generalAnswers[0].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/relocation.png" alt="">
+										</span>
+										<span class="data-info">
+											Relocation:
+										</span>
+										<p *ngIf="generalAnswers[16]">
+											{{generalAnswers[16].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data">
+										<span>
+											<img src="assets/profile/children.png" alt="">
+										</span>
+										<span class="data-info">
+											Has Kids:
+										</span>
+										<p *ngIf="generalAnswers[2]">
+											{{generalAnswers[2].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data"
+										*ngIf="generalAnswers[2] && generalAnswers[2].choosed_option == 'Yes' && showMore">
+										<span>
+											<img src="assets/profile/children.png" alt="">
+										</span>
+										<span class="data-info">
+											Kids under 18
+										</span>
+										<p *ngIf="generalAnswers[3]">
+											{{generalAnswers[3].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data"
+										*ngIf="generalAnswers[2] && generalAnswers[2].choosed_option == 'Yes' && showMore">
+										<span>
+											<img src="assets/profile/children.png" alt="">
+										</span>
+										<span class="data-info">
+											Number of Kids
+										</span>
+										<p *ngIf="generalAnswers[4]">
+											{{generalAnswers[4].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data"
+										*ngIf="generalAnswers[2] && generalAnswers[2].choosed_option == 'Yes' && showMore">
+										<span>
+											<img src="assets/profile/children.png" alt="">
+										</span>
+										<span class="data-info">
+											Live with kids
+										</span>
+										<p *ngIf="generalAnswers[5]">
+											{{generalAnswers[5].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data"
+										*ngIf="generalAnswers[2] && generalAnswers[2].choosed_option == 'Yes' && showMore">
+										<span>
+											<img src="assets/profile/children.png" alt="">
+										</span>
+										<span class="data-info">
+											Want More kids
+										</span>
+										<p *ngIf="generalAnswers[6]">
+											{{generalAnswers[6].choosed_option}}
+										</p>
+									</div>
+	
+									<div class="user-data"
+										*ngIf="generalAnswers[2] && generalAnswers[2].choosed_option == 'No' && showMore">
+										<span>
+											<img src="assets/profile/children.png" alt="">
+										</span>
+										<span class="data-info">
+											Have Children Someday
+										</span>
+										<p *ngIf="generalAnswers[7]">
+											{{generalAnswers[7].choosed_option}}
+										</p>
+									</div>
+								</div>
+								<div class="load-more see-other-info">
+									<button (click)="showMoreQuestion()" *ngIf="!showMore">
+										See More
+										<i _ngcontent-imp-c4="" aria-hidden="true" class="fa fa-angle-double-right"></i>
+									</button>
+									<button (click)="showMoreQuestion()" *ngIf="showMore">
+										See Less
+										<i _ngcontent-imp-c4="" aria-hidden="true" class="fa fa-angle-double-right"></i>
+									</button>
+								</div>
+							</div>
+							<div class="bottom-section-user">
+								<h2>
+									Random Things About Me
+								</h2>
+								<div class="row" *ngIf="aboutMeData.length > 0">
+									<div class="col-xs-12 col-sm-6" *ngFor="let data of aboutMeData; let i = index">
+										<p class="like-inset" *ngIf="check_Id != userId">
+											<i class="fa fa-thumbs-up like-section-interest" aria-hidden="true"
+												*ngIf="data.liked == '1'"
+												(click)="like_unlike_user('0', 'about', data.id)"></i>
+											<i class="fa fa-thumbs-up" *ngIf="data.liked == '0'"
+												(click)="like_unlike_user('1', 'about', data.id)"></i>
+										</p>
+										<div class="txt-images">
+											<img src="assets/profile/hr.png" alt="">
+										</div>
+										<h3>
+											{{data.question}}
+										</h3>
+										<p>
+											{{data.answer}}
+										</p>
+									</div>
+								</div>
+								<div *ngIf="aboutMeData.length == 0 && userProfileData">
+									<p *ngIf="otherUser == false">
+										No random things added yet.
+									</p>
+									<p class="blank-txt" *ngIf="otherUser == true">
+										Sorry, {{userProfileData.userData.first_name}} has not had a chance to complete this
+										section yet, check back soon!
+										<br>
+									</p>
+								</div>
+	
+								<mat-checkbox (change)="showOptions($event)" [(ngModel)]="checked"
+									*ngIf="userProfileData && otherUser == true && aboutMeData.length  < 4">Notify me when -
+									{{userProfileData.userData.first_name}} - completes more of their profile
+								</mat-checkbox>
+							</div>
+						</div>
+						<div id="photo" *ngSwitchCase="'gallary'">
+							<h3 class="ttl">
+								Photos
+							</h3>
+							<div class="edt-btn" title="Edit Profile" *ngIf="otherUser == false">
+								<button (click)="goToAccountPage('gallary')">
+									Edit
+								</button>
+							</div>
+							<ul class="show-pointer">
+								<li *ngFor="let image of previewUrl | slice:0:8; let i = index" class="mydiv" width="100">
+									<!-- <img [defaultImage]="defaultImage" [lazyLoad]="image.path" width="100" (click)="open(i)"> -->
+	
+									<cus-image style="cursor: pointer" [url]="image.path"
+										[actualDimension]="image?.path_dimension" [dimension]="'360x262'"
+										[widthIns]="'.mydiv'" [loaderSize]="0.5"></cus-image>
+	
+	
+									<!-- <img [src]="image.path" alt="" width="100" > -->
+	
+									<div class="pend-approv" *ngIf="image.is_valid == '0'">
+										<a>
+											PENDING APPROVAL
+										</a>
+									</div>
+									<span *ngIf="check_Id != userId">
+										<i class="fa fa-thumbs-up like-section" aria-hidden="true"
+											*ngIf="image.liked == 1 && check_Id != userId"
+											(click)="like_unlike_user('0', image.type, image.id)"></i>
+										<i class="fa fa-thumbs-up" *ngIf="image.liked == 0 && check_Id != userId"
+											(click)="like_unlike_user('1', image.type, image.id)"></i>
+									</span>
+	
+									<span *ngIf="check_Id == userId">
+										<i class="fa fa-heart-o" aria-hidden="true" *ngIf="image.like_count > 0"
+											(click)="userListModal(image.like_data)" title="View liked User List">
+											{{image.like_count}}
+										</i>
+									</span>
+								</li>
+							</ul>
+							<div class="no-image" *ngIf="previewUrl.length == 0">
+								No image Yet.
+							</div>
+							<div class="clearfix"></div>
+							<!-- <div class="see-more-photo" *ngIf="previewUrl.length > 6">
+						 <a href="http://localhost:4200/home/dashboard/userphotos">
+							See More
+						 </a>
+					  </div> -->
+							<h3 class="video-txt">
+								Video Greeting
+							</h3>
+							<ul class="show-pointer video-sect">
+								<li *ngFor="let Video of showVideo ; let i=index" class="gallery-video-images" >
+									
+									<img (click)="videoModal(Video)"  src="assets/dashboard/play-btn.png" class="play-icon">
+
+									<cus-image (click)="videoModal(Video)" *ngIf="showProfileImage" style="cursor: pointer" [url]="Video.name" [actualDimension]="Video.path_dimension" [dimension]="'360x262'" [widthIns]="'.gallery-video-images'" [loaderSize]="0.5"></cus-image>	
+
+									<div class="pend-approv" *ngIf="Video.is_valid == '0'">
+										<a>
+											PENDING APPROVAL
+										</a>
+									</div>
+									<span *ngIf="check_Id != userId">
+										<i class="fa fa-thumbs-up like-section" aria-hidden="true"
+											*ngIf="Video.liked == 1 && check_Id != userId"
+											(click)="like_unlike_user('0', Video.type, Video.id)"></i>
+										<i class="fa fa-thumbs-up" *ngIf="Video.liked == 0 && check_Id != userId"
+											(click)="like_unlike_user('1', Video.type, Video.id)"></i>
+	
+									</span>
+									<span *ngIf="check_Id == userId">
+										<i class="fa fa-heart-o" aria-hidden="true" (click)="userListModal(Video.like_data)"
+											*ngIf="Video.like_count > 0" title="View liked User List"></i>
+										{{Video.like_count}}
+									</span>
+								</li>
+								<li *ngIf="showVideo.length == 0">
+									No video greeting Yet.
+								</li>
+							</ul>
+	
+							<h3 class="video-txt">
+								Story
+							</h3>
+							<ul class="show-pointer video-sect">
+								<li *ngFor="let story of showStory | slice:0:6; let i=index" class="gallery-video-images">
+									
+									<img (click)="videoModal(story)"  src="assets/dashboard/play-btn.png" class="play-icon">
+
+									<cus-image (click)="videoModal(story)" *ngIf="showProfileImage" style="cursor: pointer" [url]="story.name" [actualDimension]="story.path_dimension" [dimension]="'360x262'" [widthIns]="'.gallery-video-images'" [loaderSize]="0.5"></cus-image>
+
+
+									<div class="pend-approv" *ngIf="story.is_valid == '0'">
+										<a>
+											PENDING APPROVAL
+										</a>
+									</div>
+									<span *ngIf="check_Id != userId">
+										<i class="fa fa-thumbs-up like-section" aria-hidden="true"
+											*ngIf="story.liked == 1 && check_Id != userId"
+											(click)="like_unlike_user('0', story.type, story.id)"></i>
+										<i class="fa fa-thumbs-up" *ngIf="story.liked == 0 && check_Id != userId"
+											(click)="like_unlike_user('1', story.type, story.id)"></i>
+	
+									</span>
+									<span *ngIf="check_Id == userId">
+										<i class="fa fa-heart-o" aria-hidden="true" (click)="userListModal(story.like_data)"
+											*ngIf="story.like_count > 0" title="View liked User List"></i>
+										{{story.like_count}}
+									</span>
+								</li>
+								<li *ngIf="showStory.length == 0">
+									No Story Yet.
+								</li>
+							</ul>
+	
+							<div
+								*ngIf="showStory.length == 0 && previewUrl.length == 0 && userProfileData && show_no_data == true">
+	
+								<p *ngIf="otherUser == true">
+									Sorry, {{userProfileData.userData.first_name}} has not had a chance to complete this
+									section yet, check back soon!
+								</p>
+							</div>
+	
+							<mat-checkbox (change)="showOptions($event)" [(ngModel)]="checked"
+								*ngIf="userProfileData && otherUser == true && (previewUrl.length < 3 || showProfileImage == '')"
+								class="check-box">Notify me when - {{userProfileData.userData.first_name}} - completes more
+								of their profile </mat-checkbox>
+						</div>
+						<div id="valuesbeliefs" *ngSwitchCase="'beliefs'" >
+							<h3>
+								Values/Beliefs
+							</h3>
+							<div class="edt-btn" title="Edit Profile" *ngIf="otherUser == false">
+								<!--   <button (click)="goToAccountPage('beliefs')">
+							   Edit
+							</button> -->
+							</div>
+							<ul class="nav nav-pills value-tabs">
+								<li class="con" id="conn">
+									<a (click)="valueBeliefTabs='connection'">
+										<span class="tab-image1">
+											<img src="assets/profile/connection.png" alt="">
+										</span>
+										<span class="tab-txt-btn1">
+											Connection
+										</span>
+									</a>
+								</li>
+								<li class="leis" id="leisu">
+									<a (click)="valueBeliefTabs='leisure'">
+										<span class="tab-image2">
+											<img src="assets/profile/leisure.png" alt="">
+										</span>
+										<span class="tab-txt-btn2">
+											Leisure
+										</span>
+									</a>
+								</li>
+								<li class="grow" id="growt">
+									<a (click)="valueBeliefTabs='growth'">
+										<span class="tab-image4">
+											<img src="assets/profile/growth.png" alt=""></span>
+										<span class="tab-txt-btn4">
+											growth
+										</span>
+									</a>
+								</li>
+								<li class="prosp" id="prosps">
+									<a (click)="valueBeliefTabs='prosperity'">
+										<span class="tab-image3">
+											<img src="assets/profile/prosperity.png" alt=""></span>
+										<span class="tab-txt-btn3">
+											Prosperity
+										</span>
+									</a>
+								</li>
+	
+								<li class="sprit" id="spritl">
+									<a (click)="valueBeliefTabs='spirituality'">
+										<span class="tab-image5">
+											<img src="assets/profile/spirituality.png" alt="">
+										</span>
+										<span class="tab-txt-btn5">
+											Spirituality
+										</span>
+									</a>
+								</li>
+							</ul>
+							<div class="tab-content slider-heart-icon"
+							[ngStyle]="{'background' : 'url(assets/profile/dotted-bg.png)'}" *ngIf="userProfileData">
+								<ng-container [ngSwitch]="valueBeliefTabs">								<div *ngSwitchCase="''" class="overview" id="overview1">
+										<h3>
+											Overview
+										</h3>
+										<div class="connection" *ngIf="connectionArray">
+											<h2>
+												{{connectionArray.name}}
+											</h2>
+											<p [innerHtml]="connectionArray.title"></p>
+											<div class="range-slider">
+												<ng5-slider [(value)]="connectionArray.id" [options]="options"
+													[ngStyle]="{'background' : 'url(assets/profile/heart1.png)'}"></ng5-slider>
+												<div [ngClass]="compareConnectionArray.id == 1 ? 'one' : compareConnectionArray.id == 2 ? 'two' : compareConnectionArray.id == 3 ? 'three' : compareConnectionArray.id == 4 ? 'four' :compareConnectionArray.id == 5 ? 'five' : ''"
+													*ngIf="otherUser == true">You are here</div>
+											</div>
+										</div>
+										<div class="connection" *ngIf="leisureArray">
+											<h2>
+												{{leisureArray.name}}
+											</h2>
+											<p [innerHtml]="leisureArray.title"></p>
+											<div class="range-slider leisue-sld">
+												<ng5-slider [(value)]="leisureArray.id" [options]="options"></ng5-slider>
+												<div [ngClass]="compareLeisureArray.id == 1 ? 'one' : compareLeisureArray.id == 2 ? 'two' : compareLeisureArray.id == 3 ? 'three' : compareLeisureArray.id == 4 ? 'four' :compareLeisureArray.id == 5 ? 'five' : ''"
+													*ngIf="otherUser == true">You are here</div>
+											</div>
+										</div>
+		
+										<div class="connection" *ngIf="growthArray">
+											<h2>
+												{{growthArray.name}}
+											</h2>
+											<p [innerHtml]="growthArray.title"></p>
+											<div class="range-slider growth-sld">
+												<ng5-slider [(value)]="growthArray.id" [options]="options"></ng5-slider>
+												<div [ngClass]="compareGrowthArray.id == 1 ? 'one' : compareGrowthArray.id == 2 ? 'two' : compareGrowthArray.id == 3 ? 'three' : compareGrowthArray.id == 4 ? 'four' :compareGrowthArray.id == 5 ? 'five' : ''"
+													*ngIf="otherUser == true">You are here</div>
+											</div>
+										</div>
+		
+										<div class="connection" *ngIf="prosperityArray">
+											<h2>
+												{{prosperityArray.name}}
+											</h2>
+											<p [innerHtml]="prosperityArray.title"></p>
+											<div class="range-slider pro-sld">
+												<ng5-slider [(value)]="prosperityArray.id" [options]="options"></ng5-slider>
+												<div [ngClass]="compareProsperityArray.id == 1 ? 'one' : compareProsperityArray.id == 2 ? 'two' : compareProsperityArray.id == 3 ? 'three' : compareProsperityArray.id == 4 ? 'four' :compareProsperityArray.id == 5 ? 'five' : ''"
+													*ngIf="otherUser == true">You are here</div>
+		
+											</div>
+										</div>
+		
+										<div class="connection" *ngIf="spiritualityArray">
+											<h2>
+												{{spiritualityArray.name}}
+											</h2>
+											<p [innerHtml]="spiritualityArray.title"></p>
+											<div class="range-slider spirit-sld">
+												<ng5-slider [(value)]="spiritualityArray.id" [options]="options"></ng5-slider>
+												<div [ngClass]="compareSpiritualityArray.id == 1 ? 'one' : compareSpiritualityArray.id == 2 ? 'two' : compareSpiritualityArray.id == 3 ? 'three' : compareSpiritualityArray.id == 4 ? 'four' :compareSpiritualityArray.id == 5 ? 'five' : ''"
+													*ngIf="otherUser == true">You are here</div>
+											</div>
+										</div>
+										<div class="learn-more" (click)="show()" *ngIf="learnMore == false">
+											<span>
+												More Detail
+												<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+											</span>
+										</div>
+										<div class="lear-txt-hide" *ngIf="learnMore">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12" *ngIf="connectionArray">
+													<div class="conetcion-less">
+														<div class="txt-images">
+															<img src="assets/profile/connection-white.png" alt="">
+														</div>
+														<h3>
+															{{connectionArray.name}}
+														</h3>
+														<p [innerHtml]="connectionArray.description"></p>
+													</div>
+												</div>
+												<div class="col-xs-12 col-sm-12" *ngIf="leisureArray">
+													<div class="conetcion-less leisu">
+														<div class="txt-images">
+															<img src="assets/profile/leisure-white.png" alt="">
+														</div>
+														<h3>
+															{{leisureArray.name}}
+														</h3>
+														<p [innerHtml]="leisureArray.description"></p>
+													</div>
+												</div>
+												<div class="col-xs-12 col-sm-12" *ngIf="growthArray">
+													<div class="conetcion-less grow">
+														<div class="txt-images">
+															<img src="assets/profile/growth-white.png" alt="">
+														</div>
+														<h3>
+															{{growthArray.name}}
+														</h3>
+														<p [innerHtml]="growthArray.description"></p>
+													</div>
+												</div>
+												<div class="col-xs-12 col-sm-12" *ngIf="prosperityArray">
+													<div class="conetcion-less pro">
+														<div class="txt-images">
+															<img src="assets/profile/prosperity-white.png" alt="">
+														</div>
+														<h3>
+															{{prosperityArray.name}}
+														</h3>
+														<p [innerHtml]="prosperityArray.description"></p>
+													</div>
+												</div>
+												<div class="col-xs-12 col-sm-12" *ngIf="spiritualityArray">
+													<div class="conetcion-less spir">
+														<div class="txt-images">
+															<img src="assets/profile/spirituality-white.png" alt="">
+														</div>
+														<h3>
+															{{spiritualityArray.name}}
+														</h3>
+														<p [innerHtml]="spiritualityArray.description"></p>
+													</div>
+												</div>
+											</div>
+											<div class="learn-more lessmore" (click)="hide()" *ngIf="learnMore == true">
+												<span>
+													See Less
+													<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div id="connection" *ngSwitchCase="'connection'" class="text-increse">
+										<div class="next-prev">
+											<ul>
+												<li class="prev-left" >
+													<!-- <span>
+											<i class="fa fa-angle-left" aria-hidden="true"></i>
+											</span> -->
+													<!-- <span>Previous</span> -->
+												</li>
+												<li class="next-right" (click)="valueBeliefTabs='leisure'">
+													<span>
+														Next
+													</span>
+													<span>
+														<i class="fa fa-angle-right" aria-hidden="true"></i>
+													</span>
+												</li>
+											</ul>
+										</div>
+										<div class="connection" *ngIf="connectionArray">
+											<h2>
+												{{connectionArray.name}}
+											</h2>
+											<p [innerHtml]="connectionArray.title"></p>
+											<div class="range-slider">
+												<ng5-slider [(value)]="connectionArray.id" [options]="options"></ng5-slider>
+												<!-- <span class="my-postion">Mario Is Here</span> -->
+											</div>
+										</div>
+										<div class="pera-tab" *ngIf="connectionArray">
+											<p [innerHtml]="connectionArray.cat_description"></p>
+										</div>
+									</div>
+									<div id="leisure" *ngSwitchCase="'leisure'" class="text-increse">
+										<div class="next-prev">
+											<ul>
+												<li class="prev-left" (click)="valueBeliefTabs='connection'">
+													<span>
+														<i class="fa fa-angle-left" aria-hidden="true"></i>
+													</span>
+													<span>
+														Previous
+													</span>
+												</li>
+												<li class="next-right" (click)="valueBeliefTabs='growth'">
+													<span>
+														Next
+													</span>
+													<span>
+														<i class="fa fa-angle-right" aria-hidden="true"></i>
+													</span>
+												</li>
+											</ul>
+										</div>
+										<div class="connection" *ngIf="leisureArray">
+											<h2>
+												{{leisureArray.name}}
+											</h2>
+											<p [innerHtml]="leisureArray.title"></p>
+											<div class="range-slider leisue-sld">
+												<ng5-slider [(value)]="leisureArray.id" [options]="options"></ng5-slider>
+												<!-- <span class="my-postion">Mario Is Here</span> -->
+											</div>
+										</div>
+										<div class="pera-tab" *ngIf="leisureArray">
+											<p [innerHtml]="leisureArray.cat_description"></p>
+										</div>
+									</div>
+									<div id="growth" *ngSwitchCase="'growth'" class="text-increse">
+										<div class="next-prev">
+											<ul>
+												<li class="prev-left" (click)="valueBeliefTabs='leisure'" >
+													<span>
+														<i class="fa fa-angle-left" aria-hidden="true"></i>
+													</span>
+													<span>
+														Previous
+													</span>
+												</li>
+												<li class="next-right" (click)="valueBeliefTabs='prosperity'" >
+													<span>
+														Next
+													</span>
+													<span>
+														<i class="fa fa-angle-right" aria-hidden="true"></i>
+													</span>
+												</li>
+											</ul>
+										</div>
+										<div class="connection" *ngIf="growthArray">
+											<h2>
+												{{growthArray.name}}
+											</h2>
+											<p [innerHtml]="growthArray.title"></p>
+											<div class="range-slider growth-sld">
+												<ng5-slider [(value)]="growthArray.id" [options]="options"></ng5-slider>
+												<!-- <span class="my-postion">Mario Is Here</span> -->
+											</div>
+										</div>
+										<div class="pera-tab" *ngIf="growthArray">
+											<p [innerHtml]="growthArray.cat_description"></p>
+										</div>
+									</div>
+									<div id="prosperity" *ngSwitchCase="'prosperity'" class="text-increse">
+										<div class="next-prev">
+											<ul>
+												<li class="prev-left" (click)="valueBeliefTabs='growth'">
+													<span>
+														<i class="fa fa-angle-left" aria-hidden="true"></i>
+													</span>
+													<span>
+														Previous
+													</span>
+												</li>
+												<li class="next-right" (click)="valueBeliefTabs='spirituality'">
+													<span>
+														Next
+													</span>
+													<span>
+														<i class="fa fa-angle-right" aria-hidden="true"></i>
+													</span>
+												</li>
+											</ul>
+										</div>
+										<div class="connection" *ngIf="prosperityArray">
+											<h2>
+												{{prosperityArray.name}}
+											</h2>
+											<p [innerHtml]="prosperityArray.title"></p>
+											<div class="range-slider pro-sld">
+												<ng5-slider [(value)]="prosperityArray.id" [options]="options"></ng5-slider>
+												<!-- <span class="my-postion">Mario Is Here</span> -->
+											</div>
+										</div>
+										<div class="pera-tab" *ngIf="prosperityArray">
+											<p [innerHtml]="prosperityArray.cat_description"></p>
+										</div>
+									</div>
+									<div id="spirituality"  *ngSwitchCase="'spirituality'" class="text-increse">
+										<div class="next-prev">
+											<ul>
+												<li class="prev-left" (click)="valueBeliefTabs='prosperity'">
+													<span>
+														<i class="fa fa-angle-left" aria-hidden="true"></i>
+													</span>
+													<span>
+														Previous
+													</span>
+												</li>
+												<!-- <li class="next-right">
+										<span>Next</span>
+										<span>
+											<i class="fa fa-angle-right" aria-hidden="true"></i>
+										</span>
+									</li> -->
+											</ul>
+										</div>
+										<div class="connection" *ngIf="spiritualityArray">
+											<h2>
+												{{spiritualityArray.name}}
+											</h2>
+											<p [innerHtml]="spiritualityArray.title"></p>
+											<div class="range-slider spirit-sld">
+												<ng5-slider [(value)]="spiritualityArray.id" [options]="options"></ng5-slider>
+												<!-- <span class="my-postion">Mario Is Here</span> -->
+											</div>
+										</div>
+										<div class="pera-tab" *ngIf="spiritualityArray">
+											<p [innerHtml]="spiritualityArray.cat_description"></p>
+										</div>
+									</div>
+								</ng-container>
+							</div>
+						</div>
+						<div id="interests" *ngSwitchCase="'interest'" >
+							<h3>
+								Interests
+							</h3>
+							<div class="edt-btn" title="Edit Profile" *ngIf="otherUser == false">
+								<button (click)="goToAccountPage('interest')">
+									Edit
+								</button>
+							</div>
+							<div class="row" *ngIf="userInterest">
+								<div class="col-xs-12 col-sm-6" *ngFor="let item of userInterest let i = index">
+									<p class="like-inset" *ngIf="check_Id != userId && item.id">
+										<i class="fa fa-thumbs-up like-section-interest" aria-hidden="true"
+											*ngIf="item.like == 1 "
+											(click)="like_unlike_user('0', 'interest', item.id)"></i>
+	
+										<i class="fa fa-thumbs-up" *ngIf="item.like == 0 "
+											(click)="like_unlike_user('1', 'interest', item.id)"></i>
+									</p>
+									<span>
+										<img src="assets/profile/hobbies.png" alt="" *ngIf="!item.logo_link">
+										<img [src]="item.logo_link" alt="" *ngIf="item.logo_link">
+									</span>
+									<h4>
+										{{item.interest_name}}
+									</h4>
+									<p>
+										{{item.text}}
+									</p>
+								</div>
+	
+								<div *ngIf="userInterest.length == 0 && userProfileData && show_no_data == true">
+									<p *ngIf="otherUser == false">
+										No interest added yet.
+									</p>
+	
+									<p *ngIf="otherUser == true">
+										Sorry, {{userProfileData.userData.first_name}} has not had a chance to complete this
+										section yet, check back soon!
+									</p>
+								</div>
+	
+								<mat-checkbox [(ngModel)]="checked" (change)="showOptions($event)"
+									*ngIf="userProfileData && otherUser == true && userInterest.length < 4">
+									Notify me when - {{userProfileData.userData.first_name}} - completes more of their
+									profile
+								</mat-checkbox>
+							</div>
+						</div>
+					</ng-container>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

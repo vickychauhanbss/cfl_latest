@@ -1,0 +1,116 @@
+<!-- <div class="membershipplan">
+   
+    <div class="container">
+        <h2>
+            Select Your Plan
+        </h2>
+        <div class="collapse navbar-collapse ">
+            <ul class="plans-name">
+                <li class="nav-item" (click)="changePlans($event, 'monthly' , plansArray[1], plansArray[2])">
+                    <a class="nav-link">
+                        Monthly
+                    </a>
+                </li>
+                <li class="nav-item" (click)="changePlans($event, 'quarterly', plansArray[1], plansArray[2])">
+                    <a class="nav-link active">
+                        Quarterly
+                    </a>
+                </li>
+                <li class="nav-item" (click)="changePlans($event, 'annualy', plansArray[1], plansArray[2])">
+                    <a class="nav-link">
+                        Annualy
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 plans" *ngFor="let plans of plansArray">
+                <h5 class="plan-ttl" *ngIf="plans.plan_name == 'free plan'">
+                    Trust Standard
+                </h5>
+                <h5 class="plan-ttl" *ngIf="plans.plan_name == 'paid plan'">
+                    Trust Plus
+                </h5>
+                <h5 class="plan-ttl" *ngIf="plans.plan_name == 'Center stage'">
+                    Center Stage
+                </h5>
+
+
+                <div class="plan-txt" *ngIf="plans.plan_name == 'free plan'">
+                    <strong>
+                        $0
+                    </strong>
+                    <small>
+                        per month
+                    </small>
+                    <ul>
+                        <li [innerHTML]="plans.plan_features"></li>
+                    </ul>
+                    <div class="plan-btn" (click)="selectPaymentMehod(1)">
+                        <button>
+                            Select Plan
+                        </button>
+                    </div>
+                </div>
+
+                <div class="plan-txt" *ngIf="plans.plan_name == 'paid plan'">
+                    <strong>
+                        ${{monthAmount}}
+                    </strong>
+                    <small>
+                        per month
+                    </small>
+                    <strong>
+                        ${{grandTotal}}
+                    </strong>
+                    <small>
+                        Total
+                    </small>
+                    <ul>
+                        <li [innerHTML]="plans.plan_features"></li>
+                    </ul>
+                    <div class="plan-btn" (click)="selectPaymentMehod(2)">
+                        <button>
+                            Select Plan
+                        </button>
+                    </div>
+                </div>
+
+                <div class="plan-txt" *ngIf="plans.plan_name == 'Center stage'">
+                    <strong>
+                        ${{monthCenterAmount}}
+                    </strong>
+                    <small>
+                        per month
+                    </small>
+                    <strong>
+                        ${{grandCenterTotal}}
+                    </strong>
+                    <small>
+                        Total
+                    </small>
+                    <ul>
+                        <li [innerHTML]="plans.plan_features"></li>
+                    </ul>
+                    <div class="plan-btn" (click)="selectPaymentMehod(3)">
+                        <button>
+                            Select Plan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Payment-method">
+            <ngx-paypal [config]="payPalConfig" *ngIf="plan_type == 'paid'"></ngx-paypal>
+            <div class="stripe-btn" *ngIf="plan_type == 'paid'" (click)="openCheckout()">
+                <img src="../../../../assets/stripe.jpeg" />
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="membershipplan">
+     <div class="container">
+        <iframe [src]="iframeURL" frameborder="0" style="height: 85vh;width: 100%;" height="100%" width="100%"></iframe>
+    </div>
+</div>

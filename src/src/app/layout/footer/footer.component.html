@@ -1,0 +1,132 @@
+<footer>
+    <div class="footer-main" *ngIf="hideFooter == false">
+        <div class="container" >
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 logo-ft" *ngIf="homeData">
+                    <a routerLink="/"><img src="assets/footer-logo.png"></a>
+                    <p>
+                        {{homeData.footer_text.title}}
+                    </p>
+                    <ul class="social-nav" *ngIf="homeData.social_media_links">
+                        <li>
+                            <a href="{{homeData.social_media_links.facebook_page}}" target="_blank" title="Facebook">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{homeData.social_media_links.instagram_handle}}" target="_blank" title="Instagram">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{homeData.social_media_links.youtube_channel}}" target="_blank"title="Youtube">
+                                <i class="fa fa-youtube" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <h4>
+                        More Info
+                    </h4>
+                    <ul class="footer-nav">
+                        <li (click)="scroll('Community')" style="cursor: pointer;">
+                            <a  title="Big Promise">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                Big Promise
+                            </a>
+                        </li>
+                        <li [routerLink]="['termsofuse']">
+                            <a title="Terms Of Use">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                Terms Of Use
+                            </a>
+                        </li>
+                        <li (click)="scroll('about')" style="cursor: pointer;">
+                            <a title="About You">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                About You
+                            </a>
+                        </li>
+                        <li [routerLink]="['cookiepolicy']">
+                            <a title="Cookie Policy">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                Cookie Policy
+                            </a>
+                        </li>
+                        <li [routerLink]="['policy']">
+                            <a  title="Privacy Policy">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                Privacy
+                            </a>
+                        </li>
+                        <li [routerLink]="['imira']">
+                            <a title="IMBRA">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                IMBRA
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-4" >
+                    <h4>
+                        Get Crazy Love Weekly!
+                    </h4>
+                    <p class="large-font txt-ft">
+                        Great new videos and other love nuggets in your inbox every week!
+                    </p>
+
+                    <div class="kartra_optin_container1f0e3dad99908345f7439f8ffabdffc4"></div>
+
+                    <!-- <button class="btn common-gradient-btn" (click)="subscribe_modal()">
+                        Subscribe
+                    </button> -->
+                </div>
+            </div>
+        </div>
+        <div class="copyright-section col-xs-12 text-center" *ngIf="homeData">
+            <p>
+                {{homeData.footer_text.subtitle}}
+            </p>
+        </div>
+    </div>
+
+
+    <div class="footer-main copyright-main" *ngIf="hideFooter == true">
+        <div class="container" >
+            <div class="copyright-section row col-xs-12 text-center" *ngIf="homeData">
+                <ul class="col-md-3 admin-footer">
+                    <li  (click)="redirectPage('home/termsofuse')">
+                        <a title="Terms Of Use">
+                            Terms Of Use
+                        </a>
+                    </li>
+                    <li (click)="redirectPage('home/imira')">
+                        <a  title="IMBRA">
+                            IMBRA
+                        </a>
+                    </li>
+                </ul>
+                <div class="col-md-6 admin-footer">
+                    <p>
+                        {{homeData.footer_text.subtitle}}
+                    </p>
+                </div>
+                <ul class="col-md-3 admin-footer">
+                    <li (click)="redirectPage('home/policy')">
+                        <a  title="Privacy Policy">
+                            Privacy
+                        </a>
+                    </li>
+                    <li (click)="redirectPage('home/cookiepolicy')">
+                        <a title="Cookie Policy">
+                            Cookie Policy
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
